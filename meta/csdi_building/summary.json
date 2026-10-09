@@ -1,0 +1,135 @@
+{
+  "url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer",
+  "service_description": "Building",
+  "spatialReference": {
+    "wkid": 102140,
+    "latestWkid": 2326,
+    "xyTolerance": 0.001,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -4786700,
+    "falseY": -11651800,
+    "xyUnits": 10000,
+    "falseZ": -100000,
+    "zUnits": 10000,
+    "falseM": -100000,
+    "mUnits": 10000
+  },
+  "maxRecordCount": 3000,
+  "layers": [
+    {
+      "id": "0",
+      "url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer/0",
+      "name": "Building",
+      "geometryType": "esriGeometryPolygon",
+      "maxRecordCount": 3000,
+      "supportedQueryFormats": "JSON, geoJSON, PBF",
+      "supportsPagination": true,
+      "spatialReference": {
+        "wkid": 102140,
+        "latestWkid": 2326,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -4786700,
+        "falseY": -11651800,
+        "xyUnits": 10000,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+      },
+      "objectIdField": "OBJECTID",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "type": "esriFieldTypeOID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "Shape__Length",
+          "type": "esriFieldTypeDouble",
+          "alias": "Shape_Length"
+        },
+        {
+          "name": "Shape__Area",
+          "type": "esriFieldTypeDouble",
+          "alias": "Shape_Area"
+        },
+        {
+          "name": "GeoRefNo",
+          "type": "esriFieldTypeString",
+          "alias": "GeoRefNo"
+        },
+        {
+          "name": "DateCreate",
+          "type": "esriFieldTypeDate",
+          "alias": "DateCreate"
+        },
+        {
+          "name": "BuildingBlockType",
+          "type": "esriFieldTypeString",
+          "alias": "BuildingBlockType"
+        },
+        {
+          "name": "BuildingCSUID",
+          "type": "esriFieldTypeString",
+          "alias": "BuildingCSUID"
+        },
+        {
+          "name": "BuildingID",
+          "type": "esriFieldTypeInteger",
+          "alias": "BuildingID"
+        },
+        {
+          "name": "Status",
+          "type": "esriFieldTypeString",
+          "alias": "Status"
+        },
+        {
+          "name": "BuildingNameEN",
+          "type": "esriFieldTypeString",
+          "alias": "BuildingNameEN"
+        },
+        {
+          "name": "BuildingNameTC",
+          "type": "esriFieldTypeString",
+          "alias": "BuildingNameTC"
+        },
+        {
+          "name": "BaseHeight",
+          "type": "esriFieldTypeDouble",
+          "alias": "BaseHeight"
+        },
+        {
+          "name": "TopHeight",
+          "type": "esriFieldTypeDouble",
+          "alias": "TopHeight"
+        },
+        {
+          "name": "Storeys",
+          "type": "esriFieldTypeSmallInteger",
+          "alias": "Storeys"
+        },
+        {
+          "name": "StoreysInBasement",
+          "type": "esriFieldTypeSmallInteger",
+          "alias": "StoreysInBasement"
+        },
+        {
+          "name": "DateStamp",
+          "type": "esriFieldTypeDate",
+          "alias": "DateStamp"
+        }
+      ],
+      "count": 342195,
+      "height_fields_null_count": {
+        "BaseHeight": 106249,
+        "TopHeight": 104847,
+        "Storeys": 282887,
+        "StoreysInBasement": 335899
+      },
+      "sample_features": 50
+    }
+  ]
+}
