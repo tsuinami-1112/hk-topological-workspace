@@ -495,19 +495,21 @@ OVERPASS = """[out:json][timeout:300];
   node["man_made"~"^(mast|tower|communications_tower)$"]({s},{w},{n},{e});
   way["man_made"~"^(mast|tower|communications_tower)$"]({s},{w},{n},{e});
   node["tower:type"="communication"]({s},{w},{n},{e});
+  node["natural"="peak"]({s},{w},{n},{e});
 );
 out geom;"""
 
 WAY_TAGS = ["highway", "name", "name:en", "access", "foot", "motor_vehicle", "vehicle", "service",
             "surface", "tracktype", "sac_scale", "trail_visibility", "lit"]
 MAST_TAGS = ["man_made", "tower:type", "tower:construction", "height", "operator", "name", "name:en"]
+PEAK_TAGS = ["name", "name:en", "name:zh", "ele"]
 
 
 def _osm_frames(elements):
     import geopandas as gpd
     from shapely.geometry import LineString, Point
 
-    ways, masts = [], []
+    ways, masts, peaks = [], [], []
     for el in elements:
         tags = el.get("tags", {})
         is_mast = tags.get("man_made") in ("mast", "tower", "communications_tower") or tags.get("tower:type") == "communication"
@@ -518,7 +520,10 @@ def _osm_frames(elements):
         else:
             continue
         row = {"osm_type": el["type"], "osm_id": el["id"], "tags": json.dumps(tags, ensure_ascii=False)}
-        if is_mast:
+        if tags.get("natural") == "peak" and el["type"] == "node":
+            row.update({k: tags.get(k) for k in PEAK_TAGS})
+            peaks.append({**row, "geometry": geom})
+        elif is_mast:
             row.update({k: tags.get(k) for k in MAST_TAGS})
             masts.append({**row, "geometry": geom.centroid if el["type"] == "way" else geom})
         elif "highway" in tags and el["type"] == "way":
@@ -530,7 +535,7 @@ def _osm_frames(elements):
             return gpd.GeoDataFrame(geometry=[], crs="EPSG:4326").to_crs(HK80)
         return gpd.GeoDataFrame(rows, crs="EPSG:4326").to_crs(HK80)
 
-    return frame(ways), frame(masts)
+    return frame(ways), frame(masts), frame(peaks)
 
 
 def fetch_osm(cfg: dict, force: bool) -> str:
@@ -540,8 +545,10 @@ def fetch_osm(cfg: dict, force: bool) -> str:
     if not url:
         log("osm: no overpass_url configured, skipping")
         return "skipped (no url)"
+    query_sha = hashlib.sha256(OVERPASS.encode()).hexdigest()[:16]
     prev = manifest_load().get("osm")
-    if not force and prev and all((ROOT / f).exists() for f in prev.get("files", {})):
+    if (not force and prev and prev.get("query_sha") == query_sha
+            and all((ROOT / f).exists() for f in prev.get("files", {}))):
         age = dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(prev["retrieved"].replace("Z", "+00:00"))
         if age < dt.timedelta(days=7):
             log(f"osm: fetched {age.days} days ago, skipping (use --force to refetch)")
@@ -559,20 +566,21 @@ def fetch_osm(cfg: dict, force: bool) -> str:
             elements[(el["type"], el["id"])] = el
         log(f"  cell {tile_key(e0, n0)} ({i}/{len(cells)}): {len(j.get('elements', []))} elements")
         time.sleep(2)
-    ways, masts = _osm_frames(elements.values())
+    ways, masts, peaks = _osm_frames(elements.values())
     out_dir = DATA / "osm"
     reset_dir(out_dir)
     files: dict = {}
     write_tiled(ways, out_dir, "osm", size, "ways", files)
     write_tiled(masts, out_dir, "osm", size, "masts", files)
+    write_tiled(peaks, out_dir, "osm", size, "peaks", files)
     index = {"dataset": "osm", "crs": HK80, "source": url, "retrieved": now(),
              "attribution": "(c) OpenStreetMap contributors, ODbL 1.0",
-             "ways": int(len(ways)), "masts": int(len(masts)),
+             "ways": int(len(ways)), "masts": int(len(masts)), "peaks": int(len(peaks)),
              "tiles": sorted(files.values(), key=lambda t: t["key"])}
     (out_dir / "index.json").write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n")
     record("osm", url, [out_dir / f for f in files] + [out_dir / "index.json"],
-           {"ways": int(len(ways)), "masts": int(len(masts))})
-    return f"ok, {len(ways)} ways, {len(masts)} masts/towers"
+           {"ways": int(len(ways)), "masts": int(len(masts)), "peaks": int(len(peaks)), "query_sha": query_sha})
+    return f"ok, {len(ways)} ways, {len(masts)} masts/towers, {len(peaks)} peaks"
 
 
 # ---------------------------------------------------------------- main
