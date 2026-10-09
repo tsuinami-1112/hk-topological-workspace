@@ -116,7 +116,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); ou
     <header>
       <p class="eyebrow">drone-sentinel · Hong Kong mesh</p>
       <h1>Sentinel Mesh Sites</h1>
-      <p class="lede">Relay candidates for phases 1 and 2, from the site registry. Terrain only: Meshtastic LONG_MODERATE at 915 MHz, ITU-R P.526 diffraction on the LandsD 5 m terrain model.</p>
+      <p class="lede">Relay candidates for phases 1 and 2, from the site registry. Meshtastic LONG_MODERATE at 915 MHz, ITU-R P.526 diffraction over the LandsD 5 m terrain model with LandsD building heights.</p>
     </header>
 
     <section aria-labelledby="cov-h">
@@ -125,7 +125,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); ou
         <div class="meter"><span class="m-label">Sha Tin valley</span><span class="m-val" id="cov-valley">0%</span><div class="bar"><i id="bar-valley"></i></div></div>
         <div class="meter"><span class="m-label">Kowloon</span><span class="m-val" id="cov-kowloon">0%</span><div class="bar"><i id="bar-kowloon"></i></div></div>
       </div>
-      <p class="fine">Share of sample points (300 m grid, a rooftop station 25 m up) that some selected relay reaches with at least 20 dB of terrain margin.</p>
+      <p class="fine">Share of rooftops (the tallest building in each 300 m cell, antenna 3 m above its roof) that your balcony or a selected relay reaches with at least 20 dB of margin.</p>
       <div class="presets" id="presets"></div>
     </section>
 
@@ -137,9 +137,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); ou
     <section aria-labelledby="layers-h">
       <h2 id="layers-h">Layers</h2>
       <div class="toggles">
-        <label><input type="checkbox" id="lyr-points" checked> Sample points, coloured by best margin</label>
+        <label><input type="checkbox" id="lyr-points" checked> Rooftops, coloured by best margin</label>
+        <label><input type="checkbox" id="lyr-buildings" checked> Buildings (darker is taller)</label>
         <label><input type="checkbox" id="lyr-links" checked> Links between selected relays and home</label>
-        <label><input type="checkbox" id="lyr-screen"> Where a hilltop pole could reach the balcony</label>
+        <label><input type="checkbox" id="lyr-screen"> Where a hilltop pole could reach the balcony (with buildings)</label>
         <label><input type="checkbox" id="lyr-contours" checked> Contours (100 m, bold at 500 m)</label>
       </div>
       <div class="legend" style="margin-top:14px">
@@ -147,6 +148,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); ou
         <span class="sw" style="background:var(--signal-weak)"></span><span>20 to 40 dB</span>
         <span class="sw" style="background:var(--red)"></span><span>Under 20 dB: not covered</span>
         <span class="sw sq" style="background:var(--home);opacity:.35"></span><span>Balcony's clear sector</span>
+        <span class="sw sq" style="background:rgb(112,112,112);opacity:.75"></span><span>Building footprint</span>
       </div>
       <p class="coord" id="coord" aria-live="polite"></p>
     </section>
@@ -154,10 +156,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); ou
     <section aria-labelledby="notes-h">
       <h2 id="notes-h">Read these numbers as</h2>
       <ul class="notes">
-        <li><b>Upper bounds.</b> Buildings are not modelled yet, and margins are against LoRa's thermal sensitivity (−134 dBm), not the city's noise floor. The 20 dB threshold is there to absorb that.</li>
+        <li><b>Still optimistic.</b> Buildings are in, but street clutter below roof level, foliage beyond the terrain model's canopy and the city's noise floor are not; margins are against LoRa's thermal sensitivity (−134 dBm). The 20 dB threshold is there to absorb that.</li>
         <li><b>Weaker direction.</b> Links use the field node's 28 dBm; the home station's 4 W only helps the other way.</li>
-        <li><b>Antennas.</b> Relays: 6 dBi collinear on a 4 m pole, 1 dB cable. Home: 7 dBi at 47 mPD (13/F), sector 227° to 27°.</li>
-        <li><b>Sector edge matters.</b> Golden Hill sits 16° inside it. If your clear arc is narrower than 160°, check it.</li>
+        <li><b>Antennas.</b> Relays: 6 dBi collinear on a 4 m pole, 1 dB cable. Home: 7 dBi at 45 mPD on Block B's 312° facade (13/F), sector 232° to 32°.</li>
+        <li><b>Grassy Hill</b> is blocked from the balcony by The Palazzo in Fo Tan (157 mPD, 770 m out). <b>Kowloon Peak</b>'s summit has a transposer station that shadows a pole toward the NNE.</li>
       </ul>
     </section>
   </aside>
@@ -184,6 +186,7 @@ const DATA = /*__DATA__*/;
 
   L.imageOverlay("terrain.png", bounds, { interactive: false }).addTo(map);
   const contours = L.imageOverlay("contours.png", bounds, { interactive: false }).addTo(map);
+  const buildings = L.imageOverlay("buildings.png", bounds, { interactive: false }).addTo(map);
   const screen = L.imageOverlay("screen.png", bounds, { interactive: false, opacity: 0.9 });
 
   // Balcony sector wedge
@@ -200,10 +203,10 @@ const DATA = /*__DATA__*/;
   const pts = [];
   for (const area of ["valley", "kowloon"]) {
     DATA.targets[area].forEach((p, i) => {
-      const m = L.circleMarker(ll(p[0], p[1]), { radius: 3.2, weight: 0, fillOpacity: 0.85 });
+      const m = L.circleMarker(ll(p[0], p[1]), { radius: 3.4, weight: 0, fillOpacity: 0.85 });
       m.bindTooltip("", { className: "tip", direction: "top" });
       pointsLayer.addLayer(m);
-      pts.push({ area, i, m });
+      pts.push({ area, i, m, top: p[2], label: p[3] });
     });
   }
 
@@ -219,7 +222,7 @@ const DATA = /*__DATA__*/;
   function balconyChip(s) {
     if (s.home_link == null) return { cls: "nlos", text: "no data" };
     if (s.home_link.blocked) return { cls: "blocked", text: "Behind building" };
-    return { cls: s.home_link.los ? "los" : "nlos", text: `Balcony ${s.home_link.los ? "LOS" : "NLOS"} ${s.home_link.margin_db.toFixed(0)} dB` };
+    return { cls: s.home_link.los ? "los" : "nlos", text: s.home_link.los ? `Balcony LOS ${s.home_link.margin_db.toFixed(0)} dB` : `Balcony diffracted ${s.home_link.margin_db.toFixed(0)} dB` };
   }
 
   const list = document.getElementById("site-list");
@@ -234,7 +237,7 @@ const DATA = /*__DATA__*/;
     const li = document.createElement("li");
     li.className = "site";
     const chip = balconyChip(s);
-    const cov = DATA.margins[s.name] ? coverage([s.name]) : null;
+    const cov = DATA.margins[s.name] ? coverage([s.name], false) : null;
     li.innerHTML = `
       <input type="checkbox" id="${id}">
       <label for="${id}"><span class="s-name"></span><br><span class="s-meta"></span></label>
@@ -269,14 +272,15 @@ const DATA = /*__DATA__*/;
   addGroup("Also analysed");
   relays.filter((s) => !s.id).forEach(addSite);
 
-  function coverage(names) {
+  function coverage(names, withHome = true) {
     const out = {};
+    const all = withHome ? [...names, "HOME"] : names;
     for (const area of ["valley", "kowloon"]) {
       const n = DATA.targets[area].length;
       let hit = 0;
       for (let i = 0; i < n; i++) {
         let best = -Infinity;
-        for (const nm of names) { const v = DATA.margins[nm]?.[area][i]; if (v != null && v > best) best = v; }
+        for (const nm of all) { const v = DATA.margins[nm]?.[area][i]; if (v != null && v > best) best = v; }
         if (best >= T) hit++;
       }
       out[area] = n ? hit / n : 0;
@@ -324,10 +328,11 @@ const DATA = /*__DATA__*/;
           muted = col("--muted"), panel = col("--panel"), home = col("--home"), amber = col("--amber");
     for (const p of pts) {
       let best = -Infinity, who = null;
-      for (const nm of names) { const v = DATA.margins[nm]?.[p.area][p.i]; if (v != null && v > best) { best = v; who = nm; } }
+      for (const nm of [...names, "HOME"]) { const v = DATA.margins[nm]?.[p.area][p.i]; if (v != null && v > best) { best = v; who = nm; } }
       const c = best >= 40 ? cs : best >= T ? cw : cr;
       p.m.setStyle({ fillColor: c, fillOpacity: best >= T ? 0.9 : 0.55 });
-      p.m.setTooltipContent(who ? `${who}: ${best.toFixed(0)} dB` : "no relay selected");
+      const roofName = p.label || "Rooftop";
+      p.m.setTooltipContent(`${roofName}, roof ${p.top} mPD: ` + (best > -90 ? `best ${who === "HOME" ? "your balcony" : who} ${best.toFixed(0)} dB` : "no link"));
     }
     for (const s of sites) {
       const isHome = s.roles.includes("home");
@@ -362,6 +367,7 @@ const DATA = /*__DATA__*/;
   bindLayer("lyr-links", linksLayer);
   bindLayer("lyr-screen", screen);
   bindLayer("lyr-contours", contours);
+  bindLayer("lyr-buildings", buildings);
 
   const coord = document.getElementById("coord");
   map.on("mousemove", (e) => { coord.textContent = `HK1980 E ${Math.round(e.latlng.lng)}  N ${Math.round(e.latlng.lat)}`; });

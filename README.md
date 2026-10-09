@@ -15,7 +15,10 @@ config/sources.yml      where each dataset comes from (edit this, not the script
 tools/fetch.py          downloads and normalises the data (run by the workflow)
 tools/hkgeo.py          loaders for analysis: to_hk80, load_dem, dem_at, load_vector
 tools/rf.py             LoRa link model: free space + ITU-R P.526 Bullington diffraction
+tools/dsm.py            surface model: DTM + LandsD building tops, for building-aware links
+tools/inspect_arcgis.py describes ArcGIS REST services listed in config/inspect.yml into meta/
 analyses/               one script per planning question; outputs go to out/
+meta/                   service descriptions written by the inspect-service workflow
 data/                   fetched data, committed by the workflow; never edit by hand
   MANIFEST.json         source, retrieval time and sha256 of every file
   dtm5m/                LandsD 5 m DTM, float32 GeoTIFF tiles + index.json
@@ -51,12 +54,13 @@ attach it to a release of this repo tagged `src`, and set the DTM url in
 ## Planning workflow
 
 1. Copy the registry from the claude.ai Project (`registry/nodes.geojson`) to `out/nodes.geojson`.
-2. Run the analysis for the question at hand, e.g.
-   `python analyses/home_relays.py --registry out/nodes.geojson` (relay candidates around home),
-   `python analyses/relay_sets.py <site> <site> ...` (union coverage of relay sets),
-   `python analyses/shortlist_links.py out/home_relays/candidates.geojson <site> ...` (pairwise links).
+2. Run the analysis for the question at hand, in this order when rebuilding everything:
+   `python analyses/home_relays.py --registry out/nodes.geojson` (terrain-only candidate search around home),
+   `python analyses/relay_sets.py <site> <site> ...` (sites to carry forward; terrain-only union coverage),
+   `python analyses/building_check.py --registry out/nodes.geojson` (building-aware links, real rooftop targets),
+   `python analyses/shortlist_links.py out/home_relays/candidates.geojson <site> ...` (quick pairwise terrain links).
 3. Write decisions back to the registry in the Project.
-4. Rebuild the planning map: `python analyses/render_map.py --registry out/nodes.geojson` then
+4. Rebuild the planning map (needs building_check output): `python analyses/render_map.py --registry out/nodes.geojson` then
    `python analyses/build_map_page.py`, and republish `out/map/` to the existing map artifact
    (its URL is in the registry under `x_registry.map_artifact`).
 
@@ -65,6 +69,6 @@ attach it to a release of this repo tagged `src`, and set the DTM url in
 | Dataset | Provider | Terms |
 |---|---|---|
 | Digital Terrain Model, 5 m grid | Lands Department, via DATA.GOV.HK | DATA.GOV.HK Terms and Conditions of Use (free re-use) |
-| Building | Lands Department, via CSDI Portal | DATA.GOV.HK / CSDI terms |
+| Building (footprints, TopHeight/BaseHeight in mPD, storeys) | Lands Department, via CSDI ArcGIS REST | DATA.GOV.HK / CSDI terms |
 | Leaflet 1.9.4 stylesheet (analyses/vendor) | Volodymyr Agafonkin and contributors | BSD 2-Clause |
 | Roads, paths, masts, peaks | OpenStreetMap contributors, via Geofabrik's Hong Kong extract | ODbL 1.0, attribution required |
