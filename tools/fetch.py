@@ -41,7 +41,7 @@ HK80 = "EPSG:2326"
 # A grid without a CRS is accepted as HK1980 Grid only if it falls inside this window.
 HK80_SANITY = (780000, 780000, 890000, 870000)
 RASTER_EXT = {".asc", ".tif", ".tiff", ".img", ".bil", ".flt"}
-UA = {"User-Agent": "hk-mesh-planning/1.0 (RF site planning; data fetch)"}
+UA = {"User-Agent": "hk-topological-workspace/1.0 (RF site planning; data fetch)"}
 RETRY_STATUS = {429, 500, 502, 503, 504}
 
 

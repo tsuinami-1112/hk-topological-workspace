@@ -1,4 +1,4 @@
-# hk-mesh-planning
+# hk-topological-workspace
 
 Terrain, building and access data for planning where drone-sentinel nodes go in Hong Kong,
 plus the tools that analyse it. Planning sessions clone this repo, load what they need from
