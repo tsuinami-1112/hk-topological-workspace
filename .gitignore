@@ -1,0 +1,6 @@
+# Analysis outputs are regenerated each session; only fetched source data is versioned.
+out/
+.cache/
+__pycache__/
+*.pyc
+.venv/

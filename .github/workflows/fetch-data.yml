@@ -1,0 +1,67 @@
+name: fetch-data
+
+# Downloads the source datasets on GitHub's runner (which can reach LandsD, CSDI and
+# Overpass), converts them to HK1980 Grid 10 km tiles and commits them under data/.
+# Runs on demand, and whenever the source config or the fetch script changes.
+
+on:
+  workflow_dispatch:
+    inputs:
+      datasets:
+        description: "Comma-separated: dtm5m, buildings, osm"
+        default: "dtm5m,buildings,osm"
+        required: true
+      force:
+        description: "Refetch even if already up to date"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - config/sources.yml
+      - tools/fetch.py
+      - .github/workflows/fetch-data.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Fetch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          python tools/fetch.py
+          --datasets "${{ inputs.datasets || 'dtm5m,buildings,osm' }}"
+          ${{ inputs.force && '--force' || '' }}
+
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+            exit 0
+          fi
+          git commit -m "data: fetch ${{ inputs.datasets || 'all' }} ($(date -u +%Y-%m-%d))"
+          git pull --rebase
+          git push

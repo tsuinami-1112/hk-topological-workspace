@@ -1,0 +1,9 @@
+numpy>=2.0
+rasterio>=1.4
+pyproj>=3.6
+shapely>=2.0
+geopandas>=1.0
+pyogrio>=0.9
+requests>=2.31
+PyYAML>=6.0
+itmlogic>=1.2
