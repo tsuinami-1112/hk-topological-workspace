@@ -560,10 +560,12 @@ def _osm_frames(elements):
 def fetch_osm(cfg: dict, force: bool) -> str:
     from pyproj import Transformer
 
-    url = (cfg.get("osm") or {}).get("overpass_url")
-    if not url:
-        log("osm: no overpass_url configured, skipping")
+    o = cfg.get("osm") or {}
+    urls = o.get("overpass_urls") or ([o["overpass_url"]] if o.get("overpass_url") else [])
+    if not urls:
+        log("osm: no overpass_urls configured, skipping")
         return "skipped (no url)"
+    url = urls[0]
     query_sha = hashlib.sha256(OVERPASS.encode()).hexdigest()[:16]
     prev = manifest_load().get("osm")
     if (not force and prev and prev.get("query_sha") == query_sha
@@ -580,7 +582,18 @@ def fetch_osm(cfg: dict, force: bool) -> str:
     for i, (e0, n0, e1, n1) in enumerate(cells, 1):
         lons, lats = to_wgs.transform([e0, e1, e0, e1], [n0, n0, n1, n1])
         q = OVERPASS.format(s=min(lats), w=min(lons), n=max(lats), e=max(lons))
-        j = http(s, "POST", url, data={"data": q}, timeout=400).json()
+        j, err = None, None
+        for u in [url] + [x for x in urls if x != url]:
+            try:
+                j = http(s, "POST", u, data={"data": q}, timeout=(30, 400), tries=3).json()
+                if u != url:
+                    note(f"osm: switched to {u} after: {err}", "warning")
+                    url = u
+                break
+            except (requests.RequestException, ValueError) as ex:
+                err = f"{type(ex).__name__}: {ex}"
+        if j is None:
+            raise RuntimeError(f"all Overpass instances failed for cell {tile_key(e0, n0)}: {err}")
         for el in j.get("elements", []):
             elements[(el["type"], el["id"])] = el
         log(f"  cell {tile_key(e0, n0)} ({i}/{len(cells)}): {len(j.get('elements', []))} elements")

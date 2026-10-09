@@ -27,4 +27,7 @@ buildings:
 osm:
   # Roads, tracks, footpaths and masts/towers from OpenStreetMap, for site access
   # and for spotting existing telecom sites. Data (c) OpenStreetMap contributors, ODbL.
-  overpass_url: https://overpass-api.de/api/interpreter
+  # Tried in order; the next one is used if a query fails on the current one.
+  overpass_urls:
+    - https://overpass-api.de/api/interpreter
+    - https://overpass.private.coffee/api/interpreter

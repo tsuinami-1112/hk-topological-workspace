@@ -2,7 +2,8 @@ name: fetch-data
 
 # Downloads the source datasets on GitHub's runner (which can reach LandsD, CSDI and
 # Overpass), converts them to HK1980 Grid 10 km tiles and commits them under data/.
-# Runs on demand, and whenever the source config or the fetch script changes.
+# Each dataset is fetched and committed in its own step, so a slow or failing source
+# never holds back the others. Progress and errors are posted as run annotations.
 
 on:
   workflow_dispatch:
@@ -21,6 +22,7 @@ on:
       - config/sources.yml
       - tools/fetch.py
       - .github/workflows/fetch-data.yml
+      - .github/commit-data.sh
 
 permissions:
   contents: write
@@ -28,6 +30,10 @@ permissions:
 concurrency:
   group: fetch-data
   cancel-in-progress: false
+
+env:
+  DATASETS: ${{ inputs.datasets || 'dtm5m,buildings,osm' }}
+  FORCE: ${{ inputs.force && '--force' || '' }}
 
 jobs:
   fetch:
@@ -48,24 +54,30 @@ jobs:
       - name: Install
         run: pip install -r requirements.txt
 
-      - name: Fetch
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: >
-          python tools/fetch.py
-          --datasets "${{ inputs.datasets || 'dtm5m,buildings,osm' }}"
-          ${{ inputs.force && '--force' || '' }}
+      - name: Fetch dtm5m
+        id: dtm5m
+        if: ${{ !cancelled() && contains(env.DATASETS, 'dtm5m') }}
+        run: python tools/fetch.py --datasets dtm5m $FORCE
 
-      - name: Commit data
-        if: always()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data
-          if git diff --cached --quiet; then
-            echo "No data changes."
-            exit 0
-          fi
-          git commit -m "data: fetch ${{ inputs.datasets || 'all' }} ($(date -u +%Y-%m-%d))"
-          git pull --rebase
-          git push
+      - name: Commit dtm5m
+        if: ${{ !cancelled() && steps.dtm5m.outcome == 'success' }}
+        run: bash .github/commit-data.sh dtm5m
+
+      - name: Fetch buildings
+        id: buildings
+        if: ${{ !cancelled() && contains(env.DATASETS, 'buildings') }}
+        run: python tools/fetch.py --datasets buildings $FORCE
+
+      - name: Commit buildings
+        if: ${{ !cancelled() && steps.buildings.outcome == 'success' }}
+        run: bash .github/commit-data.sh buildings
+
+      - name: Fetch osm
+        id: osm
+        if: ${{ !cancelled() && contains(env.DATASETS, 'osm') }}
+        timeout-minutes: 75
+        run: python tools/fetch.py --datasets osm $FORCE
+
+      - name: Commit osm
+        if: ${{ !cancelled() && steps.osm.outcome == 'success' }}
+        run: bash .github/commit-data.sh osm
