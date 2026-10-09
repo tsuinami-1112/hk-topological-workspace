@@ -1,0 +1,8 @@
+# Services to describe with tools/inspect_arcgis.py (run by the inspect-service workflow when
+# this file changes). Results land in meta/<name>/.
+services:
+  - name: csdi_building
+    # LandsD "Building" dataset on CSDI (dataset id landsd_rcd_1637211194312_35158)
+    url: https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer
+    # A box around Garden Vista, Sha Tin (HK1980 minx, miny, maxx, maxy)
+    sample_hk80: [839000, 827900, 839700, 828500]

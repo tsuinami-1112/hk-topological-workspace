@@ -3,7 +3,9 @@
 set -euo pipefail
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-git add -A data
+for d in data meta; do
+  if [ -e "$d" ]; then git add -A "$d"; fi
+done
 if git diff --cached --quiet; then
   echo "No changes for $1."
   exit 0

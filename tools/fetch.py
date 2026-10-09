@@ -452,7 +452,8 @@ def fetch_buildings(cfg: dict, force: bool) -> str:
         return "skipped (no url)"
     if url.endswith("/query"):
         url = url[: -len("/query")]
-    if not force and up_to_date("buildings", url):
+    cfg_url = url  # what the manifest records, so an unchanged config is recognised
+    if not force and up_to_date("buildings", cfg_url):
         log("buildings: already fetched from this source, skipping (use --force to refetch)")
         return "skipped (up to date)"
     size = int(cfg["tile_size_m"])
@@ -460,6 +461,17 @@ def fetch_buildings(cfg: dict, force: bool) -> str:
     meta = http(s, "GET", url, params={"f": "json"}).json()
     if "error" in meta:
         raise RuntimeError(f"service error: {meta['error']}")
+    if "fields" not in meta and meta.get("layers"):
+        # A service root: pick its building polygon layer.
+        layers = meta["layers"]
+        polys = [l for l in layers if l.get("geometryType") in (None, "esriGeometryPolygon")]
+        pick = polys if len(polys) == 1 else [l for l in polys if "build" in (l.get("name") or "").lower()]
+        if len(pick) != 1:
+            raise RuntimeError(f"service has several layers, set the layer URL explicitly: "
+                               f"{[(l.get('id'), l.get('name')) for l in layers]}")
+        url = f"{url}/{pick[0]['id']}"
+        note(f"buildings: using layer {pick[0]['id']} '{pick[0].get('name')}'")
+        meta = http(s, "GET", url, params={"f": "json"}).json()
     if "fields" not in meta:
         raise RuntimeError("URL is not a feature layer (no 'fields'); it should end in /FeatureServer/<n> or /MapServer/<n>")
     maxrec = int(meta.get("maxRecordCount") or 1000)
@@ -498,12 +510,12 @@ def fetch_buildings(cfg: dict, force: bool) -> str:
     (out_dir / "layer_meta.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
     files: dict = {}
     write_tiled(gdf, out_dir, "bldg", size, "buildings", files)
-    index = {"dataset": "buildings", "crs": HK80, "source": url, "layer": meta.get("name"),
+    index = {"dataset": "buildings", "crs": HK80, "source": cfg_url, "layer_url": url, "layer": meta.get("name"),
              "fields": [f["name"] for f in meta["fields"]], "features": int(len(gdf)),
              "tiles": sorted(files.values(), key=lambda t: t["key"])}
     (out_dir / "index.json").write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n")
-    record("buildings", url, [out_dir / f for f in files] + [out_dir / "index.json", out_dir / "layer_meta.json"],
-           {"features": int(len(gdf))})
+    record("buildings", cfg_url, [out_dir / f for f in files] + [out_dir / "index.json", out_dir / "layer_meta.json"],
+           {"features": int(len(gdf)), "layer_url": url})
     return f"ok, {len(gdf)} buildings in {len(files)} tiles"
 
 

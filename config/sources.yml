@@ -19,10 +19,10 @@ dtm5m:
 buildings:
   # LandsD "Building" dataset on CSDI (dataset id landsd_rcd_1637211194312_35158):
   # footprints with building height / top and base level / storeys, updated monthly.
-  # Paste the ArcGIS REST layer URL from the dataset page on portal.csdi.gov.hk
-  # (Other Resources and Services > GeoSpatial Service > ArcGIS REST API).
-  # It ends in /FeatureServer/<n> or /MapServer/<n>. Leave null to skip.
-  url: null
+  # ArcGIS REST service from the dataset page on portal.csdi.gov.hk (Other Resources and
+  # Services > GeoSpatial Service > ArcGIS REST API). A service root is fine: the fetch picks
+  # its building polygon layer. Leave null to skip.
+  url: https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer
 
 osm:
   # Geofabrik's daily Hong Kong extract: roads, tracks, footpaths (site access), masts and

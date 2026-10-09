@@ -1,0 +1,45 @@
+name: inspect-service
+
+# Describes the ArcGIS REST services listed in config/inspect.yml (layers, fields, limits,
+# counts, a sample) and commits the results under meta/. Runs when that file changes.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - config/inspect.yml
+      - tools/inspect_arcgis.py
+      - .github/workflows/inspect-service.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-data
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Inspect
+        id: inspect
+        run: python tools/inspect_arcgis.py
+
+      - name: Commit meta
+        if: ${{ !cancelled() }}
+        run: bash .github/commit-data.sh inspect
