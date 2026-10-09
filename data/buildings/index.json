@@ -1,0 +1,392 @@
+{
+  "dataset": "buildings",
+  "crs": "EPSG:2326",
+  "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer",
+  "layer_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer/0",
+  "layer": "Building",
+  "fields": [
+    "OBJECTID",
+    "Shape__Length",
+    "Shape__Area",
+    "GeoRefNo",
+    "DateCreate",
+    "BuildingBlockType",
+    "BuildingCSUID",
+    "BuildingID",
+    "Status",
+    "BuildingNameEN",
+    "BuildingNameTC",
+    "BaseHeight",
+    "TopHeight",
+    "Storeys",
+    "StoreysInBasement",
+    "DateStamp"
+  ],
+  "features": 342195,
+  "tiles": [
+    {
+      "key": "E800N800",
+      "file": "bldg_E800N800.gpkg",
+      "bounds": [
+        800000,
+        800000,
+        810000,
+        810000
+      ],
+      "counts": {
+        "buildings": 572
+      }
+    },
+    {
+      "key": "E800N810",
+      "file": "bldg_E800N810.gpkg",
+      "bounds": [
+        800000,
+        810000,
+        810000,
+        820000
+      ],
+      "counts": {
+        "buildings": 3011
+      }
+    },
+    {
+      "key": "E800N820",
+      "file": "bldg_E800N820.gpkg",
+      "bounds": [
+        800000,
+        820000,
+        810000,
+        830000
+      ],
+      "counts": {
+        "buildings": 696
+      }
+    },
+    {
+      "key": "E800N830",
+      "file": "bldg_E800N830.gpkg",
+      "bounds": [
+        800000,
+        830000,
+        810000,
+        840000
+      ],
+      "counts": {
+        "buildings": 145
+      }
+    },
+    {
+      "key": "E810N800",
+      "file": "bldg_E810N800.gpkg",
+      "bounds": [
+        810000,
+        800000,
+        820000,
+        810000
+      ],
+      "counts": {
+        "buildings": 651
+      }
+    },
+    {
+      "key": "E810N810",
+      "file": "bldg_E810N810.gpkg",
+      "bounds": [
+        810000,
+        810000,
+        820000,
+        820000
+      ],
+      "counts": {
+        "buildings": 8318
+      }
+    },
+    {
+      "key": "E810N820",
+      "file": "bldg_E810N820.gpkg",
+      "bounds": [
+        810000,
+        820000,
+        820000,
+        830000
+      ],
+      "counts": {
+        "buildings": 9946
+      }
+    },
+    {
+      "key": "E810N830",
+      "file": "bldg_E810N830.gpkg",
+      "bounds": [
+        810000,
+        830000,
+        820000,
+        840000
+      ],
+      "counts": {
+        "buildings": 33422
+      }
+    },
+    {
+      "key": "E820N800",
+      "file": "bldg_E820N800.gpkg",
+      "bounds": [
+        820000,
+        800000,
+        830000,
+        810000
+      ],
+      "counts": {
+        "buildings": 5431
+      }
+    },
+    {
+      "key": "E820N810",
+      "file": "bldg_E820N810.gpkg",
+      "bounds": [
+        820000,
+        810000,
+        830000,
+        820000
+      ],
+      "counts": {
+        "buildings": 4178
+      }
+    },
+    {
+      "key": "E820N820",
+      "file": "bldg_E820N820.gpkg",
+      "bounds": [
+        820000,
+        820000,
+        830000,
+        830000
+      ],
+      "counts": {
+        "buildings": 9062
+      }
+    },
+    {
+      "key": "E820N830",
+      "file": "bldg_E820N830.gpkg",
+      "bounds": [
+        820000,
+        830000,
+        830000,
+        840000
+      ],
+      "counts": {
+        "buildings": 82462
+      }
+    },
+    {
+      "key": "E820N840",
+      "file": "bldg_E820N840.gpkg",
+      "bounds": [
+        820000,
+        840000,
+        830000,
+        850000
+      ],
+      "counts": {
+        "buildings": 10233
+      }
+    },
+    {
+      "key": "E830N800",
+      "file": "bldg_E830N800.gpkg",
+      "bounds": [
+        830000,
+        800000,
+        840000,
+        810000
+      ],
+      "counts": {
+        "buildings": 2272
+      }
+    },
+    {
+      "key": "E830N810",
+      "file": "bldg_E830N810.gpkg",
+      "bounds": [
+        830000,
+        810000,
+        840000,
+        820000
+      ],
+      "counts": {
+        "buildings": 27116
+      }
+    },
+    {
+      "key": "E830N820",
+      "file": "bldg_E830N820.gpkg",
+      "bounds": [
+        830000,
+        820000,
+        840000,
+        830000
+      ],
+      "counts": {
+        "buildings": 35678
+      }
+    },
+    {
+      "key": "E830N830",
+      "file": "bldg_E830N830.gpkg",
+      "bounds": [
+        830000,
+        830000,
+        840000,
+        840000
+      ],
+      "counts": {
+        "buildings": 34295
+      }
+    },
+    {
+      "key": "E830N840",
+      "file": "bldg_E830N840.gpkg",
+      "bounds": [
+        830000,
+        840000,
+        840000,
+        850000
+      ],
+      "counts": {
+        "buildings": 27492
+      }
+    },
+    {
+      "key": "E840N800",
+      "file": "bldg_E840N800.gpkg",
+      "bounds": [
+        840000,
+        800000,
+        850000,
+        810000
+      ],
+      "counts": {
+        "buildings": 1388
+      }
+    },
+    {
+      "key": "E840N810",
+      "file": "bldg_E840N810.gpkg",
+      "bounds": [
+        840000,
+        810000,
+        850000,
+        820000
+      ],
+      "counts": {
+        "buildings": 13412
+      }
+    },
+    {
+      "key": "E840N820",
+      "file": "bldg_E840N820.gpkg",
+      "bounds": [
+        840000,
+        820000,
+        850000,
+        830000
+      ],
+      "counts": {
+        "buildings": 20772
+      }
+    },
+    {
+      "key": "E840N830",
+      "file": "bldg_E840N830.gpkg",
+      "bounds": [
+        840000,
+        830000,
+        850000,
+        840000
+      ],
+      "counts": {
+        "buildings": 6634
+      }
+    },
+    {
+      "key": "E840N840",
+      "file": "bldg_E840N840.gpkg",
+      "bounds": [
+        840000,
+        840000,
+        850000,
+        850000
+      ],
+      "counts": {
+        "buildings": 2950
+      }
+    },
+    {
+      "key": "E850N810",
+      "file": "bldg_E850N810.gpkg",
+      "bounds": [
+        850000,
+        810000,
+        860000,
+        820000
+      ],
+      "counts": {
+        "buildings": 1
+      }
+    },
+    {
+      "key": "E850N820",
+      "file": "bldg_E850N820.gpkg",
+      "bounds": [
+        850000,
+        820000,
+        860000,
+        830000
+      ],
+      "counts": {
+        "buildings": 908
+      }
+    },
+    {
+      "key": "E850N830",
+      "file": "bldg_E850N830.gpkg",
+      "bounds": [
+        850000,
+        830000,
+        860000,
+        840000
+      ],
+      "counts": {
+        "buildings": 1042
+      }
+    },
+    {
+      "key": "E860N830",
+      "file": "bldg_E860N830.gpkg",
+      "bounds": [
+        860000,
+        830000,
+        870000,
+        840000
+      ],
+      "counts": {
+        "buildings": 2
+      }
+    },
+    {
+      "key": "E860N840",
+      "file": "bldg_E860N840.gpkg",
+      "bounds": [
+        860000,
+        840000,
+        870000,
+        850000
+      ],
+      "counts": {
+        "buildings": 106
+      }
+    }
+  ]
+}

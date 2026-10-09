@@ -1,4 +1,132 @@
 {
+  "buildings": {
+    "features": 342195,
+    "files": {
+      "data/buildings/bldg_E800N800.gpkg": {
+        "bytes": 307200,
+        "sha256": "0e23193de2107923740b1ce83ac1afe048fe04b59608e4f8d132925e834c4493"
+      },
+      "data/buildings/bldg_E800N810.gpkg": {
+        "bytes": 1257472,
+        "sha256": "3a1f5ed33de97b9914cb4bb744c69eee6b24562e6a1ef584a1219ca529b06f10"
+      },
+      "data/buildings/bldg_E800N820.gpkg": {
+        "bytes": 356352,
+        "sha256": "73afab3f05988586182b3af7ef57e569a7193d2bb597afdf759d42e8f6572870"
+      },
+      "data/buildings/bldg_E800N830.gpkg": {
+        "bytes": 282624,
+        "sha256": "b4fc89835535c743cecc8229798f61877aa6613605ae32d1b41be7277db0744f"
+      },
+      "data/buildings/bldg_E810N800.gpkg": {
+        "bytes": 331776,
+        "sha256": "7281ff92d7b51014bb4027bdab4e0e664d271c42ac8f67b195f98cc86aeb1dc2"
+      },
+      "data/buildings/bldg_E810N810.gpkg": {
+        "bytes": 3796992,
+        "sha256": "9f2de4285e2ce2d168794a2c290777a99338cd2bd50a38010e141d18e169e5d1"
+      },
+      "data/buildings/bldg_E810N820.gpkg": {
+        "bytes": 4935680,
+        "sha256": "c8647c2d011595bf2521b4c24abedbadf48a775d7061843069a54ccbb77933c5"
+      },
+      "data/buildings/bldg_E810N830.gpkg": {
+        "bytes": 13934592,
+        "sha256": "4621ab84f7023947c64ea782947873379fed5cf662c85d33705c91a8fa4da0ad"
+      },
+      "data/buildings/bldg_E820N800.gpkg": {
+        "bytes": 2056192,
+        "sha256": "e6debdfcfe749ea387f799d49f4b95ce11e2b1c6f64e390b1f3d12ead3a0fd7d"
+      },
+      "data/buildings/bldg_E820N810.gpkg": {
+        "bytes": 1662976,
+        "sha256": "f5633afc1bc82c464c1ff2afbe4c120ad98c613eef4ca6ba5fe9b607fa4c5b2d"
+      },
+      "data/buildings/bldg_E820N820.gpkg": {
+        "bytes": 4702208,
+        "sha256": "8916f519e079da7a41fc0315d7b59b9b1f4d3ea89753b2d42dea1d00e0f0c18e"
+      },
+      "data/buildings/bldg_E820N830.gpkg": {
+        "bytes": 30728192,
+        "sha256": "ab6d8fac2fe76fe8a5a283dcc4043dc5301f6fc4592c6d54a6a593405c22d19a"
+      },
+      "data/buildings/bldg_E820N840.gpkg": {
+        "bytes": 3833856,
+        "sha256": "e6dfd0ebb60f20e3b1947c16a2fe2178724e849ebf646c5d2bf8ffa1ad045be2"
+      },
+      "data/buildings/bldg_E830N800.gpkg": {
+        "bytes": 1163264,
+        "sha256": "9dd1d76810bba414c053835d711bf2d1deb42fc11dfc0b36d84e4be9805db68b"
+      },
+      "data/buildings/bldg_E830N810.gpkg": {
+        "bytes": 17698816,
+        "sha256": "a2c68716fec880812590ac470b964275ac5326a16250eaa8590817225d58b6c1"
+      },
+      "data/buildings/bldg_E830N820.gpkg": {
+        "bytes": 19378176,
+        "sha256": "40934f182c254dfa2875b1083c11f287160fe36cc86685ab371cf51cde107829"
+      },
+      "data/buildings/bldg_E830N830.gpkg": {
+        "bytes": 14426112,
+        "sha256": "d6f11aa101e6a92c74d776049fd8e72bf97d30bdccb6d8e6142001ea90f24ca2"
+      },
+      "data/buildings/bldg_E830N840.gpkg": {
+        "bytes": 10416128,
+        "sha256": "417df3d08a538feb3ad1697440e75e91b743d2200435634bba8971419feb82d4"
+      },
+      "data/buildings/bldg_E840N800.gpkg": {
+        "bytes": 794624,
+        "sha256": "1ba3a2de0afc944c16bcb8f4af8eb95b9f2fd50fa0192230b53981c449db5977"
+      },
+      "data/buildings/bldg_E840N810.gpkg": {
+        "bytes": 8060928,
+        "sha256": "20d4c6244f155473ad2293fd990b26ef750aca74265b8a2c56d040fd3bba047c"
+      },
+      "data/buildings/bldg_E840N820.gpkg": {
+        "bytes": 8814592,
+        "sha256": "0b9f6a3d9b563db97e2880317bcda39b896f6668b1e0e90b19c21f88f50dd397"
+      },
+      "data/buildings/bldg_E840N830.gpkg": {
+        "bytes": 3219456,
+        "sha256": "2bd6dd64a0b174e24aa4b1375ad870d836f8e7ab2831dab94b7453ace77b12d6"
+      },
+      "data/buildings/bldg_E840N840.gpkg": {
+        "bytes": 1126400,
+        "sha256": "32efb6375a161294f1dbc6658e8ae15132637d678629cec0c01fdec74840182a"
+      },
+      "data/buildings/bldg_E850N810.gpkg": {
+        "bytes": 98304,
+        "sha256": "0268197399943a67b6d4abfe1d4bc9a24ae1c9d81df2a4adaf1f28dbf2e7578d"
+      },
+      "data/buildings/bldg_E850N820.gpkg": {
+        "bytes": 421888,
+        "sha256": "7293e25e12de4028154fed7c2685323663d6c4ff5a79323fb49b2f1a96f86441"
+      },
+      "data/buildings/bldg_E850N830.gpkg": {
+        "bytes": 454656,
+        "sha256": "7f00ac6f44b9adafe2e53fa0c359cefc99550bdff7e23b53d1a5e0695f3d8510"
+      },
+      "data/buildings/bldg_E860N830.gpkg": {
+        "bytes": 98304,
+        "sha256": "e891cb8a6230afce0a1943e074d9a203e823c324727942637f79e7a211493eb8"
+      },
+      "data/buildings/bldg_E860N840.gpkg": {
+        "bytes": 139264,
+        "sha256": "69fff218a7376b7677b28bae9507e2a6d87b9fd06c3cc14f15dbc8ea2a3a8c54"
+      },
+      "data/buildings/index.json": {
+        "bytes": 6715,
+        "sha256": "b46b0fb97fb777f48c922ba9b94bf78fda67f8d070bd07b342e874c182e96b97"
+      },
+      "data/buildings/layer_meta.json": {
+        "bytes": 10105,
+        "sha256": "45a8e7fccc57226f5e9c54c33631a16ce24cb347ddbd17c67b9cdce67b7e7daf"
+      }
+    },
+    "layer_url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer/0",
+    "retrieved": "2026-10-09T15:02:33Z",
+    "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer"
+  },
   "dtm5m": {
     "files": {
       "data/dtm5m/dtm5m_E800N790.tif": {
