@@ -26,7 +26,8 @@ from scipy.ndimage import map_coordinates
 C_MPS = 299_792_458.0
 R_EFF_KM = 6371.0 * 4.0 / 3.0
 CE = 1.0 / R_EFF_KM                 # effective earth curvature, 1/km
-WATER_MPD = 1.0                     # height used where the DTM has no data (sea, river surface)
+WATER_MPD = 1.0                     # approximate water surface: used for no-data cells and below-water
+                                    # (bathymetric) cells, which the LandsD DTM stores as negative heights
 
 
 # ------------------------------------------------------------------ basic terms
@@ -65,7 +66,7 @@ class Terrain:
     _filled: np.ndarray = field(init=False, repr=False)
 
     def __post_init__(self):
-        self._filled = np.where(np.isfinite(self.z), self.z, WATER_MPD).astype("float32")
+        self._filled = np.where(np.isfinite(self.z), np.maximum(self.z, WATER_MPD), WATER_MPD).astype("float32")
 
     @property
     def res(self):
@@ -92,6 +93,10 @@ class Antenna:
     cable_db: float = 1.0
     azimuth_deg: float | None = None    # centre of usable sector (None = omni)
     arc_deg: float | None = None        # width of usable sector
+    amsl_m: float | None = None         # absolute antenna height (mPD); overrides ground + agl_m
+
+    def height(self, ground_m: float) -> float:
+        return self.amsl_m if self.amsl_m is not None else ground_m + self.agl_m
 
 
 def bearing_deg(e0, n0, e1, n1):
@@ -139,8 +144,8 @@ def link(terrain: Terrain, a_en, b_en, ant_a: Antenna, ant_b: Antenna, f_mhz=915
     s, z, pe, pn = profile(terrain, a_en[0], a_en[1], b_en[0], b_en[1], step_m)
     lam = C_MPS / (f_mhz * 1e6)
     d = s[-1] / 1000.0
-    h_ts = z[0] + ant_a.agl_m
-    h_rs = z[-1] + ant_b.agl_m
+    h_ts = ant_a.height(z[0])
+    h_rs = ant_b.height(z[-1])
     di, hi = s[1:-1] / 1000.0, z[1:-1]
     bulge = 500.0 * CE * di * (d - di)
     s_tim_all = (hi + bulge - h_ts) / di
@@ -192,7 +197,7 @@ def screen(terrain: Terrain, obs_en, ant_obs: Antenna, ant_tgt: Antenna, r_max_m
     """
     e0, n0 = obs_en
     lam = C_MPS / (f_mhz * 1e6)
-    h_ts = terrain.sample(e0, n0) + ant_obs.agl_m
+    h_ts = ant_obs.height(terrain.sample(e0, n0))
     if ant_obs.azimuth_deg is not None and ant_obs.arc_deg is not None:
         az = np.arange(ant_obs.azimuth_deg - ant_obs.arc_deg / 2, ant_obs.azimuth_deg + ant_obs.arc_deg / 2 + 1e-9, daz_deg)
     else:

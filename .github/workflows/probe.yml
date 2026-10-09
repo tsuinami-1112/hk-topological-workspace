@@ -1,6 +1,6 @@
 name: probe-sources
 
-# One-minute reachability and speed check of the data sources from GitHub's runner.
+# One-minute reachability check of the data sources from GitHub's runner.
 # Results are posted as annotations on the run. Runs on demand or when this file changes.
 
 on:
@@ -18,15 +18,32 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: LandsD DTM
+      - name: Probe
+        shell: python
         run: |
-          url=https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip
-          code=$(curl -sSIL --connect-timeout 15 --max-time 30 -o headers.txt -w '%{http_code}' "$url" || echo "fail")
-          len=$(grep -i '^content-length' headers.txt | tail -1 | tr -d '\r' | awk '{print $2}')
-          echo "::notice title=landsd-head::HTTP $code, content-length ${len:-unknown}"
-          res=$(curl -sS --connect-timeout 15 --max-time 60 -o /dev/null -w '%{size_download} %{speed_download}' "$url" 2>&1 || true)
-          echo "::notice title=landsd-60s::bytes, bytes/s: $res"
-      - name: Overpass
-        run: |
-          code=$(curl -sS --connect-timeout 15 --max-time 30 -o /dev/null -w '%{http_code}' https://overpass-api.de/api/status || echo "fail")
-          echo "::notice title=overpass::HTTP $code"
+          import requests
+          UA = {"User-Agent": "hk-topological-workspace/1.0 (RF site planning; data fetch)"}
+          small = '[out:json][timeout:60];node["natural"="peak"](22.38,114.15,22.42,114.20);out;'
+          real = ('[out:json][timeout:300];(way["highway"](22.36,114.14,22.45,114.24);'
+                  'node["natural"="peak"](22.36,114.14,22.45,114.24););out geom;')
+          for u in ["https://overpass-api.de/api/interpreter",
+                    "https://overpass.private.coffee/api/interpreter",
+                    "https://overpass.kumi.systems/api/interpreter",
+                    "https://maps.mail.ru/osm/tools/overpass/api/interpreter"]:
+              host = u.split("/")[2]
+              for name, q in (("small", small), ("real", real)):
+                  try:
+                      r = requests.post(u, data={"data": q}, headers=UA, timeout=(15, 240))
+                      body = r.text[:160].replace("\n", " ")
+                      print(f"::notice title={host} {name}::HTTP {r.status_code}, {len(r.content)} bytes: {body}")
+                  except Exception as ex:
+                      print(f"::notice title={host} {name}::{type(ex).__name__}: {str(ex)[:160]}")
+          for u in ["https://download.geofabrik.de/asia/china-latest.osm.pbf",
+                    "https://download.geofabrik.de/asia/china/hong-kong-latest.osm.pbf",
+                    "https://download.bbbike.org/osm/bbbike/HongKong/HongKong.osm.pbf"]:
+              try:
+                  r = requests.head(u, headers=UA, allow_redirects=True, timeout=(15, 30))
+                  print(f"::notice title=pbf {u.split('/')[-1]}::HTTP {r.status_code}, "
+                        f"content-length {r.headers.get('content-length')}, final {r.url}")
+              except Exception as ex:
+                  print(f"::notice title=pbf {u.split('/')[-1]}::{type(ex).__name__}: {str(ex)[:160]}")

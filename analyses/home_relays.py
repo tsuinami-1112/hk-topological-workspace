@@ -50,7 +50,8 @@ def load_home(registry: Path):
     gain = float(a.get("gain_dbi") or 7)
     ant = Antenna(gain_dbi=gain, hpbw_deg=HOME_HPBW.get(int(round(gain)), 20.0), agl_m=float(a["agl_m"]),
                   tx_dbm=float(p["radio"]["lora_tx_dbm"]), cable_db=1.0,
-                  azimuth_deg=a.get("azimuth_deg"), arc_deg=a.get("visible_arc_deg"))
+                  azimuth_deg=a.get("azimuth_deg"), arc_deg=a.get("visible_arc_deg"),
+                  amsl_m=a.get("mpd"))
     e, n = hkgeo.to_hk80(*f["geometry"]["coordinates"])
     return (float(e), float(n)), ant, p
 
@@ -130,7 +131,7 @@ def main(argv=None):
     z, tr = hkgeo.load_dem(REGION)
     terrain = Terrain(z, tr)
     home_ground = terrain.sample(*home)
-    print(f"DEM {z.shape}, home ground {home_ground:.1f} m, antenna at {home_ground + home_ant.agl_m:.1f} m")
+    print(f"DEM {z.shape}, DTM at home pin {home_ground:.1f} m, antenna at {home_ant.height(home_ground):.1f} m")
 
     relay = Antenna(**RELAY)
     rooftop = Antenna(**ROOFTOP)
@@ -263,7 +264,7 @@ def main(argv=None):
         "assumptions": {"f_mhz": F_MHZ, "sens_dbm": SENS_DBM, "margin_ok_db": MARGIN_OK_DB, "relay": RELAY,
                         "rooftop_target": ROOFTOP, "home_antenna": home_ant.__dict__, "valley": VALLEY,
                         "kowloon": KOWLOON},
-        "home": {"e": home[0], "n": home[1], "ground_m": round(home_ground, 1), "antenna_m": round(h_ts, 1)},
+        "home": {"e": home[0], "n": home[1], "dtm_at_pin_m": round(home_ground, 1), "antenna_m": round(float(h_ts), 1)},
         "counts": {"candidates": len(cands), "linked_to_home": len(linked), "valley_targets": len(valley),
                    "kowloon_targets": len(kowloon)},
         "best_single_relays": [brief(c) for c in single[:15]],
