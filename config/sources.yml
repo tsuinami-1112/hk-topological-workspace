@@ -25,9 +25,8 @@ buildings:
   url: null
 
 osm:
-  # Roads, tracks, footpaths and masts/towers from OpenStreetMap, for site access
-  # and for spotting existing telecom sites. Data (c) OpenStreetMap contributors, ODbL.
-  # Tried in order; the next one is used if a query fails on the current one.
-  overpass_urls:
-    - https://overpass-api.de/api/interpreter
-    - https://overpass.private.coffee/api/interpreter
+  # Geofabrik's daily Hong Kong extract: roads, tracks, footpaths (site access), masts and
+  # towers (existing telecom sites), named peaks with heights (labels and a DTM check).
+  # Data (c) OpenStreetMap contributors, ODbL. Overpass was tried first; it refuses or
+  # times out from GitHub's runners.
+  pbf_url: https://download.geofabrik.de/asia/china/hong-kong-latest.osm.pbf

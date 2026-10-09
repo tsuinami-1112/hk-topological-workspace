@@ -14,11 +14,13 @@ here can reveal where stations are.
 config/sources.yml      where each dataset comes from (edit this, not the script)
 tools/fetch.py          downloads and normalises the data (run by the workflow)
 tools/hkgeo.py          loaders for analysis: to_hk80, load_dem, dem_at, load_vector
+tools/rf.py             LoRa link model: free space + ITU-R P.526 Bullington diffraction
+analyses/               one script per planning question; outputs go to out/
 data/                   fetched data, committed by the workflow; never edit by hand
   MANIFEST.json         source, retrieval time and sha256 of every file
   dtm5m/                LandsD 5 m DTM, float32 GeoTIFF tiles + index.json
   buildings/            LandsD building footprints with heights, GeoPackage tiles + index.json
-  osm/                  OSM roads/tracks/paths ("ways") and masts/towers ("masts")
+  osm/                  OSM roads/tracks/paths ("ways"), masts/towers ("masts"), named peaks ("peaks")
 out/                    analysis outputs (git-ignored, regenerated per session)
 ```
 
@@ -37,9 +39,10 @@ out/                    analysis outputs (git-ignored, regenerated per session)
 ## Refreshing data
 
 The `fetch-data` workflow runs on GitHub's runner, which can reach LandsD, CSDI and
-Overpass. It runs when `config/sources.yml`, `tools/fetch.py` or the workflow changes on
+Geofabrik. Each dataset is fetched and committed in its own step. It runs when `config/sources.yml`, `tools/fetch.py` or the workflow changes on
 `main`, or manually from the Actions tab (pick datasets, optionally force a refetch).
 Datasets already fetched from the same source are skipped; OSM is skipped if under 7 days old.
+The `probe-sources` workflow checks in a minute whether each source is reachable from the runner.
 
 If the runner can't download the DTM from LandsD, download `Whole_HK_DTM_5m.zip` yourself,
 attach it to a release of this repo tagged `src`, and set the DTM url in
@@ -51,4 +54,4 @@ attach it to a release of this repo tagged `src`, and set the DTM url in
 |---|---|---|
 | Digital Terrain Model, 5 m grid | Lands Department, via DATA.GOV.HK | DATA.GOV.HK Terms and Conditions of Use (free re-use) |
 | Building | Lands Department, via CSDI Portal | DATA.GOV.HK / CSDI terms |
-| Roads, paths, masts | OpenStreetMap contributors, via Overpass API | ODbL 1.0, attribution required |
+| Roads, paths, masts, peaks | OpenStreetMap contributors, via Geofabrik's Hong Kong extract | ODbL 1.0, attribution required |

@@ -4,7 +4,7 @@
 Datasets (run in this order, so later ones can reuse the DTM tile index):
   dtm5m      LandsD 5 m DTM            -> data/dtm5m/dtm5m_E###N###.tif   float32, metres
   buildings  LandsD Building (CSDI)    -> data/buildings/bldg_E###N###.gpkg  layer "buildings"
-  osm        OSM ways + masts/towers   -> data/osm/osm_E###N###.gpkg        layers "ways", "masts"
+  osm        OSM extract (Geofabrik)   -> data/osm/osm_E###N###.gpkg        layers "ways", "masts", "peaks"
 
 Tile keys name the tile's south-west corner in km of HK1980 Grid: E830N820 covers
 E 830000-840000, N 820000-830000. Each dataset writes data/<name>/index.json and an
@@ -21,6 +21,7 @@ import datetime as dt
 import hashlib
 import json
 import math
+import re
 import os
 import shutil
 import subprocess
@@ -506,48 +507,69 @@ def fetch_buildings(cfg: dict, force: bool) -> str:
     return f"ok, {len(gdf)} buildings in {len(files)} tiles"
 
 
-# ---------------------------------------------------------------- OSM (Overpass)
-
-OVERPASS = """[out:json][timeout:300];
-(
-  way["highway"]({s},{w},{n},{e});
-  node["man_made"~"^(mast|tower|communications_tower)$"]({s},{w},{n},{e});
-  way["man_made"~"^(mast|tower|communications_tower)$"]({s},{w},{n},{e});
-  node["tower:type"="communication"]({s},{w},{n},{e});
-  node["natural"="peak"]({s},{w},{n},{e});
-);
-out geom;"""
+# ---------------------------------------------------------------- OSM (Geofabrik extract)
 
 WAY_TAGS = ["highway", "name", "name:en", "access", "foot", "motor_vehicle", "vehicle", "service",
             "surface", "tracktype", "sac_scale", "trail_visibility", "lit"]
 MAST_TAGS = ["man_made", "tower:type", "tower:construction", "height", "operator", "name", "name:en"]
 PEAK_TAGS = ["name", "name:en", "name:zh", "ele"]
+MAST_VALUES = {"mast", "tower", "communications_tower"}
+_TAG_RE = re.compile(r'"((?:[^"\\]|\\.)*)"=>"((?:[^"\\]|\\.)*)"')
 
 
-def _osm_frames(elements):
-    import geopandas as gpd
-    from shapely.geometry import LineString, Point
-
-    ways, masts, peaks = [], [], []
-    for el in elements:
-        tags = el.get("tags", {})
-        is_mast = tags.get("man_made") in ("mast", "tower", "communications_tower") or tags.get("tower:type") == "communication"
-        if el["type"] == "node":
-            geom = Point(el["lon"], el["lat"])
-        elif el["type"] == "way" and len(el.get("geometry") or []) >= 2:
-            geom = LineString([(p["lon"], p["lat"]) for p in el["geometry"]])
-        else:
+def _tags(row) -> dict:
+    """All OSM tags of a GDAL OSM-driver row: named columns plus the other_tags hstore."""
+    tags = {}
+    other = row.get("other_tags")
+    if isinstance(other, str):
+        tags.update({k: v for k, v in _TAG_RE.findall(other)})
+    for k, v in row.items():
+        if k in ("geometry", "other_tags", "osm_id", "osm_way_id") or v is None:
             continue
-        row = {"osm_type": el["type"], "osm_id": el["id"], "tags": json.dumps(tags, ensure_ascii=False)}
-        if tags.get("natural") == "peak" and el["type"] == "node":
-            row.update({k: tags.get(k) for k in PEAK_TAGS})
-            peaks.append({**row, "geometry": geom})
-        elif is_mast:
-            row.update({k: tags.get(k) for k in MAST_TAGS})
-            masts.append({**row, "geometry": geom.centroid if el["type"] == "way" else geom})
-        elif "highway" in tags and el["type"] == "way":
-            row.update({k: tags.get(k) for k in WAY_TAGS})
-            ways.append({**row, "geometry": geom})
+        if isinstance(v, str):
+            if v:
+                tags[k] = v
+        elif isinstance(v, (int, float, np.integer, np.floating)) and np.isfinite(v):
+            tags[k] = str(v)
+    return tags
+
+
+def _osm_layers(pbf: Path):
+    """Read ways (highways), masts/towers and peaks from an OSM PBF with GDAL's OSM driver."""
+    import geopandas as gpd
+    import pyogrio
+
+    # GDAL's default OSM config drops the 'ele' tag; ours keeps it (peak heights).
+    pyogrio.set_gdal_config_options({"OSM_CONFIG_FILE": str(ROOT / "config" / "osmconf.ini")})
+
+    def read(layer):
+        return pyogrio.read_dataframe(pbf, layer=layer)
+
+    lines = read("lines")
+    lines = lines[lines["highway"].notna()].copy()
+    ways = []
+    for _, r in lines.iterrows():
+        t = _tags(r)
+        ways.append({"osm_type": "way", "osm_id": r.get("osm_id"), "tags": json.dumps(t, ensure_ascii=False),
+                     **{k: t.get(k) for k in WAY_TAGS}, "geometry": r.geometry})
+
+    pts = read("points")
+    masts, peaks = [], []
+    for _, r in pts.iterrows():
+        t = _tags(r)
+        if t.get("natural") == "peak":
+            peaks.append({"osm_type": "node", "osm_id": r.get("osm_id"), "tags": json.dumps(t, ensure_ascii=False),
+                          **{k: t.get(k) for k in PEAK_TAGS}, "geometry": r.geometry})
+        elif t.get("man_made") in MAST_VALUES or t.get("tower:type") == "communication":
+            masts.append({"osm_type": "node", "osm_id": r.get("osm_id"), "tags": json.dumps(t, ensure_ascii=False),
+                          **{k: t.get(k) for k in MAST_TAGS}, "geometry": r.geometry})
+    polys = read("multipolygons")
+    polys = polys[polys["man_made"].isin(MAST_VALUES)] if "man_made" in polys else polys.iloc[0:0]
+    for _, r in polys.iterrows():
+        t = _tags(r)
+        masts.append({"osm_type": "way", "osm_id": r.get("osm_way_id") or r.get("osm_id"),
+                      "tags": json.dumps(t, ensure_ascii=False), **{k: t.get(k) for k in MAST_TAGS},
+                      "geometry": r.geometry.centroid})
 
     def frame(rows):
         if not rows:
@@ -558,47 +580,21 @@ def _osm_frames(elements):
 
 
 def fetch_osm(cfg: dict, force: bool) -> str:
-    from pyproj import Transformer
-
-    o = cfg.get("osm") or {}
-    urls = o.get("overpass_urls") or ([o["overpass_url"]] if o.get("overpass_url") else [])
-    if not urls:
-        log("osm: no overpass_urls configured, skipping")
+    url = (cfg.get("osm") or {}).get("pbf_url")
+    if not url:
+        log("osm: no pbf_url configured, skipping")
         return "skipped (no url)"
-    url = urls[0]
-    query_sha = hashlib.sha256(OVERPASS.encode()).hexdigest()[:16]
     prev = manifest_load().get("osm")
-    if (not force and prev and prev.get("query_sha") == query_sha
+    if (not force and prev and prev.get("source") == url
             and all((ROOT / f).exists() for f in prev.get("files", {}))):
         age = dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(prev["retrieved"].replace("Z", "+00:00"))
         if age < dt.timedelta(days=7):
             log(f"osm: fetched {age.days} days ago, skipping (use --force to refetch)")
             return "skipped (fresh)"
     size = int(cfg["tile_size_m"])
-    to_wgs = Transformer.from_crs(HK80, "EPSG:4326", always_xy=True)
-    s = session()
-    elements = {}
-    cells = query_tiles(cfg)
-    for i, (e0, n0, e1, n1) in enumerate(cells, 1):
-        lons, lats = to_wgs.transform([e0, e1, e0, e1], [n0, n0, n1, n1])
-        q = OVERPASS.format(s=min(lats), w=min(lons), n=max(lats), e=max(lons))
-        j, err = None, None
-        for u in [url] + [x for x in urls if x != url]:
-            try:
-                j = http(s, "POST", u, data={"data": q}, timeout=(30, 400), tries=3).json()
-                if u != url:
-                    note(f"osm: switched to {u} after: {err}", "warning")
-                    url = u
-                break
-            except (requests.RequestException, ValueError) as ex:
-                err = f"{type(ex).__name__}: {ex}"
-        if j is None:
-            raise RuntimeError(f"all Overpass instances failed for cell {tile_key(e0, n0)}: {err}")
-        for el in j.get("elements", []):
-            elements[(el["type"], el["id"])] = el
-        log(f"  cell {tile_key(e0, n0)} ({i}/{len(cells)}): {len(j.get('elements', []))} elements")
-        time.sleep(2)
-    ways, masts, peaks = _osm_frames(elements.values())
+    with tempfile.TemporaryDirectory() as td:
+        pbf = download(url, Path(td))
+        ways, masts, peaks = _osm_layers(pbf)
     out_dir = DATA / "osm"
     reset_dir(out_dir)
     files: dict = {}
@@ -611,7 +607,7 @@ def fetch_osm(cfg: dict, force: bool) -> str:
              "tiles": sorted(files.values(), key=lambda t: t["key"])}
     (out_dir / "index.json").write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n")
     record("osm", url, [out_dir / f for f in files] + [out_dir / "index.json"],
-           {"ways": int(len(ways)), "masts": int(len(masts)), "peaks": int(len(peaks)), "query_sha": query_sha})
+           {"ways": int(len(ways)), "masts": int(len(masts)), "peaks": int(len(peaks))})
     return f"ok, {len(ways)} ways, {len(masts)} masts/towers, {len(peaks)} peaks"
 
 
