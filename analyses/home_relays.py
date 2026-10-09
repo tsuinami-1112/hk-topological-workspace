@@ -88,6 +88,14 @@ def high_points(terrain: Terrain, home, radius, min_z=100.0, window=161, spacing
     return [(float(e[i]), float(n[i]), float(zz[i])) for i in kept]
 
 
+def first_str(*vals):
+    """First value that is a non-empty string (pandas gives NaN, which is truthy, for missing tags)."""
+    for v in vals:
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return None
+
+
 def osm_points(layer, bounds):
     try:
         g = hkgeo.load_vector("osm", bounds, layer=layer, pad=0)
@@ -104,7 +112,7 @@ def nearest_way(ways, e, n):
     idx = ways.sindex.nearest(Point(e, n), return_all=False)
     j = int(np.asarray(idx)[1][0])
     w = ways.iloc[j]
-    return float(w.geometry.distance(Point(e, n))), w.get("highway")
+    return float(w.geometry.distance(Point(e, n))), first_str(w.get("highway"))
 
 
 def clean(v):
@@ -158,18 +166,20 @@ def main(argv=None):
             e, n = r.geometry.x, r.geometry.y
             if np.hypot(e - home[0], n - home[1]) > SEARCH_RADIUS_M:
                 continue
-            name = r.get("name:en") or r.get("name")
+            name = first_str(r.get("name:en"), r.get("name"))
             best = min(cands, key=lambda c: np.hypot(c["e"] - e, c["n"] - n), default=None)
             if best is not None and np.hypot(best["e"] - e, best["n"] - n) < 150:
                 best["name"] = best["name"] or name
                 best["kind"] = kind if best["kind"] == "high point" else best["kind"]
                 if kind == "osm peak":
-                    best["osm_ele"] = r.get("ele")
+                    best["osm_ele"] = first_str(r.get("ele"))
                 if kind == "mast/tower":
                     best["mast"] = True
+            elif kind == "osm peak" and terrain.sample(e, n) < 100:
+                continue  # same floor as the DTM high points
             else:
                 cands.append({"e": e, "n": n, "ground": terrain.sample(e, n), "kind": kind, "name": name,
-                              "osm_ele": r.get("ele") if kind == "osm peak" else None,
+                              "osm_ele": first_str(r.get("ele")) if kind == "osm peak" else None,
                               "mast": kind == "mast/tower"})
 
     attach(peaks, "osm peak")
@@ -234,6 +244,8 @@ def main(argv=None):
                 ele = float(str(r.get("ele")).replace("m", "").strip())
             except ValueError:
                 continue
+            if not np.isfinite(ele):
+                continue
             e, n = r.geometry.x, r.geometry.y
             t = terrain.transform
             col, row = int((e - t.c) / t.a), int((n - t.f) / t.e)
@@ -241,7 +253,7 @@ def main(argv=None):
                 continue
             win = terrain.z[row - 10:row + 11, col - 10:col + 11]  # +/- 50 m
             if np.isfinite(win).any():
-                checks.append({"name": r.get("name:en") or r.get("name"), "osm_ele": ele,
+                checks.append({"name": first_str(r.get("name:en"), r.get("name")), "osm_ele": ele,
                                "dtm_max_50m": round(float(np.nanmax(win)), 1)})
 
     # write results

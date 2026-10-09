@@ -48,10 +48,23 @@ If the runner can't download the DTM from LandsD, download `Whole_HK_DTM_5m.zip`
 attach it to a release of this repo tagged `src`, and set the DTM url in
 `config/sources.yml` to `gh-release:src/Whole_HK_DTM_5m.zip`.
 
+## Planning workflow
+
+1. Copy the registry from the claude.ai Project (`registry/nodes.geojson`) to `out/nodes.geojson`.
+2. Run the analysis for the question at hand, e.g.
+   `python analyses/home_relays.py --registry out/nodes.geojson` (relay candidates around home),
+   `python analyses/relay_sets.py <site> <site> ...` (union coverage of relay sets),
+   `python analyses/shortlist_links.py out/home_relays/candidates.geojson <site> ...` (pairwise links).
+3. Write decisions back to the registry in the Project.
+4. Rebuild the planning map: `python analyses/render_map.py --registry out/nodes.geojson` then
+   `python analyses/build_map_page.py`, and republish `out/map/` to the existing map artifact
+   (its URL is in the registry under `x_registry.map_artifact`).
+
 ## Sources and terms
 
 | Dataset | Provider | Terms |
 |---|---|---|
 | Digital Terrain Model, 5 m grid | Lands Department, via DATA.GOV.HK | DATA.GOV.HK Terms and Conditions of Use (free re-use) |
 | Building | Lands Department, via CSDI Portal | DATA.GOV.HK / CSDI terms |
+| Leaflet 1.9.4 stylesheet (analyses/vendor) | Volodymyr Agafonkin and contributors | BSD 2-Clause |
 | Roads, paths, masts, peaks | OpenStreetMap contributors, via Geofabrik's Hong Kong extract | ODbL 1.0, attribution required |

@@ -1,0 +1,374 @@
+<title>Sentinel Mesh Sites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Saira+Semi+Condensed:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/*__LEAFLET_CSS__*/
+</style>
+<style>
+/* Layout: a survey sheet. The terrain map fills the left; the planning panel sits on the right,
+   stacked under the map on phones. */
+:root {
+  --paper: #edefe9;
+  --panel: #f7f8f4;
+  --ink: #1b2220;
+  --muted: #59635f;
+  --rule: #d2d7ce;
+  --signal: #0f8a77;
+  --signal-weak: #7cc4b6;
+  --amber: #a8691a;
+  --red: #b3412c;
+  --home: #9b3d8a;
+  --halo: rgba(247, 248, 244, 0.92);
+  --font-display: "Saira Semi Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #111614; --panel: #171d1b; --ink: #e4e9e5; --muted: #9ba59f; --rule: #2a3330;
+    --signal: #3cc4a9; --signal-weak: #2d8073; --amber: #e3a24e; --red: #e26b56; --home: #d27fc3;
+    --halo: rgba(17, 22, 20, 0.9);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #111614; --panel: #171d1b; --ink: #e4e9e5; --muted: #9ba59f; --rule: #2a3330;
+  --signal: #3cc4a9; --signal-weak: #2d8073; --amber: #e3a24e; --red: #e26b56; --home: #d27fc3;
+  --halo: rgba(17, 22, 20, 0.9);
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45; }
+.app { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 400px); height: 100%; }
+#map { height: 100%; min-height: 0; background: var(--paper); }
+.panel { background: var(--panel); border-left: 1px solid var(--rule); overflow-y: auto; min-width: 0;
+  padding-inline: 22px; padding-block: 22px 32px; display: flex; flex-direction: column; gap: 26px; }
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); height: auto; }
+  #map { height: 62vh; }
+  .panel { border-left: 0; border-top: 1px solid var(--rule); padding-inline: 16px; }
+}
+
+.eyebrow { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+h1 { font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1.05; letter-spacing: 0.01em; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.lede { margin: 10px 0 0; color: var(--muted); max-width: 60ch; }
+.fine { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+section { min-width: 0; }
+
+.meters { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.meter { min-width: 0; }
+.m-label { display: block; font-size: 13px; color: var(--muted); }
+.m-val { display: block; font-family: var(--font-display); font-weight: 600; font-size: 34px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 3px; background: var(--rule); overflow: hidden; margin-top: 4px; }
+.bar i { display: block; height: 100%; width: 0; background: var(--signal); transition: width 0.25s ease; }
+@media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
+
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+button { font: inherit; }
+.preset { font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; }
+.preset:hover { border-color: var(--muted); }
+.preset[aria-pressed="true"] { border-color: var(--signal); color: var(--signal); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+
+.sites { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.site { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 10px; align-items: start; padding-block: 10px; border-top: 1px solid var(--rule); }
+.site:first-child { border-top: 0; }
+.site input { margin: 3px 0 0; width: 16px; height: 16px; accent-color: var(--signal); }
+.site label { cursor: pointer; min-width: 0; }
+.s-name { font-weight: 600; }
+.s-meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.s-note { grid-column: 2 / 4; font-size: 13px; color: var(--muted); margin: 2px 0 0; }
+.chip { display: inline-block; font-family: var(--font-mono); font-size: 11.5px; padding: 1px 7px; border-radius: 10px; border: 1px solid currentColor; white-space: nowrap; }
+.chip.los { color: var(--signal); }
+.chip.nlos { color: var(--muted); }
+.chip.blocked { color: var(--amber); }
+.locate { font-size: 12px; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 2px 0; text-decoration: underline; text-underline-offset: 2px; }
+.group-label { font-size: 12px; color: var(--muted); margin: 14px 0 0; padding-top: 8px; }
+
+.toggles { display: flex; flex-direction: column; gap: 6px; }
+.toggles label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.toggles input { accent-color: var(--signal); }
+
+.legend { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 6px 10px; align-items: center; font-size: 13px; }
+.sw { width: 14px; height: 14px; border-radius: 50%; }
+.sw.sq { border-radius: 3px; }
+.notes { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+.notes b { color: var(--ink); font-weight: 600; }
+.coord { font-family: var(--font-mono); font-size: 12px; color: var(--muted); min-height: 1.4em; }
+
+.leaflet-container { font-family: var(--font-body); background: var(--paper); }
+.site-label { background: none; border: 0; box-shadow: none; padding: 0; font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--ink);
+  text-shadow: 0 0 3px var(--halo), 0 0 3px var(--halo), 0 0 6px var(--halo); }
+.site-label::before { display: none; }
+.leaflet-tooltip.tip { background: var(--panel); color: var(--ink); border: 1px solid var(--rule); font-family: var(--font-mono); font-size: 12px; box-shadow: none; }
+.leaflet-tooltip.tip::before { display: none; }
+.leaflet-control-scale-line { background: var(--panel); color: var(--ink); border-color: var(--ink); font-family: var(--font-mono); }
+.leaflet-bar a, .leaflet-bar a:hover { background: var(--panel); color: var(--ink); border-bottom-color: var(--rule); }
+.leaflet-control-attribution { background: var(--panel) !important; color: var(--muted); font-size: 11px; }
+.leaflet-control-attribution a { color: var(--muted); }
+</style>
+
+<div class="app">
+  <div id="map" role="region" aria-label="Terrain map of Sha Tin, Kowloon and the surrounding hills"></div>
+  <aside class="panel">
+    <header>
+      <p class="eyebrow">drone-sentinel · Hong Kong mesh</p>
+      <h1>Sentinel Mesh Sites</h1>
+      <p class="lede">Relay candidates for phases 1 and 2, from the site registry. Terrain only: Meshtastic LONG_MODERATE at 915 MHz, ITU-R P.526 diffraction on the LandsD 5 m terrain model.</p>
+    </header>
+
+    <section aria-labelledby="cov-h">
+      <h2 id="cov-h">Coverage with the selected relays</h2>
+      <div class="meters">
+        <div class="meter"><span class="m-label">Sha Tin valley</span><span class="m-val" id="cov-valley">0%</span><div class="bar"><i id="bar-valley"></i></div></div>
+        <div class="meter"><span class="m-label">Kowloon</span><span class="m-val" id="cov-kowloon">0%</span><div class="bar"><i id="bar-kowloon"></i></div></div>
+      </div>
+      <p class="fine">Share of sample points (300 m grid, a rooftop station 25 m up) that some selected relay reaches with at least 20 dB of terrain margin.</p>
+      <div class="presets" id="presets"></div>
+    </section>
+
+    <section aria-labelledby="relays-h">
+      <h2 id="relays-h">Relays</h2>
+      <ul class="sites" id="site-list"></ul>
+    </section>
+
+    <section aria-labelledby="layers-h">
+      <h2 id="layers-h">Layers</h2>
+      <div class="toggles">
+        <label><input type="checkbox" id="lyr-points" checked> Sample points, coloured by best margin</label>
+        <label><input type="checkbox" id="lyr-links" checked> Links between selected relays and home</label>
+        <label><input type="checkbox" id="lyr-screen"> Where a hilltop pole could reach the balcony</label>
+        <label><input type="checkbox" id="lyr-contours" checked> Contours (100 m, bold at 500 m)</label>
+      </div>
+      <div class="legend" style="margin-top:14px">
+        <span class="sw" style="background:var(--signal)"></span><span>40 dB or more</span>
+        <span class="sw" style="background:var(--signal-weak)"></span><span>20 to 40 dB</span>
+        <span class="sw" style="background:var(--red)"></span><span>Under 20 dB: not covered</span>
+        <span class="sw sq" style="background:var(--home);opacity:.35"></span><span>Balcony's clear sector</span>
+      </div>
+      <p class="coord" id="coord" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="notes-h">
+      <h2 id="notes-h">Read these numbers as</h2>
+      <ul class="notes">
+        <li><b>Upper bounds.</b> Buildings are not modelled yet, and margins are against LoRa's thermal sensitivity (−134 dBm), not the city's noise floor. The 20 dB threshold is there to absorb that.</li>
+        <li><b>Weaker direction.</b> Links use the field node's 28 dBm; the home station's 4 W only helps the other way.</li>
+        <li><b>Antennas.</b> Relays: 6 dBi collinear on a 4 m pole, 1 dB cable. Home: 7 dBi at 47 mPD (13/F), sector 227° to 27°.</li>
+        <li><b>Sector edge matters.</b> Golden Hill sits 16° inside it. If your clear arc is narrower than 160°, check it.</li>
+      </ul>
+    </section>
+  </aside>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+const DATA = /*__DATA__*/;
+
+(function () {
+  const css = () => getComputedStyle(document.documentElement);
+  const col = (name) => css().getPropertyValue(name).trim();
+  const T = DATA.threshold_db;
+  const [x0, y0, x1, y1] = DATA.view;
+  const bounds = L.latLngBounds([y0, x0], [y1, x1]);
+  const ll = (e, n) => L.latLng(n, e);
+
+  const map = L.map("map", { crs: L.CRS.Simple, minZoom: -6, maxZoom: -1, zoomSnap: 0.25, preferCanvas: true,
+    maxBounds: bounds.pad(0.15), attributionControl: true });
+  map.attributionControl.setPrefix(false);
+  map.attributionControl.addAttribution("Terrain: LandsD 5 m DTM · Peaks, paths: © OpenStreetMap contributors");
+  L.control.scale({ imperial: false, position: "bottomleft" }).addTo(map);
+  map.fitBounds(L.latLngBounds([817000, 829500], [834000, 847000]));
+
+  L.imageOverlay("terrain.png", bounds, { interactive: false }).addTo(map);
+  const contours = L.imageOverlay("contours.png", bounds, { interactive: false }).addTo(map);
+  const screen = L.imageOverlay("screen.png", bounds, { interactive: false, opacity: 0.9 });
+
+  // Balcony sector wedge
+  const h = DATA.home;
+  const wedgePts = [ll(h.e, h.n)];
+  for (let a = h.azimuth - h.arc / 2; a <= h.azimuth + h.arc / 2 + 0.01; a += 2) {
+    const r = (a * Math.PI) / 180;
+    wedgePts.push(ll(h.e + Math.sin(r) * 2600, h.n + Math.cos(r) * 2600));
+  }
+  const wedge = L.polygon(wedgePts, { weight: 1, dashArray: "4 4", interactive: false }).addTo(map);
+
+  // Sample points
+  const pointsLayer = L.layerGroup().addTo(map);
+  const pts = [];
+  for (const area of ["valley", "kowloon"]) {
+    DATA.targets[area].forEach((p, i) => {
+      const m = L.circleMarker(ll(p[0], p[1]), { radius: 3.2, weight: 0, fillOpacity: 0.85 });
+      m.bindTooltip("", { className: "tip", direction: "top" });
+      pointsLayer.addLayer(m);
+      pts.push({ area, i, m });
+    });
+  }
+
+  // Sites
+  const sites = DATA.sites;
+  const byName = Object.fromEntries(sites.map((s) => [s.name, s]));
+  const relays = sites.filter((s) => !s.roles.includes("home"));
+  const homeSite = sites.find((s) => s.roles.includes("home"));
+  const selected = new Set(DATA.presets[0].sites);
+  const siteMarkers = {};
+  const linksLayer = L.layerGroup().addTo(map);
+
+  function balconyChip(s) {
+    if (s.home_link == null) return { cls: "nlos", text: "no data" };
+    if (s.home_link.blocked) return { cls: "blocked", text: "Behind building" };
+    return { cls: s.home_link.los ? "los" : "nlos", text: `Balcony ${s.home_link.los ? "LOS" : "NLOS"} ${s.home_link.margin_db.toFixed(0)} dB` };
+  }
+
+  const list = document.getElementById("site-list");
+  function addGroup(title) {
+    const li = document.createElement("li");
+    li.className = "group-label";
+    li.textContent = title;
+    list.appendChild(li);
+  }
+  function addSite(s) {
+    const id = "site-" + s.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const li = document.createElement("li");
+    li.className = "site";
+    const chip = balconyChip(s);
+    const cov = DATA.margins[s.name] ? coverage([s.name]) : null;
+    li.innerHTML = `
+      <input type="checkbox" id="${id}">
+      <label for="${id}"><span class="s-name"></span><br><span class="s-meta"></span></label>
+      <span class="chip ${chip.cls}">${chip.text}</span>
+      <p class="s-note"></p>`;
+    li.querySelector(".s-name").textContent = s.name;
+    li.querySelector(".s-meta").textContent =
+      `${s.ground != null ? Math.round(s.ground) + " m" : ""}${s.id ? " · " + s.id : " · not in registry"}` +
+      (cov ? ` · valley ${Math.round(cov.valley * 100)}% · Kowloon ${Math.round(cov.kowloon * 100)}%` : "");
+    const note = li.querySelector(".s-note");
+    note.textContent = s.access ? s.access + " " : "";
+    const go = document.createElement("button");
+    go.className = "locate"; go.type = "button"; go.textContent = "Show on map";
+    go.addEventListener("click", () => { map.setView(ll(s.e, s.n), -2); siteMarkers[s.name].openTooltip(); });
+    note.appendChild(go);
+    if (s.lat != null) {
+      note.append(" · ");
+      const a = document.createElement("a");
+      a.href = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lon}`;
+      a.target = "_blank"; a.rel = "noopener"; a.textContent = "Google Maps";
+      a.style.color = "var(--muted)";
+      note.appendChild(a);
+    }
+    const box = li.querySelector("input");
+    box.checked = selected.has(s.name);
+    box.addEventListener("change", () => { box.checked ? selected.add(s.name) : selected.delete(s.name); clearPreset(); update(); });
+    s._box = box;
+    list.appendChild(li);
+  }
+  addGroup("In the registry");
+  relays.filter((s) => s.id).forEach(addSite);
+  addGroup("Also analysed");
+  relays.filter((s) => !s.id).forEach(addSite);
+
+  function coverage(names) {
+    const out = {};
+    for (const area of ["valley", "kowloon"]) {
+      const n = DATA.targets[area].length;
+      let hit = 0;
+      for (let i = 0; i < n; i++) {
+        let best = -Infinity;
+        for (const nm of names) { const v = DATA.margins[nm]?.[area][i]; if (v != null && v > best) best = v; }
+        if (best >= T) hit++;
+      }
+      out[area] = n ? hit / n : 0;
+    }
+    return out;
+  }
+
+  // Presets
+  const presetBox = document.getElementById("presets");
+  const presetButtons = DATA.presets.map((p, k) => {
+    const b = document.createElement("button");
+    b.className = "preset"; b.type = "button"; b.textContent = p.label;
+    b.setAttribute("aria-pressed", k === 0 ? "true" : "false");
+    b.addEventListener("click", () => {
+      selected.clear(); p.sites.forEach((n) => selected.add(n));
+      relays.forEach((s) => (s._box.checked = selected.has(s.name)));
+      presetButtons.forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      update();
+    });
+    presetBox.appendChild(b);
+    return b;
+  });
+  function clearPreset() { presetButtons.forEach((x) => x.setAttribute("aria-pressed", "false")); }
+
+  for (const s of sites) {
+    const isHome = s.roles.includes("home");
+    const m = L.circleMarker(ll(s.e, s.n), { radius: isHome ? 8 : s.id ? 7 : 5.5, weight: 2, fillOpacity: 1 });
+    m.bindTooltip(isHome ? "Home" : s.name, { permanent: isHome || !!s.id, direction: "right", offset: [8, 0], className: "site-label" });
+    if (!isHome) m.on("click", () => { s._box.checked = !s._box.checked; s._box.dispatchEvent(new Event("change")); });
+    m.addTo(map);
+    siteMarkers[s.name] = m;
+  }
+
+  function linkKey(a, b) { return [a, b].sort().join("|"); }
+  const pairIndex = Object.fromEntries(DATA.pairs.map((p) => [linkKey(p.a, p.b), p]));
+
+  function update() {
+    const names = [...selected];
+    const cov = coverage(names);
+    for (const area of ["valley", "kowloon"]) {
+      document.getElementById("cov-" + area).textContent = Math.round(cov[area] * 100) + "%";
+      document.getElementById("bar-" + area).style.width = (cov[area] * 100).toFixed(1) + "%";
+    }
+    const cs = col("--signal"), cw = col("--signal-weak"), cr = col("--red"), ink = col("--ink"),
+          muted = col("--muted"), panel = col("--panel"), home = col("--home"), amber = col("--amber");
+    for (const p of pts) {
+      let best = -Infinity, who = null;
+      for (const nm of names) { const v = DATA.margins[nm]?.[p.area][p.i]; if (v != null && v > best) { best = v; who = nm; } }
+      const c = best >= 40 ? cs : best >= T ? cw : cr;
+      p.m.setStyle({ fillColor: c, fillOpacity: best >= T ? 0.9 : 0.55 });
+      p.m.setTooltipContent(who ? `${who}: ${best.toFixed(0)} dB` : "no relay selected");
+    }
+    for (const s of sites) {
+      const isHome = s.roles.includes("home");
+      const on = selected.has(s.name);
+      siteMarkers[s.name].setStyle(isHome ? { color: home, fillColor: home }
+        : { color: on ? cs : s.id ? ink : muted, fillColor: on ? cs : panel });
+    }
+    wedge.setStyle({ color: home, fillColor: home, fillOpacity: 0.12 });
+    linksLayer.clearLayers();
+    const ends = [homeSite.name, ...names];
+    for (let i = 0; i < ends.length; i++) for (let j = i + 1; j < ends.length; j++) {
+      const p = pairIndex[linkKey(ends[i], ends[j])];
+      if (!p) continue;
+      const usable = !p.blocked && p.margin_db >= T;
+      if (!usable && !p.blocked) continue;
+      const a = byName[p.a], b = byName[p.b];
+      const line = L.polyline([ll(a.e, a.n), ll(b.e, b.n)], {
+        color: p.blocked ? amber : ink, weight: p.blocked ? 1.5 : 2, opacity: p.blocked ? 0.8 : 0.75,
+        dashArray: p.blocked ? "5 6" : p.los ? null : "2 5" });
+      const label = p.blocked ? `${p.a} – ${p.b}: ${p.los ? "line of sight" : "diffracted"} on terrain (${p.terrain_margin_db.toFixed(0)} dB), but behind the building`
+        : `${p.a} – ${p.b}: ${p.d_km.toFixed(1)} km, ${p.los ? "line of sight" : "diffracted"}, ${p.margin_db.toFixed(0)} dB`;
+      line.bindTooltip(label, { className: "tip", sticky: true });
+      linksLayer.addLayer(line);
+    }
+  }
+
+  // Layer toggles
+  const bindLayer = (id, layer) => document.getElementById(id).addEventListener("change", (e) => {
+    e.target.checked ? layer.addTo(map) : map.removeLayer(layer);
+  });
+  bindLayer("lyr-points", pointsLayer);
+  bindLayer("lyr-links", linksLayer);
+  bindLayer("lyr-screen", screen);
+  bindLayer("lyr-contours", contours);
+
+  const coord = document.getElementById("coord");
+  map.on("mousemove", (e) => { coord.textContent = `HK1980 E ${Math.round(e.latlng.lng)}  N ${Math.round(e.latlng.lat)}`; });
+
+  update();
+  // Follow theme changes (OS setting or the viewer's toggle)
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
+  new MutationObserver(update).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
