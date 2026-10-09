@@ -49,6 +49,13 @@ def log(msg: str) -> None:
     print(msg, flush=True)
 
 
+def note(msg: str, level: str = "notice") -> None:
+    """Log, and on GitHub Actions also raise an annotation (readable through the checks API)."""
+    log(msg)
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        print(f"::{level} title=fetch::{msg}", flush=True)
+
+
 def now() -> str:
     return dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -205,7 +212,7 @@ def download(url: str, dest_dir: Path) -> Path:
                 raise
             log(f"  download failed ({ex}), retrying")
             time.sleep(15)
-    log(f"  downloaded {out.name}: {out.stat().st_size / 2**20:.1f} MB")
+    note(f"downloaded {out.name}: {out.stat().st_size / 2**20:.1f} MB")
     return out
 
 
@@ -339,6 +346,7 @@ def fetch_dtm(cfg: dict, force: bool) -> str:
              "source": url, "tiles": tiles}
     (out_dir / "index.json").write_text(json.dumps(index, indent=2) + "\n")
     record("dtm5m", url, written + [out_dir / "index.json"], {"tiles": len(tiles)})
+    note(f"dtm5m: {len(tiles)} tiles, res {list(res)}, nodata {nodata}")
     return f"ok, {len(tiles)} tiles"
 
 
@@ -610,6 +618,10 @@ def main(argv=None) -> int:
             failed = True
             results[name] = f"FAILED: {ex}"
             traceback.print_exc()
+            note(f"{name} failed: {type(ex).__name__}: {ex}", "error")
+    for k, v in results.items():
+        if not v.startswith("FAILED"):
+            note(f"{k}: {v}")
     lines = ["| dataset | result |", "|---|---|"] + [f"| {k} | {v} |" for k, v in results.items()]
     log("\n".join(lines))
     if os.environ.get("GITHUB_STEP_SUMMARY"):
