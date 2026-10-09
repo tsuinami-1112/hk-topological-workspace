@@ -1,0 +1,181 @@
+{
+  "dtm5m": {
+    "files": {
+      "data/dtm5m/dtm5m_E800N790.tif": {
+        "bytes": 76152,
+        "sha256": "06f1168739c1e3214466d1a7aad905a56ef4b8c853ada33b738e1909c04f3105"
+      },
+      "data/dtm5m/dtm5m_E800N800.tif": {
+        "bytes": 428040,
+        "sha256": "25789fa6e36d1f83b62ce1ae83b798ad3304626d1bae05849e5948831565043d"
+      },
+      "data/dtm5m/dtm5m_E800N810.tif": {
+        "bytes": 858646,
+        "sha256": "a3698e78ea6ef0c17df88e34b98dc188e194cf706764ec905f8a251ee5a8a460"
+      },
+      "data/dtm5m/dtm5m_E800N820.tif": {
+        "bytes": 88518,
+        "sha256": "4b670eefc4636c43dbd67db6ad6b6a993be81a988ce86691833f2ea46e8c6941"
+      },
+      "data/dtm5m/dtm5m_E800N830.tif": {
+        "bytes": 45644,
+        "sha256": "0257caa2976249a8e6432674445f284e79d6fa1c91ad72dbc762eb5990ff8f9d"
+      },
+      "data/dtm5m/dtm5m_E800N840.tif": {
+        "bytes": 30167,
+        "sha256": "7d90912a66c59037c792c7ae08dde24b9ef932ee5c74e2864f4068c021e55b2b"
+      },
+      "data/dtm5m/dtm5m_E810N790.tif": {
+        "bytes": 76152,
+        "sha256": "131134167d262f771ab1f5d4c0708ea5d08991eca864a71b57957e2cc0347648"
+      },
+      "data/dtm5m/dtm5m_E810N800.tif": {
+        "bytes": 188326,
+        "sha256": "221ebe44c96d6147ceea1dc745a6f66fe2d4e255c4f4456f2bf525a6fb854f44"
+      },
+      "data/dtm5m/dtm5m_E810N810.tif": {
+        "bytes": 1488833,
+        "sha256": "8640c4e8aeb3cf863cdd85042a125bc658fc009080a6b0bca5ee1613ccac4efd"
+      },
+      "data/dtm5m/dtm5m_E810N820.tif": {
+        "bytes": 776890,
+        "sha256": "47c9810d3b555ed5ac4a9d66319cc4099018ec59095c639323bc4a056164acea"
+      },
+      "data/dtm5m/dtm5m_E810N830.tif": {
+        "bytes": 706541,
+        "sha256": "685a9e49c72ad7dc5545f9c2d3bd70785dbe302fe99e1009bdc4eefcda81acae"
+      },
+      "data/dtm5m/dtm5m_E810N840.tif": {
+        "bytes": 30167,
+        "sha256": "5ecec61755ab2dc3f547994372ceebc38691b3eee0b7c18ef38f8091e73f5e15"
+      },
+      "data/dtm5m/dtm5m_E820N790.tif": {
+        "bytes": 76152,
+        "sha256": "96978e251775cb1f5ac81f409d26d45282172325bfdf7f1df3a0536a5ccad483"
+      },
+      "data/dtm5m/dtm5m_E820N800.tif": {
+        "bytes": 121214,
+        "sha256": "ecf15dd514d7cc8e033ad4ebd36ac0293fb9f1fb65ff3c9aa1e2518caa1fe75e"
+      },
+      "data/dtm5m/dtm5m_E820N810.tif": {
+        "bytes": 241397,
+        "sha256": "e15f7165aabe89a62015ce7195e0001d6073063d6a0d76d68a850740408c7074"
+      },
+      "data/dtm5m/dtm5m_E820N820.tif": {
+        "bytes": 1189312,
+        "sha256": "b4ad6df9b9d05853ab3f2b22ad2059ea64e1dfec037f075adc74d07d999d9d1a"
+      },
+      "data/dtm5m/dtm5m_E820N830.tif": {
+        "bytes": 1161251,
+        "sha256": "60434fadf22138834d28915ce60d5d283d5bbb25aff9fc3356b5adee65f111d3"
+      },
+      "data/dtm5m/dtm5m_E820N840.tif": {
+        "bytes": 251761,
+        "sha256": "2944e01e41d791a7151866418109002b070401ff92cce82eb52011b5fce5cbae"
+      },
+      "data/dtm5m/dtm5m_E830N790.tif": {
+        "bytes": 76152,
+        "sha256": "08cd798c39f3def0923dad03c98b5ed714cf09bbf1b5f75ad006eb5ed2939649"
+      },
+      "data/dtm5m/dtm5m_E830N800.tif": {
+        "bytes": 335414,
+        "sha256": "b638cbc19b9d462366ff9368e3860d03b4fd74dc89806c60c0920fe706c7cd32"
+      },
+      "data/dtm5m/dtm5m_E830N810.tif": {
+        "bytes": 1176150,
+        "sha256": "b91b1ad5bd2548a2e5b609a7ac5fcde782e6c2b16a25f5fcbc03f557e7c13de5"
+      },
+      "data/dtm5m/dtm5m_E830N820.tif": {
+        "bytes": 1742546,
+        "sha256": "fd20513b7afbbdbddb4e8a0fedb05c7cd1f31628505f69b9387760562c7b3f8b"
+      },
+      "data/dtm5m/dtm5m_E830N830.tif": {
+        "bytes": 1492628,
+        "sha256": "1466a56d4e55294aa5fdbe09902a65fd923c6e323dbabdf8a3ed425b55c38aa3"
+      },
+      "data/dtm5m/dtm5m_E830N840.tif": {
+        "bytes": 818418,
+        "sha256": "867fda6ac4301222d3bea5cc371f910cefe1bf28cdeedc96f2576cd0d72e8a68"
+      },
+      "data/dtm5m/dtm5m_E840N790.tif": {
+        "bytes": 76152,
+        "sha256": "fdddc2204cb4e214fb1c51fa1db809d833ac97536fbc0f931f8da240dbf770ce"
+      },
+      "data/dtm5m/dtm5m_E840N800.tif": {
+        "bytes": 294159,
+        "sha256": "eceb16ff1d4af792c8fc4d365d1b48a1029addc09bb4dad307d83371afe56652"
+      },
+      "data/dtm5m/dtm5m_E840N810.tif": {
+        "bytes": 1127788,
+        "sha256": "30628060553834b7c28ddb89513dd872136610257a4b7e297b001853609db039"
+      },
+      "data/dtm5m/dtm5m_E840N820.tif": {
+        "bytes": 1534862,
+        "sha256": "3215b25dfd8342eb65cfdf6e131db958c99be7d2cb99c333ab8fbd3793747fd8"
+      },
+      "data/dtm5m/dtm5m_E840N830.tif": {
+        "bytes": 1095454,
+        "sha256": "3194c5373cd683efc25bf2ec3c958e8d32df268f631696faa2f68da23ba20b64"
+      },
+      "data/dtm5m/dtm5m_E840N840.tif": {
+        "bytes": 704691,
+        "sha256": "86cde8f6a48b431ff3c9a26b2deb5fd636fd605ce3ecbac6c2524ff0fdfaed05"
+      },
+      "data/dtm5m/dtm5m_E850N790.tif": {
+        "bytes": 76152,
+        "sha256": "55024da19c4240a766c541cb49d450e67878c636281bb00eda8487289b19a45e"
+      },
+      "data/dtm5m/dtm5m_E850N800.tif": {
+        "bytes": 18598,
+        "sha256": "e2737b70f628744ba8206ae770e36dfec155bc10f514994f00746f2a6892177e"
+      },
+      "data/dtm5m/dtm5m_E850N810.tif": {
+        "bytes": 83455,
+        "sha256": "fd6c09e52efbeac699465b78d6b2d33a128d01111a5c7cfdbc7371eb0295864e"
+      },
+      "data/dtm5m/dtm5m_E850N820.tif": {
+        "bytes": 908120,
+        "sha256": "6d34d98fe413dd5c89178eabe9c659faced4fda90657a484a03d16abf6007721"
+      },
+      "data/dtm5m/dtm5m_E850N830.tif": {
+        "bytes": 921678,
+        "sha256": "c0617d66714440551cb6df08d73678f5401e9220b870be51802f89bf8fc11331"
+      },
+      "data/dtm5m/dtm5m_E850N840.tif": {
+        "bytes": 129336,
+        "sha256": "0329601260deb49c343dca153359fa3e7e0a47a52a8ddecdaa063e62fea0dbd9"
+      },
+      "data/dtm5m/dtm5m_E860N790.tif": {
+        "bytes": 76252,
+        "sha256": "f0bba8852671fd35ac85a0bc762f95f1761ec340b3c346ea95550e4835306a01"
+      },
+      "data/dtm5m/dtm5m_E860N800.tif": {
+        "bytes": 62333,
+        "sha256": "fab891edd385441cd2f87b5bb214393becd531f91fccde7cb55fd8038ebb297f"
+      },
+      "data/dtm5m/dtm5m_E860N810.tif": {
+        "bytes": 62333,
+        "sha256": "ddaf0ce6fd383b8610395747ff095ec933a88b8999ace8f9de13a883d8e1f9ad"
+      },
+      "data/dtm5m/dtm5m_E860N820.tif": {
+        "bytes": 62333,
+        "sha256": "6b554628bc4010a534d9057c07032b44d6149a270fa1360783111401312502fa"
+      },
+      "data/dtm5m/dtm5m_E860N830.tif": {
+        "bytes": 63187,
+        "sha256": "4384f2fab0d32acf4065581967dad906ded955be932492a9f5fe0720a962395b"
+      },
+      "data/dtm5m/dtm5m_E860N840.tif": {
+        "bytes": 93900,
+        "sha256": "644a5f4696319a0ecc4725153b04b17a73caff93f836dfb134858cfeb97ae9ce"
+      },
+      "data/dtm5m/index.json": {
+        "bytes": 10667,
+        "sha256": "435d049b1233732ed0fe40bf7ac220721e1168ec3a1c93f3a014d0966f815a3a"
+      }
+    },
+    "retrieved": "2026-10-09T09:15:35Z",
+    "source": "https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip",
+    "tiles": 42
+  }
+}

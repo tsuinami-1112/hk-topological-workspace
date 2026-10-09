@@ -1,0 +1,561 @@
+{
+  "dataset": "dtm5m",
+  "crs": "EPSG:2326",
+  "res_m": [
+    5.0,
+    5.0
+  ],
+  "nodata": -9999.0,
+  "units": "metres",
+  "vertical_datum": "assumed mPD (HK Principal Datum), LandsD's standard height datum; not stated on the dataset page",
+  "notes": "LandsD 5 m DTM, +/-5 m. Includes elevated roads, bridges and vegetation canopy; buildings are not modelled.",
+  "source": "https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip",
+  "tiles": [
+    {
+      "key": "E800N790",
+      "file": "dtm5m_E800N790.tif",
+      "bounds": [
+        799997.5,
+        790002.5,
+        809997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0005,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E800N800",
+      "file": "dtm5m_E800N800.tif",
+      "bounds": [
+        799997.5,
+        800002.5,
+        809997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -3.0,
+      "max_m": 490.0
+    },
+    {
+      "key": "E800N810",
+      "file": "dtm5m_E800N810.tif",
+      "bounds": [
+        799997.5,
+        810002.5,
+        809997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -3.0,
+      "max_m": 933.0
+    },
+    {
+      "key": "E800N820",
+      "file": "dtm5m_E800N820.tif",
+      "bounds": [
+        799997.5,
+        820002.5,
+        809997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 229.0
+    },
+    {
+      "key": "E800N830",
+      "file": "dtm5m_E800N830.tif",
+      "bounds": [
+        799997.5,
+        830002.5,
+        809997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": 0.0,
+      "max_m": 227.0
+    },
+    {
+      "key": "E800N840",
+      "file": "dtm5m_E800N840.tif",
+      "bounds": [
+        799997.5,
+        840002.5,
+        809997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.8,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E810N790",
+      "file": "dtm5m_E810N790.tif",
+      "bounds": [
+        809997.5,
+        790002.5,
+        819997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0005,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E810N800",
+      "file": "dtm5m_E810N800.tif",
+      "bounds": [
+        809997.5,
+        800002.5,
+        819997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -4.0,
+      "max_m": 303.0
+    },
+    {
+      "key": "E810N810",
+      "file": "dtm5m_E810N810.tif",
+      "bounds": [
+        809997.5,
+        810002.5,
+        819997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -4.0,
+      "max_m": 867.0
+    },
+    {
+      "key": "E810N820",
+      "file": "dtm5m_E810N820.tif",
+      "bounds": [
+        809997.5,
+        820002.5,
+        819997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 583.0
+    },
+    {
+      "key": "E810N830",
+      "file": "dtm5m_E810N830.tif",
+      "bounds": [
+        809997.5,
+        830002.5,
+        819997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": 0.0,
+      "max_m": 394.0
+    },
+    {
+      "key": "E810N840",
+      "file": "dtm5m_E810N840.tif",
+      "bounds": [
+        809997.5,
+        840002.5,
+        819997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.8,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E820N790",
+      "file": "dtm5m_E820N790.tif",
+      "bounds": [
+        819997.5,
+        790002.5,
+        829997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0005,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E820N800",
+      "file": "dtm5m_E820N800.tif",
+      "bounds": [
+        819997.5,
+        800002.5,
+        829997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -3.0,
+      "max_m": 103.0
+    },
+    {
+      "key": "E820N810",
+      "file": "dtm5m_E820N810.tif",
+      "bounds": [
+        819997.5,
+        810002.5,
+        829997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 266.0
+    },
+    {
+      "key": "E820N820",
+      "file": "dtm5m_E820N820.tif",
+      "bounds": [
+        819997.5,
+        820002.5,
+        829997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 668.0
+    },
+    {
+      "key": "E820N830",
+      "file": "dtm5m_E820N830.tif",
+      "bounds": [
+        819997.5,
+        830002.5,
+        829997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -7.0,
+      "max_m": 674.0
+    },
+    {
+      "key": "E820N840",
+      "file": "dtm5m_E820N840.tif",
+      "bounds": [
+        819997.5,
+        840002.5,
+        829997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.8,
+      "min_m": -2.0,
+      "max_m": 184.0
+    },
+    {
+      "key": "E830N790",
+      "file": "dtm5m_E830N790.tif",
+      "bounds": [
+        829997.5,
+        790002.5,
+        839997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0005,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E830N800",
+      "file": "dtm5m_E830N800.tif",
+      "bounds": [
+        829997.5,
+        800002.5,
+        839997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -3.0,
+      "max_m": 354.0
+    },
+    {
+      "key": "E830N810",
+      "file": "dtm5m_E830N810.tif",
+      "bounds": [
+        829997.5,
+        810002.5,
+        839997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -26.0,
+      "max_m": 552.0
+    },
+    {
+      "key": "E830N820",
+      "file": "dtm5m_E830N820.tif",
+      "bounds": [
+        829997.5,
+        820002.5,
+        839997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -12.0,
+      "max_m": 940.0
+    },
+    {
+      "key": "E830N830",
+      "file": "dtm5m_E830N830.tif",
+      "bounds": [
+        829997.5,
+        830002.5,
+        839997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -5.0,
+      "max_m": 958.0
+    },
+    {
+      "key": "E830N840",
+      "file": "dtm5m_E830N840.tif",
+      "bounds": [
+        829997.5,
+        840002.5,
+        839997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.8,
+      "min_m": 0.0,
+      "max_m": 492.0
+    },
+    {
+      "key": "E840N790",
+      "file": "dtm5m_E840N790.tif",
+      "bounds": [
+        839997.5,
+        790002.5,
+        849997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0005,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E840N800",
+      "file": "dtm5m_E840N800.tif",
+      "bounds": [
+        839997.5,
+        800002.5,
+        849997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 329.0
+    },
+    {
+      "key": "E840N810",
+      "file": "dtm5m_E840N810.tif",
+      "bounds": [
+        839997.5,
+        810002.5,
+        849997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 545.0
+    },
+    {
+      "key": "E840N820",
+      "file": "dtm5m_E840N820.tif",
+      "bounds": [
+        839997.5,
+        820002.5,
+        849997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -6.0,
+      "max_m": 702.0
+    },
+    {
+      "key": "E840N830",
+      "file": "dtm5m_E840N830.tif",
+      "bounds": [
+        839997.5,
+        830002.5,
+        849997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -3.0,
+      "max_m": 691.0
+    },
+    {
+      "key": "E840N840",
+      "file": "dtm5m_E840N840.tif",
+      "bounds": [
+        839997.5,
+        840002.5,
+        849997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.8,
+      "min_m": -1.0,
+      "max_m": 415.0
+    },
+    {
+      "key": "E850N790",
+      "file": "dtm5m_E850N790.tif",
+      "bounds": [
+        849997.5,
+        790002.5,
+        859997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0005,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E850N800",
+      "file": "dtm5m_E850N800.tif",
+      "bounds": [
+        849997.5,
+        800002.5,
+        859997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": 0.0,
+      "max_m": 2.0
+    },
+    {
+      "key": "E850N810",
+      "file": "dtm5m_E850N810.tif",
+      "bounds": [
+        849997.5,
+        810002.5,
+        859997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 174.0
+    },
+    {
+      "key": "E850N820",
+      "file": "dtm5m_E850N820.tif",
+      "bounds": [
+        849997.5,
+        820002.5,
+        859997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 408.0
+    },
+    {
+      "key": "E850N830",
+      "file": "dtm5m_E850N830.tif",
+      "bounds": [
+        849997.5,
+        830002.5,
+        859997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "min_m": -2.0,
+      "max_m": 467.0
+    },
+    {
+      "key": "E850N840",
+      "file": "dtm5m_E850N840.tif",
+      "bounds": [
+        849997.5,
+        840002.5,
+        859997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.8,
+      "min_m": -1.0,
+      "max_m": 203.0
+    },
+    {
+      "key": "E860N790",
+      "file": "dtm5m_E860N790.tif",
+      "bounds": [
+        859997.5,
+        790002.5,
+        869997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.0002,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E860N800",
+      "file": "dtm5m_E860N800.tif",
+      "bounds": [
+        859997.5,
+        800002.5,
+        869997.5,
+        810002.5
+      ],
+      "valid_fraction": 0.3755,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E860N810",
+      "file": "dtm5m_E860N810.tif",
+      "bounds": [
+        859997.5,
+        810002.5,
+        869997.5,
+        820002.5
+      ],
+      "valid_fraction": 0.3755,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E860N820",
+      "file": "dtm5m_E860N820.tif",
+      "bounds": [
+        859997.5,
+        820002.5,
+        869997.5,
+        830002.5
+      ],
+      "valid_fraction": 0.3755,
+      "min_m": 0.0,
+      "max_m": 0.0
+    },
+    {
+      "key": "E860N830",
+      "file": "dtm5m_E860N830.tif",
+      "bounds": [
+        859997.5,
+        830002.5,
+        869997.5,
+        840002.5
+      ],
+      "valid_fraction": 0.3755,
+      "min_m": 0.0,
+      "max_m": 24.0
+    },
+    {
+      "key": "E860N840",
+      "file": "dtm5m_E860N840.tif",
+      "bounds": [
+        859997.5,
+        840002.5,
+        869997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.3004,
+      "min_m": 0.0,
+      "max_m": 56.0
+    }
+  ]
+}
