@@ -191,10 +191,20 @@ def download(url: str, dest_dir: Path) -> Path:
         shutil.copyfile(local, out)
         return out
     out = dest_dir / (url.rstrip("/").split("/")[-1] or "download")
+    # Probe first, so an unreachable host fails in seconds instead of hanging the job.
+    try:
+        with session() as s:
+            h = s.head(url, allow_redirects=True, timeout=(15, 30))
+        size = h.headers.get("content-length")
+        note(f"probe {url}: HTTP {h.status_code}, "
+             f"{(int(size) / 2**20):.0f} MB" if size else f"probe {url}: HTTP {h.status_code}, size unknown")
+    except requests.RequestException as ex:
+        raise RuntimeError(f"cannot reach {url} from this runner: {type(ex).__name__}: {ex}") from ex
+    t0 = time.time()
     for attempt in range(3):
         try:
             with session() as s:
-                r = http(s, "GET", url, stream=True, timeout=600)
+                r = http(s, "GET", url, stream=True, timeout=(30, 300), tries=3)
                 total = int(r.headers.get("content-length") or 0)
                 got, last = 0, 0
                 with open(out, "wb") as f:
@@ -202,7 +212,8 @@ def download(url: str, dest_dir: Path) -> Path:
                         f.write(chunk)
                         got += len(chunk)
                         if got - last >= 100 << 20:
-                            log(f"  {got >> 20} MB" + (f" of {total >> 20} MB" if total else ""))
+                            rate = got / 2**20 / max(time.time() - t0, 1)
+                            log(f"  {got >> 20} MB" + (f" of {total >> 20} MB" if total else "") + f" ({rate:.1f} MB/s)")
                             last = got
             if total and got != total:
                 raise IOError(f"short read: {got} of {total} bytes")
@@ -212,7 +223,7 @@ def download(url: str, dest_dir: Path) -> Path:
                 raise
             log(f"  download failed ({ex}), retrying")
             time.sleep(15)
-    note(f"downloaded {out.name}: {out.stat().st_size / 2**20:.1f} MB")
+    note(f"downloaded {out.name}: {out.stat().st_size / 2**20:.1f} MB in {time.time() - t0:.0f} s")
     return out
 
 

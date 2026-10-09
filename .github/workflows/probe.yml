@@ -1,0 +1,32 @@
+name: probe-sources
+
+# One-minute reachability and speed check of the data sources from GitHub's runner.
+# Results are posted as annotations on the run. Runs on demand or when this file changes.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/probe.yml
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: LandsD DTM
+        run: |
+          url=https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip
+          code=$(curl -sSIL --connect-timeout 15 --max-time 30 -o headers.txt -w '%{http_code}' "$url" || echo "fail")
+          len=$(grep -i '^content-length' headers.txt | tail -1 | tr -d '\r' | awk '{print $2}')
+          echo "::notice title=landsd-head::HTTP $code, content-length ${len:-unknown}"
+          res=$(curl -sS --connect-timeout 15 --max-time 60 -o /dev/null -w '%{size_download} %{speed_download}' "$url" 2>&1 || true)
+          echo "::notice title=landsd-60s::bytes, bytes/s: $res"
+      - name: Overpass
+        run: |
+          code=$(curl -sS --connect-timeout 15 --max-time 30 -o /dev/null -w '%{http_code}' https://overpass-api.de/api/status || echo "fail")
+          echo "::notice title=overpass::HTTP $code"
