@@ -177,5 +177,138 @@
     "retrieved": "2026-10-09T09:15:35Z",
     "source": "https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip",
     "tiles": 42
+  },
+  "osm": {
+    "files": {
+      "data/osm/index.json": {
+        "bytes": 7639,
+        "sha256": "fbb11d44c74eeec7507dee9d8692b20834695c6ee88c5368c65b420df5743983"
+      },
+      "data/osm/osm_E800N800.gpkg": {
+        "bytes": 315392,
+        "sha256": "7f5d29b739fa9488c356488f0f557a93c0362fe4e1aae5ea522b79bfbf720edf"
+      },
+      "data/osm/osm_E800N810.gpkg": {
+        "bytes": 856064,
+        "sha256": "d7fcab07a41838736c3d6edacc2e41a08ead303185fc2542cd20ac07f461297a"
+      },
+      "data/osm/osm_E800N820.gpkg": {
+        "bytes": 225280,
+        "sha256": "6da137d7ff1e9bc2bbacc7d80d71a77eb03c90e8395ecdd647287cad95918f8d"
+      },
+      "data/osm/osm_E800N830.gpkg": {
+        "bytes": 180224,
+        "sha256": "29749499999de54c06afd56cd1f9d46f68f838be6dd8f4510c099b4fc3999f4b"
+      },
+      "data/osm/osm_E810N800.gpkg": {
+        "bytes": 229376,
+        "sha256": "6f821acd4742f22622d6ac8ec591732d945d30657d394446c1a32d8eb21b8386"
+      },
+      "data/osm/osm_E810N810.gpkg": {
+        "bytes": 3731456,
+        "sha256": "1b355d15e3960a92cdfea2d65d156c2cff7a7441ae87d17f82dca1598fcffadd"
+      },
+      "data/osm/osm_E810N820.gpkg": {
+        "bytes": 3985408,
+        "sha256": "f0fbc0d7e920a8c6956d7711a3e2268026a55f6ebf8f9eac8529d32827350b0d"
+      },
+      "data/osm/osm_E810N830.gpkg": {
+        "bytes": 4509696,
+        "sha256": "ac083fd49c3bf01561143c7896eb27ab05989294109de2a658e3d7b0e640c39b"
+      },
+      "data/osm/osm_E810N840.gpkg": {
+        "bytes": 155648,
+        "sha256": "b4d3961ec1eb0bea36920cac098123a06e81603efd7759860da25f72407de1ab"
+      },
+      "data/osm/osm_E820N800.gpkg": {
+        "bytes": 360448,
+        "sha256": "39bb8fa5e9a843db651295940dbfd508d174b25a1f7d66417ab2368594d39771"
+      },
+      "data/osm/osm_E820N810.gpkg": {
+        "bytes": 598016,
+        "sha256": "6ab12f3b451112c0845ca0d152d705c862a3cafa024d02c6e38a7bd17165d1ed"
+      },
+      "data/osm/osm_E820N820.gpkg": {
+        "bytes": 5701632,
+        "sha256": "0d09e56b683f4a3495d68207edd682691227e50cf51d086038270a1c848302bd"
+      },
+      "data/osm/osm_E820N830.gpkg": {
+        "bytes": 5431296,
+        "sha256": "69a04b5fdb336af4d3c4bdacb52430a7630e1404aeaf806efe6ca63c9a9b4d70"
+      },
+      "data/osm/osm_E820N840.gpkg": {
+        "bytes": 905216,
+        "sha256": "4e93fa26ea92e64b6ed62acc6717dee7d643bb6393d2c981718b34571b1d42dc"
+      },
+      "data/osm/osm_E830N800.gpkg": {
+        "bytes": 532480,
+        "sha256": "9cbfc19ac6cd0734395743b7b0a553e7c2f4333515907bc19fe9c67e43029dc1"
+      },
+      "data/osm/osm_E830N810.gpkg": {
+        "bytes": 17678336,
+        "sha256": "eaf13e0dbdbf5732d0f93a39a0bab4648b44320a185bd13c8c8e90afdb15d976"
+      },
+      "data/osm/osm_E830N820.gpkg": {
+        "bytes": 19050496,
+        "sha256": "9774ec4282113bc1d25b94cfbba59129a2a69e65d14257fdd99178d3b58c0564"
+      },
+      "data/osm/osm_E830N830.gpkg": {
+        "bytes": 7581696,
+        "sha256": "3d6649b30ee8c3dc692f77077b1c0ffe35d396dba249755203d40a95aa85d168"
+      },
+      "data/osm/osm_E830N840.gpkg": {
+        "bytes": 2785280,
+        "sha256": "775a76e919214868caa3874fb8d8439b407fb3bb129d8fdbf97dfb7127a2e6b7"
+      },
+      "data/osm/osm_E840N800.gpkg": {
+        "bytes": 434176,
+        "sha256": "60b321890566eab2c21f545e930891f5a25933adeea0705e91b89f2b536e1623"
+      },
+      "data/osm/osm_E840N810.gpkg": {
+        "bytes": 7729152,
+        "sha256": "073a4a975c378825768bdf487f80ee11ffea7743be8d550081905a39d332e5ab"
+      },
+      "data/osm/osm_E840N820.gpkg": {
+        "bytes": 4435968,
+        "sha256": "4358d8e618b8fc280965b4071925bc0400753ca91df6703b892fa63007fa8cfd"
+      },
+      "data/osm/osm_E840N830.gpkg": {
+        "bytes": 2101248,
+        "sha256": "b8b0e3538c19a5d7d14145f7e44ed93464df6275861ea758a5c000583d294f73"
+      },
+      "data/osm/osm_E840N840.gpkg": {
+        "bytes": 700416,
+        "sha256": "5183b8d2c2c5e18ef41ba25205d98e90ed4f226c09370045f48cf7f70ca9e27b"
+      },
+      "data/osm/osm_E850N810.gpkg": {
+        "bytes": 135168,
+        "sha256": "50f6daf8de014f345908d92ab72bb33c7c07ca429de43f27c31a3af0b1c97e50"
+      },
+      "data/osm/osm_E850N820.gpkg": {
+        "bytes": 700416,
+        "sha256": "dcf1e1d1fd458dafc48d7fb3db5868c4eeb114ed1fba6e3badfeeaba0dfda1e0"
+      },
+      "data/osm/osm_E850N830.gpkg": {
+        "bytes": 569344,
+        "sha256": "aadd7a4244b34620747e3b2aabbecd1ad91b81cbfc03bd72a71f47cb79224786"
+      },
+      "data/osm/osm_E850N840.gpkg": {
+        "bytes": 135168,
+        "sha256": "14867e633659e88ddda9c678955058e2b72a2675a35d2105bf4cb4d97119e81f"
+      },
+      "data/osm/osm_E860N830.gpkg": {
+        "bytes": 118784,
+        "sha256": "9b468b4994615f597ac639e7a84ef32aad9fc58db8f3cbff1de7e93b7cc65e9c"
+      },
+      "data/osm/osm_E860N840.gpkg": {
+        "bytes": 159744,
+        "sha256": "3daf280376e9c6af9a7e3db83542c6780ee303a7ded6cd25aafb5859e7df103c"
+      }
+    },
+    "masts": 228,
+    "peaks": 1756,
+    "retrieved": "2026-10-09T09:55:28Z",
+    "source": "https://download.geofabrik.de/asia/china/hong-kong-latest.osm.pbf",
+    "ways": 185944
   }
 }

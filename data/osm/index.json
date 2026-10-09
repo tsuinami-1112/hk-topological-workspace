@@ -1,0 +1,453 @@
+{
+  "dataset": "osm",
+  "crs": "EPSG:2326",
+  "source": "https://download.geofabrik.de/asia/china/hong-kong-latest.osm.pbf",
+  "retrieved": "2026-10-09T09:55:28Z",
+  "attribution": "(c) OpenStreetMap contributors, ODbL 1.0",
+  "ways": 185944,
+  "masts": 228,
+  "peaks": 1756,
+  "tiles": [
+    {
+      "key": "E800N800",
+      "file": "osm_E800N800.gpkg",
+      "bounds": [
+        800000,
+        800000,
+        810000,
+        810000
+      ],
+      "counts": {
+        "ways": 272,
+        "masts": 1,
+        "peaks": 39
+      }
+    },
+    {
+      "key": "E800N810",
+      "file": "osm_E800N810.gpkg",
+      "bounds": [
+        800000,
+        810000,
+        810000,
+        820000
+      ],
+      "counts": {
+        "ways": 1361,
+        "masts": 5,
+        "peaks": 54
+      }
+    },
+    {
+      "key": "E800N820",
+      "file": "osm_E800N820.gpkg",
+      "bounds": [
+        800000,
+        820000,
+        810000,
+        830000
+      ],
+      "counts": {
+        "ways": 243,
+        "peaks": 9
+      }
+    },
+    {
+      "key": "E800N830",
+      "file": "osm_E800N830.gpkg",
+      "bounds": [
+        800000,
+        830000,
+        810000,
+        840000
+      ],
+      "counts": {
+        "ways": 107,
+        "masts": 1,
+        "peaks": 1
+      }
+    },
+    {
+      "key": "E810N800",
+      "file": "osm_E810N800.gpkg",
+      "bounds": [
+        810000,
+        800000,
+        820000,
+        810000
+      ],
+      "counts": {
+        "ways": 167,
+        "masts": 1,
+        "peaks": 14
+      }
+    },
+    {
+      "key": "E810N810",
+      "file": "osm_E810N810.gpkg",
+      "bounds": [
+        810000,
+        810000,
+        820000,
+        820000
+      ],
+      "counts": {
+        "ways": 6877,
+        "masts": 3,
+        "peaks": 63
+      }
+    },
+    {
+      "key": "E810N820",
+      "file": "osm_E810N820.gpkg",
+      "bounds": [
+        810000,
+        820000,
+        820000,
+        830000
+      ],
+      "counts": {
+        "ways": 8211,
+        "masts": 15,
+        "peaks": 28
+      }
+    },
+    {
+      "key": "E810N830",
+      "file": "osm_E810N830.gpkg",
+      "bounds": [
+        810000,
+        830000,
+        820000,
+        840000
+      ],
+      "counts": {
+        "ways": 9856,
+        "masts": 4,
+        "peaks": 89
+      }
+    },
+    {
+      "key": "E810N840",
+      "file": "osm_E810N840.gpkg",
+      "bounds": [
+        810000,
+        840000,
+        820000,
+        850000
+      ],
+      "counts": {
+        "ways": 122
+      }
+    },
+    {
+      "key": "E820N800",
+      "file": "osm_E820N800.gpkg",
+      "bounds": [
+        820000,
+        800000,
+        830000,
+        810000
+      ],
+      "counts": {
+        "ways": 559,
+        "peaks": 10
+      }
+    },
+    {
+      "key": "E820N810",
+      "file": "osm_E820N810.gpkg",
+      "bounds": [
+        820000,
+        810000,
+        830000,
+        820000
+      ],
+      "counts": {
+        "ways": 1153,
+        "masts": 3,
+        "peaks": 11
+      }
+    },
+    {
+      "key": "E820N820",
+      "file": "osm_E820N820.gpkg",
+      "bounds": [
+        820000,
+        820000,
+        830000,
+        830000
+      ],
+      "counts": {
+        "ways": 10066,
+        "masts": 19,
+        "peaks": 133
+      }
+    },
+    {
+      "key": "E820N830",
+      "file": "osm_E820N830.gpkg",
+      "bounds": [
+        820000,
+        830000,
+        830000,
+        840000
+      ],
+      "counts": {
+        "ways": 11426,
+        "masts": 1,
+        "peaks": 159
+      }
+    },
+    {
+      "key": "E820N840",
+      "file": "osm_E820N840.gpkg",
+      "bounds": [
+        820000,
+        840000,
+        830000,
+        850000
+      ],
+      "counts": {
+        "ways": 1840,
+        "peaks": 24
+      }
+    },
+    {
+      "key": "E830N800",
+      "file": "osm_E830N800.gpkg",
+      "bounds": [
+        830000,
+        800000,
+        840000,
+        810000
+      ],
+      "counts": {
+        "ways": 913,
+        "masts": 3,
+        "peaks": 26
+      }
+    },
+    {
+      "key": "E830N810",
+      "file": "osm_E830N810.gpkg",
+      "bounds": [
+        830000,
+        810000,
+        840000,
+        820000
+      ],
+      "counts": {
+        "ways": 35007,
+        "masts": 35,
+        "peaks": 81
+      }
+    },
+    {
+      "key": "E830N820",
+      "file": "osm_E830N820.gpkg",
+      "bounds": [
+        830000,
+        820000,
+        840000,
+        830000
+      ],
+      "counts": {
+        "ways": 40556,
+        "masts": 29,
+        "peaks": 146
+      }
+    },
+    {
+      "key": "E830N830",
+      "file": "osm_E830N830.gpkg",
+      "bounds": [
+        830000,
+        830000,
+        840000,
+        840000
+      ],
+      "counts": {
+        "ways": 18114,
+        "masts": 29,
+        "peaks": 136
+      }
+    },
+    {
+      "key": "E830N840",
+      "file": "osm_E830N840.gpkg",
+      "bounds": [
+        830000,
+        840000,
+        840000,
+        850000
+      ],
+      "counts": {
+        "ways": 5819,
+        "masts": 1,
+        "peaks": 104
+      }
+    },
+    {
+      "key": "E840N800",
+      "file": "osm_E840N800.gpkg",
+      "bounds": [
+        840000,
+        800000,
+        850000,
+        810000
+      ],
+      "counts": {
+        "ways": 626,
+        "masts": 50,
+        "peaks": 19
+      }
+    },
+    {
+      "key": "E840N810",
+      "file": "osm_E840N810.gpkg",
+      "bounds": [
+        840000,
+        810000,
+        850000,
+        820000
+      ],
+      "counts": {
+        "ways": 16181,
+        "masts": 8,
+        "peaks": 79
+      }
+    },
+    {
+      "key": "E840N820",
+      "file": "osm_E840N820.gpkg",
+      "bounds": [
+        840000,
+        820000,
+        850000,
+        830000
+      ],
+      "counts": {
+        "ways": 9680,
+        "masts": 10,
+        "peaks": 99
+      }
+    },
+    {
+      "key": "E840N830",
+      "file": "osm_E840N830.gpkg",
+      "bounds": [
+        840000,
+        830000,
+        850000,
+        840000
+      ],
+      "counts": {
+        "ways": 4274,
+        "peaks": 122
+      }
+    },
+    {
+      "key": "E840N840",
+      "file": "osm_E840N840.gpkg",
+      "bounds": [
+        840000,
+        840000,
+        850000,
+        850000
+      ],
+      "counts": {
+        "ways": 933,
+        "masts": 1,
+        "peaks": 102
+      }
+    },
+    {
+      "key": "E850N810",
+      "file": "osm_E850N810.gpkg",
+      "bounds": [
+        850000,
+        810000,
+        860000,
+        820000
+      ],
+      "counts": {
+        "ways": 10,
+        "peaks": 33
+      }
+    },
+    {
+      "key": "E850N820",
+      "file": "osm_E850N820.gpkg",
+      "bounds": [
+        850000,
+        820000,
+        860000,
+        830000
+      ],
+      "counts": {
+        "ways": 798,
+        "masts": 1,
+        "peaks": 84
+      }
+    },
+    {
+      "key": "E850N830",
+      "file": "osm_E850N830.gpkg",
+      "bounds": [
+        850000,
+        830000,
+        860000,
+        840000
+      ],
+      "counts": {
+        "ways": 698,
+        "masts": 6,
+        "peaks": 71
+      }
+    },
+    {
+      "key": "E850N840",
+      "file": "osm_E850N840.gpkg",
+      "bounds": [
+        850000,
+        840000,
+        860000,
+        850000
+      ],
+      "counts": {
+        "ways": 17,
+        "peaks": 15
+      }
+    },
+    {
+      "key": "E860N830",
+      "file": "osm_E860N830.gpkg",
+      "bounds": [
+        860000,
+        830000,
+        870000,
+        840000
+      ],
+      "counts": {
+        "ways": 1,
+        "peaks": 2
+      }
+    },
+    {
+      "key": "E860N840",
+      "file": "osm_E860N840.gpkg",
+      "bounds": [
+        860000,
+        840000,
+        870000,
+        850000
+      ],
+      "counts": {
+        "ways": 57,
+        "masts": 2,
+        "peaks": 3
+      }
+    }
+  ]
+}
