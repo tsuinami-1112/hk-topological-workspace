@@ -9,8 +9,8 @@ on:
   workflow_dispatch:
     inputs:
       datasets:
-        description: "Comma-separated: dtm5m, buildings, osm"
-        default: "dtm5m,buildings,osm"
+        description: "Comma-separated: dtm5m, buildings, osm, landuse, canopy"
+        default: "dtm5m,buildings,osm,landuse,canopy"
         required: true
       force:
         description: "Refetch even if already up to date"
@@ -32,7 +32,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  DATASETS: ${{ inputs.datasets || 'dtm5m,buildings,osm' }}
+  DATASETS: ${{ inputs.datasets || 'dtm5m,buildings,osm,landuse,canopy' }}
   FORCE: ${{ inputs.force && '--force' || '' }}
 
 jobs:
@@ -81,3 +81,22 @@ jobs:
       - name: Commit osm
         if: ${{ !cancelled() && steps.osm.outcome == 'success' }}
         run: bash .github/commit-data.sh osm
+
+      - name: Fetch landuse
+        id: landuse
+        if: ${{ !cancelled() && contains(env.DATASETS, 'landuse') }}
+        run: python tools/fetch.py --datasets landuse $FORCE
+
+      - name: Commit landuse
+        if: ${{ !cancelled() && steps.landuse.outcome == 'success' }}
+        run: bash .github/commit-data.sh landuse
+
+      - name: Fetch canopy
+        id: canopy
+        if: ${{ !cancelled() && contains(env.DATASETS, 'canopy') }}
+        timeout-minutes: 45
+        run: python tools/fetch.py --datasets canopy $FORCE
+
+      - name: Commit canopy
+        if: ${{ !cancelled() && steps.canopy.outcome == 'success' }}
+        run: bash .github/commit-data.sh canopy

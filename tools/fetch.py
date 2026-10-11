@@ -5,6 +5,8 @@ Datasets (run in this order, so later ones can reuse the DTM tile index):
   dtm5m      LandsD 5 m DTM            -> data/dtm5m/dtm5m_E###N###.tif   float32, metres
   buildings  LandsD Building (CSDI)    -> data/buildings/bldg_E###N###.gpkg  layer "buildings"
   osm        OSM extract (Geofabrik)   -> data/osm/osm_E###N###.gpkg        layers "ways", "masts", "peaks"
+  landuse    PlanD land utilisation    -> data/landuse/lu_E###N###.tif      10 m class codes (legend in index.json)
+  canopy     Meta/WRI canopy height    -> data/canopy/chm_E###N###.tif      5 m, band 1 max, band 2 mean (m)
 
 Tile keys name the tile's south-west corner in km of HK1980 Grid: E830N820 covers
 E 830000-840000, N 820000-830000. Each dataset writes data/<name>/index.json and an
@@ -623,14 +625,216 @@ def fetch_osm(cfg: dict, force: bool) -> str:
     return f"ok, {len(ways)} ways, {len(masts)} masts/towers, {len(peaks)} peaks"
 
 
+# ---------------------------------------------------------------- land utilisation (PlanD, CSDI)
+
+LEGEND_DROP = {"imageData", "url", "contentType", "height", "width"}
+
+
+def _write_raster_tiles(src, out_dir: Path, prefix: str, size: int, bounds_hk80, extra_profile=None):
+    """Cut an HK1980 raster into tiles on the 10 km grid at its native resolution (no resampling)."""
+    import rasterio
+    from rasterio.windows import from_bounds
+
+    tiles, written = [], []
+    nd = src.nodata
+    for e0, n0, e1, n1 in tile_grid(bounds_hk80, size):
+        win = from_bounds(e0, n0, e1, n1, transform=src.transform).round_offsets().round_lengths()
+        a = src.read(1, window=win, boundless=True, fill_value=nd if nd is not None else 0)
+        valid = (a != nd) if nd is not None else np.ones(a.shape, bool)
+        if not valid.any():
+            continue
+        key = tile_key(e0, n0)
+        path = out_dir / f"{prefix}_{key}.tif"
+        prof = dict(driver="GTiff", width=a.shape[1], height=a.shape[0], count=1, dtype=a.dtype.name, crs=HK80,
+                    transform=src.window_transform(win), nodata=nd, tiled=True, blockxsize=256, blockysize=256,
+                    compress="deflate")
+        prof.update(extra_profile or {})
+        with rasterio.open(path, "w", **prof) as dst:
+            dst.write(a, 1)
+            try:
+                dst.write_colormap(1, src.colormap(1))
+            except ValueError:
+                pass
+        vals, counts = np.unique(a[valid], return_counts=True)
+        tiles.append({"key": key, "file": path.name, "bounds": [e0, n0, e1, n1],
+                      "value_counts": {str(int(v)): int(c) for v, c in zip(vals, counts)}})
+        written.append(path)
+    return tiles, written
+
+
+def fetch_landuse(cfg: dict, force: bool) -> str:
+    import rasterio
+
+    c = cfg.get("landuse") or {}
+    url = c.get("url")
+    if not url:
+        log("landuse: no url configured, skipping")
+        return "skipped (no url)"
+    if not force and up_to_date("landuse", url):
+        log("landuse: already fetched from this source, skipping (use --force to refetch)")
+        return "skipped (up to date)"
+    size = int(cfg["tile_size_m"])
+    out_dir = DATA / "landuse"
+    legend = None
+    if c.get("legend_url"):
+        try:
+            with session() as s:
+                j = http(s, "GET", c["legend_url"], timeout=(20, 60), tries=3).json()
+            legend = [{"layer": L.get("layerName"),
+                       "items": [{k: v for k, v in it.items() if k not in LEGEND_DROP} for it in L.get("legend", [])]}
+                      for L in j.get("layers", [])]
+            note(f"landuse: legend has {sum(len(L['items']) for L in legend)} entries")
+        except Exception as ex:
+            note(f"landuse: legend unavailable ({type(ex).__name__}: {ex})", "warning")
+    with tempfile.TemporaryDirectory() as td:
+        td = Path(td)
+        archive = download(url, td / "dl")
+        head = archive.read_bytes()[:512].lstrip().lower()
+        if head.startswith(b"<!doctype html") or head.startswith(b"<html"):
+            raise RuntimeError("the download link returned an HTML page, not data")
+        src_dir = td / "src"
+        src_dir.mkdir()
+        _unpack(archive, src_dir)
+        rasters = sorted((p for p in src_dir.rglob("*") if p.suffix.lower() in RASTER_EXT),
+                         key=lambda p: p.stat().st_size, reverse=True)
+        if not rasters:
+            raise RuntimeError(f"no raster in the download: {[p.name for p in src_dir.rglob('*')][:30]}")
+        extras = [p for p in src_dir.rglob("*") if p.is_file() and p.suffix.lower() in
+                  {".dbf", ".csv", ".txt", ".xml", ".xlsx", ".xls", ".pdf", ".lyr", ".qml", ".clr"} and p.stat().st_size < 5_000_000]
+        reset_dir(out_dir)
+        kept = []
+        for x in extras:
+            dst = out_dir / ("src_" + x.name)
+            shutil.copyfile(x, dst)
+            kept.append(dst)
+        with rasterio.open(rasters[0]) as src:
+            ok, why = _is_hk80(src.crs, src.bounds)
+            if not ok:
+                raise RuntimeError(f"{rasters[0].name}: not recognisably HK1980 Grid ({why})")
+            note(f"landuse: {rasters[0].name} {src.width}x{src.height} res {src.res} {src.dtypes[0]} nodata {src.nodata} ({why})")
+            rat = None
+            try:
+                rat = src.tags(1)
+            except Exception:
+                pass
+            tiles, written = _write_raster_tiles(src, out_dir, "lu", size, src.bounds)
+            res = list(src.res)
+            nodata = src.nodata
+    totals = {}
+    for t in tiles:
+        for v, n in t["value_counts"].items():
+            totals[v] = totals.get(v, 0) + n
+    index = {"dataset": "landuse", "crs": HK80, "res_m": res, "nodata": nodata, "year": c.get("year"),
+             "source": url, "legend": legend, "band_tags": rat, "source_files": [k.name for k in kept],
+             "value_totals": dict(sorted(totals.items(), key=lambda kv: -kv[1])), "tiles": tiles}
+    (out_dir / "index.json").write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n")
+    record("landuse", url, written + kept + [out_dir / "index.json"], {"tiles": len(tiles), "year": c.get("year")})
+    return f"ok, {len(tiles)} tiles, {len(totals)} classes"
+
+
+# ---------------------------------------------------------------- canopy height (Meta / WRI, 1.2 m)
+
+def fetch_canopy(cfg: dict, force: bool) -> str:
+    """Canopy height resampled onto the DTM's 5 m tiles: band 1 = max, band 2 = mean (metres, uint8, 255 = no data)."""
+    import rasterio
+    from rasterio.enums import Resampling
+    from rasterio.warp import reproject, transform_bounds
+    from rasterio.windows import from_bounds
+
+    c = cfg.get("canopy") or {}
+    urls = c.get("urls") or []
+    if not urls:
+        log("canopy: no urls configured, skipping")
+        return "skipped (no url)"
+    source = ",".join(urls)
+    if not force and up_to_date("canopy", source):
+        log("canopy: already fetched from this source, skipping (use --force to refetch)")
+        return "skipped (up to date)"
+    didx = DATA / "dtm5m" / "index.json"
+    if not didx.exists():
+        raise RuntimeError("canopy needs the DTM tiles first (they define the output grid)")
+    dtiles = json.loads(didx.read_text())["tiles"]
+    dtiles.sort(key=lambda t: (-t["bounds"][3], t["bounds"][0]))   # row order, so strip reads are cached
+    grids = {}
+    for t in dtiles:
+        with rasterio.open(DATA / "dtm5m" / t["file"]) as d:
+            grids[t["key"]] = (d.transform, d.width, d.height)
+    mx = {k: np.full((h, w), np.nan, np.float32) for k, (tr, w, h) in grids.items()}
+    mn = {k: np.full((h, w), np.nan, np.float32) for k, (tr, w, h) in grids.items()}
+    os.environ.setdefault("GDAL_CACHEMAX", "2048")
+    with tempfile.TemporaryDirectory() as td:
+        for url in urls:
+            path = download(url, Path(td))
+            with rasterio.open(path) as src:
+                note(f"canopy: {path.name} {src.crs} {src.width}x{src.height} res {src.res[0]:.3f} {src.dtypes[0]}")
+                for t in dtiles:
+                    tr, w, h = grids[t["key"]]
+                    left, top = tr.c, tr.f
+                    right, bottom = left + w * tr.a, top + h * tr.e
+                    b = transform_bounds(HK80, src.crs, left, bottom, right, top, densify_pts=21)
+                    sb = src.bounds
+                    ib = (max(b[0], sb.left), max(b[1], sb.bottom), min(b[2], sb.right), min(b[3], sb.top))
+                    if ib[0] >= ib[2] or ib[1] >= ib[3]:
+                        continue
+                    pad = 20 * src.res[0]
+                    win = from_bounds(ib[0] - pad, ib[1] - pad, ib[2] + pad, ib[3] + pad, transform=src.transform)
+                    win = win.round_offsets().round_lengths().intersection(
+                        rasterio.windows.Window(0, 0, src.width, src.height))
+                    a = src.read(1, window=win)
+                    wtr = src.window_transform(win)
+                    for out, rs in ((mx, Resampling.max), (mn, Resampling.average)):
+                        tmp = np.full((h, w), np.nan, np.float32)
+                        reproject(a, tmp, src_transform=wtr, src_crs=src.crs, dst_transform=tr, dst_crs=HK80,
+                                  resampling=rs, src_nodata=None, dst_nodata=np.nan, init_dest_nodata=True)
+                        cur = out[t["key"]]
+                        if rs == Resampling.max:
+                            out[t["key"]] = np.fmax(cur, tmp)
+                        else:
+                            out[t["key"]] = np.where(np.isnan(cur), tmp, cur)
+                    del a
+            path.unlink()
+    out_dir = DATA / "canopy"
+    reset_dir(out_dir)
+    tiles, written = [], []
+    for t in dtiles:
+        k = t["key"]
+        a, m = mx[k], mn[k]
+        if np.isnan(a).all():
+            continue
+        tr, w, h = grids[k]
+        path = out_dir / f"chm_{k}.tif"
+        stack = np.stack([np.where(np.isnan(a), 255, np.clip(np.round(a), 0, 254)),
+                          np.where(np.isnan(m), 255, np.clip(np.round(m), 0, 254))]).astype("uint8")
+        with rasterio.open(path, "w", driver="GTiff", width=w, height=h, count=2, dtype="uint8", crs=HK80,
+                           transform=tr, nodata=255, tiled=True, blockxsize=256, blockysize=256,
+                           compress="deflate", predictor=2) as dst:
+            dst.write(stack)
+            dst.set_band_description(1, "canopy height max in cell (m)")
+            dst.set_band_description(2, "canopy height mean in cell (m)")
+        valid = ~np.isnan(a)
+        tiles.append({"key": k, "file": path.name, "bounds": t["bounds"],
+                      "valid_fraction": round(float(valid.mean()), 4),
+                      "share_over_5m": round(float((a[valid] > 5).mean()), 4) if valid.any() else None})
+        written.append(path)
+    index = {"dataset": "canopy", "crs": HK80, "res_m": [5.0, 5.0], "nodata": 255, "units": "metres",
+             "bands": {"1": "max canopy height in the 5 m cell", "2": "mean canopy height in the 5 m cell"},
+             "grid": "identical to data/dtm5m tiles", "source": urls,
+             "provider": "Meta and World Resources Institute, High Resolution Canopy Height Maps v1 (alsgedi_global_v6_float), ~1.2 m",
+             "licence": "CC BY 4.0", "tiles": tiles}
+    (out_dir / "index.json").write_text(json.dumps(index, indent=2) + "\n")
+    record("canopy", source, written + [out_dir / "index.json"], {"tiles": len(tiles)})
+    return f"ok, {len(tiles)} tiles"
+
+
 # ---------------------------------------------------------------- main
 
-FETCHERS = {"dtm5m": fetch_dtm, "buildings": fetch_buildings, "osm": fetch_osm}
+FETCHERS = {"dtm5m": fetch_dtm, "buildings": fetch_buildings, "osm": fetch_osm,
+            "landuse": fetch_landuse, "canopy": fetch_canopy}
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--datasets", default="dtm5m,buildings,osm")
+    ap.add_argument("--datasets", default="dtm5m,buildings,osm,landuse,canopy")
     ap.add_argument("--force", action="store_true", help="refetch even if MANIFEST says up to date")
     ap.add_argument("--config", help="alternate sources.yml")
     a = ap.parse_args(argv)

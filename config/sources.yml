@@ -30,3 +30,17 @@ osm:
   # Data (c) OpenStreetMap contributors, ODbL. Overpass was tried first; it refuses or
   # times out from GitHub's runners.
   pbf_url: https://download.geofabrik.de/asia/china/hong-kong-latest.osm.pbf
+
+landuse:
+  # PlanD "Raster Grids on Land Utilization", 10 m, HK1980 Grid. 2025 edition, CSDI dataset
+  # pland_rcd_1754559265139_25057. Class names come from the map service's legend.
+  year: 2025
+  url: https://portal.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda
+  legend_url: https://portal.csdi.gov.hk/server/rest/services/common/pland_rcd_1754559265139_25057/MapServer/legend?f=pjson
+
+canopy:
+  # Meta / WRI High Resolution Canopy Height Maps v1: ~1.2 m, EPSG:3857, metres (uint8), CC BY 4.0.
+  # The two zoom-9 tiles that cover Hong Kong (quadkeys 132122223 and 132122232).
+  urls:
+    - https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122223.tif
+    - https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122232.tif
