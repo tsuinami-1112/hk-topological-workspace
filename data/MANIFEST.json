@@ -485,6 +485,158 @@
     "source": "https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip",
     "tiles": 42
   },
+  "landuse": {
+    "files": {
+      "data/landuse/index.json": {
+        "bytes": 19737,
+        "sha256": "821563a0e347428790136a1e5ade6576248703913b1003972bbd7784db6b0ea8"
+      },
+      "data/landuse/lu_E800N800.tif": {
+        "bytes": 36068,
+        "sha256": "d68bd6bdc95cf625093c3013aebe3b0da683b9eb43b84dc4b01168a0d416f7db"
+      },
+      "data/landuse/lu_E800N810.tif": {
+        "bytes": 63667,
+        "sha256": "257add0182db81d44c56b6ffebef14749dd24daf72afc04417f8e2eac418ee6a"
+      },
+      "data/landuse/lu_E800N820.tif": {
+        "bytes": 10985,
+        "sha256": "f1d047a442ccdb2ef5f5c1445f1c2b630560ec7283786934aa11d512827fa561"
+      },
+      "data/landuse/lu_E800N830.tif": {
+        "bytes": 4239,
+        "sha256": "16dc62f8dcdc23712f001329bc40467f80613e214204425b3d947d851004cbdc"
+      },
+      "data/landuse/lu_E800N840.tif": {
+        "bytes": 2066,
+        "sha256": "29daa719d56582959938720da37acf8dc5ca4b2a75563d2a37729d6e2b3fc7ed"
+      },
+      "data/landuse/lu_E810N800.tif": {
+        "bytes": 18356,
+        "sha256": "ed26ef0bc8a7a9fe23b3881ddfe2a13c2e281fb9286cc67502c4ccfe64a85012"
+      },
+      "data/landuse/lu_E810N810.tif": {
+        "bytes": 121042,
+        "sha256": "e4dbee4caf5a26491f040eb347c3f2572b081938b4b59d56b4bc815e1ab33108"
+      },
+      "data/landuse/lu_E810N820.tif": {
+        "bytes": 79195,
+        "sha256": "e6e0f6dc973665dcc63352dfe4b26262f8d083aecae72e1e3c80369e5b51ea12"
+      },
+      "data/landuse/lu_E810N830.tif": {
+        "bytes": 88611,
+        "sha256": "eade7a01499d6e9f0a79afc402b0f39750e70b810d79f9bb51fb4bc829b90a5f"
+      },
+      "data/landuse/lu_E810N840.tif": {
+        "bytes": 2066,
+        "sha256": "31cbbeb92c65bef21476347df09f44c795f598f527c1be47eb9eba3f3acb09ed"
+      },
+      "data/landuse/lu_E820N800.tif": {
+        "bytes": 11859,
+        "sha256": "34dc94c099935c8c941b7cde272f056240321bca9649ccdaec5df6865a407545"
+      },
+      "data/landuse/lu_E820N810.tif": {
+        "bytes": 23920,
+        "sha256": "4dca5b60723d1d8de871e3d5b516d32be1cfd0a2db709bc90e59df210fe8ddc7"
+      },
+      "data/landuse/lu_E820N820.tif": {
+        "bytes": 116514,
+        "sha256": "dc9576587884e585bc0c1e13f82097f68120889497195da7deadbdf60ef644a7"
+      },
+      "data/landuse/lu_E820N830.tif": {
+        "bytes": 144057,
+        "sha256": "f5355b080581c1a2b8ef2e936fe98b133ebee164f836e5c188c7f0a437327e8f"
+      },
+      "data/landuse/lu_E820N840.tif": {
+        "bytes": 29842,
+        "sha256": "832b42bd13a299038d3c7d708fd953375cedec53a9f03a11c0cbcb79df0c7980"
+      },
+      "data/landuse/lu_E830N800.tif": {
+        "bytes": 30927,
+        "sha256": "3629d3192ee5f10d3301c096de3ebe659bf8d36f410d4bcd1f9618e2f79b6949"
+      },
+      "data/landuse/lu_E830N810.tif": {
+        "bytes": 111088,
+        "sha256": "fdd3d0d74d063b500bfcae183af89e750fdfd3238302d6dcb030ffd58e8ef723"
+      },
+      "data/landuse/lu_E830N820.tif": {
+        "bytes": 147266,
+        "sha256": "0f3e439d9deabfadd72adddc7eec71a119d98c224920d142bac56ce97f398c8e"
+      },
+      "data/landuse/lu_E830N830.tif": {
+        "bytes": 131166,
+        "sha256": "13acb41f30597cbb03f1002d65d8de4a1ad1cd511f5a861a2063b4d117baa853"
+      },
+      "data/landuse/lu_E830N840.tif": {
+        "bytes": 100030,
+        "sha256": "4a61dc1510638bd90db1bda535c0b5e6240cad722f2f2fe34b98158b08698461"
+      },
+      "data/landuse/lu_E840N800.tif": {
+        "bytes": 27304,
+        "sha256": "80dfd178ceb0fe0c1a63a6094e3164604aa938148dacd26dce6ad87e83c27728"
+      },
+      "data/landuse/lu_E840N810.tif": {
+        "bytes": 101678,
+        "sha256": "60f4153fc39dacc36a5117ff0349790d826ccea73a3980f6dd974fafe3e90698"
+      },
+      "data/landuse/lu_E840N820.tif": {
+        "bytes": 118110,
+        "sha256": "83c9958b61c618ab4627561fd88ee92e7cb6eddb1b6df5293d58c6bb7acab89f"
+      },
+      "data/landuse/lu_E840N830.tif": {
+        "bytes": 88432,
+        "sha256": "6bc7b37f9ff6ff094dd2bdac0f3a23505a15e36d3313bf3d76b958156216c9a5"
+      },
+      "data/landuse/lu_E840N840.tif": {
+        "bytes": 67208,
+        "sha256": "51542ed04a86c603833b7f08c1860e7efddb1ef9c462c1eb8f62993d3c7b680c"
+      },
+      "data/landuse/lu_E850N800.tif": {
+        "bytes": 1887,
+        "sha256": "da6ee303288f5664851e7de359829f16ef94103c910c79c1265f598eae145f85"
+      },
+      "data/landuse/lu_E850N810.tif": {
+        "bytes": 7212,
+        "sha256": "213ce7eca316fc9dc09071bc503a17dbb6224d2bf30fd7571f87b5d20838509c"
+      },
+      "data/landuse/lu_E850N820.tif": {
+        "bytes": 72287,
+        "sha256": "482940ae65fbca82074b625cce617153b8cc9834f201c69525e61efa389be47f"
+      },
+      "data/landuse/lu_E850N830.tif": {
+        "bytes": 75311,
+        "sha256": "972c46c5de86ac5fda82bb4c4723124ff1fb5e1dd0fea2aae4fe247884e6b0e7"
+      },
+      "data/landuse/lu_E850N840.tif": {
+        "bytes": 11558,
+        "sha256": "7d2311b0b04912d92b622130c043f672cade23e2774aeb4ca08538fe33407bff"
+      },
+      "data/landuse/lu_E860N800.tif": {
+        "bytes": 4967,
+        "sha256": "bee822594e1e1542e233b799389d0f4a97770f5c05ed5bd27a8b5525a58a7c91"
+      },
+      "data/landuse/lu_E860N810.tif": {
+        "bytes": 4967,
+        "sha256": "5913e83403cbcf7775896f92bba158ee84a2594c5446b005a28dbfd28676a970"
+      },
+      "data/landuse/lu_E860N820.tif": {
+        "bytes": 4967,
+        "sha256": "f7a1715b463831a240d0bf29dae33f420566ab750b4515402e7eaa206ea30a3a"
+      },
+      "data/landuse/lu_E860N830.tif": {
+        "bytes": 5052,
+        "sha256": "0159ec74393034ce63b548bcc942780e744e39e52f3b53918d938dd1e472ed7f"
+      },
+      "data/landuse/lu_E860N840.tif": {
+        "bytes": 8367,
+        "sha256": "f7b904b4b167122d8762a20aac7f7c6d0e3ef87da319cc9b6858e82d61905675"
+      }
+    },
+    "retrieved": "2026-10-11T08:58:47Z",
+    "source": "https://static.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda",
+    "tiles": 35,
+    "year": 2025
+  },
   "osm": {
     "files": {
       "data/osm/index.json": {
