@@ -1,0 +1,72 @@
+{
+  "bucket": "dataforgood-fb-data",
+  "prefix": "forests/v1/alsgedi_global_v6_float/chm/1321222",
+  "keys": [
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122200.tif",
+      "size": 747359389
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122201.tif",
+      "size": 739571555
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122202.tif",
+      "size": 692356144
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122203.tif",
+      "size": 809356512
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122210.tif",
+      "size": 762148792
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122211.tif",
+      "size": 730411974
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122212.tif",
+      "size": 846510814
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122213.tif",
+      "size": 852936429
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122220.tif",
+      "size": 516584335
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122221.tif",
+      "size": 413173069
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122222.tif",
+      "size": 526266821
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122223.tif",
+      "size": 239286775
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122230.tif",
+      "size": 621779930
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122231.tif",
+      "size": 597513609
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122232.tif",
+      "size": 244148537
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/chm/132122233.tif",
+      "size": 24367106
+    }
+  ],
+  "n_keys": 16,
+  "common_prefixes": []
+}

@@ -1,0 +1,164 @@
+{
+  "url": "https://portal.csdi.gov.hk/geoportal/rest/metadata/item/pland_rcd_1754559265139_25057",
+  "final_url": "https://portal.csdi.gov.hk/geoportal/rest/metadata/item/pland_rcd_1754559265139_25057",
+  "status": 200,
+  "content_type": "application/json;charset=UTF-8",
+  "bytes": 26189,
+  "headers": {
+    "Date": "Sun, 11 Oct 2026 08:46:59 GMT",
+    "Content-Type": "application/json;charset=UTF-8",
+    "Content-Length": "26189",
+    "Connection": "keep-alive",
+    "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate,no-cache",
+    "Pragma": "no-cache",
+    "Expires": "0",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Content-Type-Options": "nosniff, nosniff",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+    "Content-Security-Policy": "frame-ancestors 'self' https://*.csdi.gov.hk; object-src 'none';",
+    "Host": "portal.csdi.gov.hk:443",
+    "set-cookie": "ASLBSA=00037ef0322baf2eea8a76ee60b398b72fcb7a39358a1129b002788628240497b55f; Path=/; Secure; HttpOnly;, ASLBSACORS=00037ef0322baf2eea8a76ee60b398b72fcb7a39358a1129b002788628240497b55f; SameSite=none; Path=/; Secure; HttpOnly;",
+    "x-azure-ref": "20261011T084658Z-1865b89bffflb625hC1PHX1ak40000000v9000000000fv33",
+    "X-Cache": "CONFIG_NOCACHE",
+    "Accept-Ranges": "bytes"
+  },
+  "json": {
+    "_index": "metadata_v1",
+    "_type": "_doc",
+    "_id": "pland_rcd_1754559265139_25057",
+    "_version": 2,
+    "_seq_no": 49493,
+    "_primary_term": 49,
+    "found": true,
+    "_source": {
+      "fileid": "fd71c303-dcc8-59e0-b4f3-f686509d0699",
+      "title": "2025 Raster Grids on Land Utilization",
+      "title_tc_s": "2025土地用途網格",
+      "title_sc_s": "2025土地用途网格",
+      "description": "The Land Utilization in Hong Kong (LUHK) is a broad-brush presentation of distribution of land uses in Hong Kong. The land use data was compiled using satellite images dated December 2025 (©AIRBUS DS 2025), in-house survey information of the Planning Department up to end-2025 and other relevant information from various government departments. The land use area is approximated area in square kilometers. The data is not designed or intended for detailed analysis or calculation purposes. As definitions of some land use classes and methodology are updated from time to time, the figures this year may not be directly comparable to those provided in previous years.",
+      "keywords_s": [
+        "Land Utilization in Hong Kong",
+        "Land use"
+      ],
+      "thumbnail_s": "https://portal.csdi.gov.hk/csdi-webpage/preview/pland_rcd_1754559265139_25057",
+      "contact_organizations_s": [
+        "Planning Department",
+        "規劃署",
+        "规划署"
+      ],
+      "contact_people_s": [
+        "-"
+      ],
+      "csw_creator_s": "Planning Department",
+      "links_s": [
+        "https://portal.csdi.gov.hk/server/services/common/pland_rcd_1754559265139_25057/MapServer/WMSServer?service=wms&request=GetCapabilities",
+        "https://portal.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda",
+        "https://portal.csdi.gov.hk/csdi-webpage/archivedDatasetFileListPage/pland_rcd_1754559265139_25057"
+      ],
+      "apiso_Identifier_s": "fd71c303-dcc8-59e0-b4f3-f686509d0699",
+      "apiso_Title_txt": [
+        "2025 Raster Grids on Land Utilization",
+        "2025土地用途網格",
+        "2025土地用途网格"
+      ],
+      "apiso_Abstract_txt": [
+        "The Land Utilization in Hong Kong (LUHK) is a broad-brush presentation of distribution of land uses in Hong Kong. The land use data was compiled using satellite images dated December 2025 (©AIRBUS DS 2025), in-house survey information of the Planning Department up to end-2025 and other relevant information from various government departments. The land use area is approximated area in square kilometers. The data is not designed or intended for detailed analysis or calculation purposes. As definitions of some land use classes and methodology are updated from time to time, the figures this year may not be directly comparable to those provided in previous years.",
+        "香港土地用途是對香港土地用途一個概括的展示。有關的土地用途資料已根據二零二五年十二月的衛星圖像（版權持有者：©AIRBUS DS 2025）、截至二零二五年年底規劃署內部調查所得的測量資料，以及各政府部門的其他相關資料而更新。土地用途的面積為大約面積，單位為平方公里。數據並非設計作精密分析或計算用途。由於部分土地用途分類的定義和方法不時更新，所以年內的數字未必能與往年直接比較。",
+        "香港土地用途是对香港土地用途一个概括的展示。有关的土地用途资料已根据二零二五年十二月的卫星图像（版权持有者：©AIRBUS DS 2025）、截至二零二五年年底规划署内部调查所得的测量资料，以及各政府部门的其他相关数据而更新。土地用途的面积为大约面积，单位为平方公里。数据并非设计作精密分析或计算用途。由于部分土地用途分类的定义和方法不时更新，所以年内的数字未必能与往年直接比较。"
+      ],
+      "apiso_BrowseGraphic_s": "https://portal.csdi.gov.hk/csdi-webpage/preview/pland_rcd_1754559265139_25057",
+      "apiso_OrganizationName_txt": [
+        "Planning Department",
+        "規劃署",
+        "规划署"
+      ],
+      "themes_s": [
+        "Common Sharable Spatial Data (CSSD)"
+      ],
+      "categories_s": [
+        "Development",
+        "發展",
+        "发展"
+      ],
+      "keywords_txt": [
+        "Land Utilization in Hong Kong",
+        "Land use"
+      ],
+      "apiso_Subject_txt": [
+        "Common Sharable Spatial Data (CSSD)",
+        "Development",
+        "發展",
+        "发展",
+        "Land Utilization in Hong Kong",
+        "Land use",
+        "planningCadastre"
+      ],
+      "apiso_Format_s": [
+        "GEOTIFF"
+      ],
+      "apiso_TopicCategory_s": [
+        "planningCadastre"
+      ],
+      "apiso_Type_s": "dataset",
+      "apiso_Modified_dt": "2026-09-30T00:00:00Z",
+      "apiso_CreationDate_dt": "2026-09-30T00:00:00Z",
+      "apiso_RevisionDate_dt": "2026-09-30T00:00:00Z",
+      "apiso_PublicationDate_dt": "2026-09-30T00:00:00Z",
+      "apiso_Language_s": "eng",
+      "apiso_ResourceLanguage_s": "eng",
+      "apiso_HasSecurityConstraints_b": false,
+      "resources_nst": [
+        {
+          "url_s": "https://portal.csdi.gov.hk/server/services/common/pland_rcd_1754559265139_25057/MapServer/WMSServer?service=wms&request=GetCapabilities",
+          "url_type_s": "WMS"
+        }
+      ],
+      "envelope_geo": [
+        {
+          "type": "envelope",
+          "coordinates": [
+            [
+              113.815,
+              22.565
+            ],
+            [
+              114.5,
+              22.135
+            ]
+          ]
+        }
+      ],
+      "envelope_cen_pt": [
+        {
+          "lat": 22.35,
+          "lon": 114.1575
+        }
+      ],
+      "apiso_CRS": {
+        "id_s": "2326"
+      },
+      "apiso_ResponsiblePartyRole_txt": "custodian",
+      "url_thumbnail_s": "https://portal.csdi.gov.hk/csdi-webpage/preview/pland_rcd_1754559265139_25057",
+      "url_http_download_s": "https://portal.csdi.gov.hk/server/services/common/pland_rcd_1754559265139_25057/MapServer/WMSServer?service=wms&request=GetCapabilities",
+      "sys_created_dt": "2026-09-30T12:49:56.573Z",
+      "sys_modified_dt": "2026-09-30T12:49:56.573Z",
+      "sys_xmlmodified_dt": "2026-09-30T12:49:56.573Z",
+      "sys_access_s": "private",
+      "sys_owner_s": "csdiadmin",
+      "sys_owner_txt": "csdiadmin",
+      "sys_metadatatype_s": "iso19115",
+      "sys_xml_clob": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><gmd:MD_Metadata xmlns:gmd=\"http://www.isotc211.org/2005/gmd\" xmlns:gco=\"http://www.isotc211.org/2005/gco\" xmlns:srv=\"http://www.isotc211.org/2005/srv\" xmlns:gml=\"http://www.opengis.net/gml\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:gts=\"http://www.isotc211.org/2005/gts\" xsi:schemaLocation=\"http://www.isotc211.org/2005/gmd https://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd\">\r\n\t<gmd:fileIdentifier><gco:CharacterString>fd71c303-dcc8-59e0-b4f3-f686509d0699</gco:CharacterString></gmd:fileIdentifier><gmd:language>\r\n\t\t\r\n\t<gmd:LanguageCode codeList=\"http://www.loc.gov/standards/iso639-2/\" codeListValue=\"eng\"/></gmd:language><gmd:parentIdentifier xmlns:gml=\"http://www.opengis.net/gml/\" xmlns:gts=\"http://www.isotc211.org/2005/gts/\" xmlns:xlink=\"http://www.w3.org/1999/xlink/\" gco:nilReason=\"missing\"/>\r\n\t<gmd:hierarchyLevel><gmd:MD_ScopeCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode\" codeListValue=\"dataset\" codeSpace=\"ISOTC211/19115\"/></gmd:hierarchyLevel><gmd:contact>\r\n\t\t<gmd:CI_ResponsibleParty>\r\n\t\t\t<gmd:organisationName>\r\n\t\t\t\t<gco:CharacterString>Planning Department</gco:CharacterString>\r\n\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">Planning Department</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">規劃署</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">规划署</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:organisationName>\r\n\t\t\t<gmd:role>\r\n\t\t\t\t<gmd:CI_RoleCode codeSpace=\"ISOTC211/19115\" codeList=\"http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</gmd:CI_RoleCode>\r\n\t\t\t</gmd:role>\r\n\t\t</gmd:CI_ResponsibleParty>\r\n\t</gmd:contact>\r\n\t<gmd:dateStamp><gco:Date>2026-09-30</gco:Date></gmd:dateStamp>\r\n\t<gmd:metadataStandardName>\r\n\t\t<gco:CharacterString>ISO 19139/19115 Metadata for Datasets</gco:CharacterString>\r\n\t</gmd:metadataStandardName>\r\n\t<gmd:metadataStandardVersion>\r\n\t\t<gco:CharacterString>2003</gco:CharacterString>\r\n\t</gmd:metadataStandardVersion>\r\n\t<gmd:locale><gmd:PT_Locale id=\"EN\"><gmd:languageCode><gmd:LanguageCode codeList=\"http://www.loc.gov/standards/iso639-2/\" codeListValue=\"eng\"/></gmd:languageCode><gmd:characterEncoding><gmd:MD_CharacterSetCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode\" codeListValue=\"utf8\"/></gmd:characterEncoding></gmd:PT_Locale></gmd:locale><gmd:locale><gmd:PT_Locale id=\"ZH\"><gmd:languageCode><gmd:LanguageCode codeList=\"http://www.loc.gov/standards/iso639-2/\" codeListValue=\"chi\"/></gmd:languageCode><gmd:characterEncoding><gmd:MD_CharacterSetCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode\" codeListValue=\"utf8\"/></gmd:characterEncoding></gmd:PT_Locale></gmd:locale><gmd:locale><gmd:PT_Locale id=\"CN\"><gmd:languageCode><gmd:LanguageCode codeList=\"http://www.loc.gov/standards/iso639-2/\" codeListValue=\"chi\"/></gmd:languageCode><gmd:characterEncoding><gmd:MD_CharacterSetCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode\" codeListValue=\"utf8\"/></gmd:characterEncoding></gmd:PT_Locale></gmd:locale><gmd:referenceSystemInfo>\r\n\t\t<gmd:MD_ReferenceSystem>\r\n\t\t\t<gmd:referenceSystemIdentifier>\r\n\t\t\t\t<gmd:RS_Identifier>\r\n\t\t\t\t\t<gmd:code>\r\n\t\t\t\t\t\t<gco:CharacterString>2326</gco:CharacterString>\r\n\t\t\t\t\t</gmd:code>\r\n\t\t\t\t</gmd:RS_Identifier>\r\n\t\t\t</gmd:referenceSystemIdentifier>\r\n\t\t</gmd:MD_ReferenceSystem>\r\n\t</gmd:referenceSystemInfo>\r\n\t<gmd:identificationInfo>\r\n\t\t<gmd:MD_DataIdentification>\r\n\t\t\t<gmd:citation>\r\n\t\t\t\t<gmd:CI_Citation>\r\n\t\t\t\t\t<gmd:title xsi:type=\"gmd:PT_FreeText_PropertyType\">\r\n\t\t\t\t\t\t<gco:CharacterString>2025 Raster Grids on Land Utilization</gco:CharacterString>\r\n\t\t\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">2025 Raster Grids on Land Utilization</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">2025土地用途網格</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">2025土地用途网格</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:title>\r\n\t\t\t\t\t<gmd:date>\r\n\t\t\t\t\t\t<gmd:CI_Date>\r\n\t\t\t\t\t\t\t<gmd:date>\r\n\t\t\t\t\t\t\t\t<gco:Date>2026-09-30</gco:Date>\r\n\t\t\t\t\t\t\t</gmd:date>\r\n\t\t\t\t\t\t\t<gmd:dateType>\r\n\t\t\t\t\t\t\t\t<gmd:CI_DateTypeCode codeSpace=\"ISOTC211/19115\" codeList=\"http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode\" codeListValue=\"creation\">creation</gmd:CI_DateTypeCode>\r\n\t\t\t\t\t\t\t</gmd:dateType>\r\n\t\t\t\t\t\t</gmd:CI_Date>\r\n\t\t\t\t\t</gmd:date>\r\n\t\t\t\t\t<gmd:date>\r\n\t\t\t\t\t\t<gmd:CI_Date>\r\n\t\t\t\t\t\t\t<gmd:date>\r\n\t\t\t\t\t\t\t\t<gco:Date>2026-09-30</gco:Date>\r\n\t\t\t\t\t\t\t</gmd:date>\r\n\t\t\t\t\t\t\t<gmd:dateType>\r\n\t\t\t\t\t\t\t\t<gmd:CI_DateTypeCode codeSpace=\"ISOTC211/19115\" codeList=\"http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode\" codeListValue=\"revision\">revision</gmd:CI_DateTypeCode>\r\n\t\t\t\t\t\t\t</gmd:dateType>\r\n\t\t\t\t\t\t</gmd:CI_Date>\r\n\t\t\t\t\t</gmd:date>\r\n\t\t\t\t<gmd:date><gmd:CI_Date><gmd:date><gco:Date>2026-09-30</gco:Date></gmd:date><gmd:dateType><gmd:CI_DateTypeCode codeSpace=\"ISOTC211/19115\" codeList=\"http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode\" codeListValue=\"publication\">publication</gmd:CI_DateTypeCode></gmd:dateType></gmd:CI_Date></gmd:date></gmd:CI_Citation>\r\n\t\t\t</gmd:citation>\r\n\t\t\t<gmd:abstract xsi:type=\"gmd:PT_FreeText_PropertyType\">\r\n\t\t\t\t<gco:CharacterString>The Land Utilization in Hong Kong (LUHK) is a broad-brush presentation of distribution of land uses in Hong Kong. The land use data was compiled using satellite images dated December 2025 (©AIRBUS DS 2025), in-house survey information of the Planning Department up to end-2025 and other relevant information from various government departments. The land use area is approximated area in square kilometers. The data is not designed or intended for detailed analysis or calculation purposes. As definitions of some land use classes and methodology are updated from time to time, the figures this year may not be directly comparable to those provided in previous years.</gco:CharacterString>\r\n\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">The Land Utilization in Hong Kong (LUHK) is a broad-brush presentation of distribution of land uses in Hong Kong. The land use data was compiled using satellite images dated December 2025 (©AIRBUS DS 2025), in-house survey information of the Planning Department up to end-2025 and other relevant information from various government departments. The land use area is approximated area in square kilometers. The data is not designed or intended for detailed analysis or calculation purposes. As definitions of some land use classes and methodology are updated from time to time, the figures this year may not be directly comparable to those provided in previous years.</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">香港土地用途是對香港土地用途一個概括的展示。有關的土地用途資料已根據二零二五年十二月的衛星圖像（版權持有者：©AIRBUS DS 2025）、截至二零二五年年底規劃署內部調查所得的測量資料，以及各政府部門的其他相關資料而更新。土地用途的面積為大約面積，單位為平方公里。數據並非設計作精密分析或計算用途。由於部分土地用途分類的定義和方法不時更新，所以年內的數字未必能與往年直接比較。</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">香港土地用途是对香港土地用途一个概括的展示。有关的土地用途资料已根据二零二五年十二月的卫星图像（版权持有者：©AIRBUS DS 2025）、截至二零二五年年底规划署内部调查所得的测量资料，以及各政府部门的其他相关数据而更新。土地用途的面积为大约面积，单位为平方公里。数据并非设计作精密分析或计算用途。由于部分土地用途分类的定义和方法不时更新，所以年内的数字未必能与往年直接比较。</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:abstract>\r\n\t\t\t<gmd:pointOfContact>\r\n\t\t\t\t<gmd:CI_ResponsibleParty>\r\n\t\t\t\t\t<gmd:individualName xsi:type=\"gmd:PT_FreeText_PropertyType\">\r\n\t\t\t\t\t\t<gco:CharacterString>-</gco:CharacterString>\r\n\t\t\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">-</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">-</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">-</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:individualName>\r\n\t\t\t\t\t<gmd:organisationName xsi:type=\"gmd:PT_FreeText_PropertyType\">\r\n\t\t\t\t\t\t<gco:CharacterString>Planning Department</gco:CharacterString>\r\n\t\t\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">Planning Department</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">規劃署</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">规划署</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:organisationName>\r\n\t\t\t\t\t<gmd:positionName xsi:type=\"gmd:PT_FreeText_PropertyType\">\r\n\t\t\t\t\t\t<gco:CharacterString>-</gco:CharacterString>\r\n\t\t\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">-</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">-</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">-</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:positionName>\r\n\t\t\t\t\t<gmd:contactInfo>\r\n\t\t\t\t\t\t<gmd:CI_Contact>\r\n\t\t\t\t\t\t\t<gmd:phone>\r\n\t\t\t\t\t\t\t\t<gmd:CI_Telephone>\r\n\t\t\t\t\t\t\t\t\t<gmd:voice>\r\n\t\t\t\t\t\t\t\t\t\t<gco:CharacterString>22315000</gco:CharacterString>\r\n\t\t\t\t\t\t\t\t\t</gmd:voice>\r\n\t\t\t\t\t\t\t\t\t<gmd:facsimile>\r\n\t\t\t\t\t\t\t\t\t\t<gco:CharacterString>28770389</gco:CharacterString>\r\n\t\t\t\t\t\t\t\t\t</gmd:facsimile>\r\n\t\t\t\t\t\t\t\t</gmd:CI_Telephone>\r\n\t\t\t\t\t\t\t</gmd:phone>\r\n\t\t\t\t\t\t\t<gmd:address>\r\n\t\t\t\t\t\t\t\t<gmd:CI_Address>\r\n\t\t\t\t\t\t\t\t\t<gmd:deliveryPoint xsi:type=\"gmd:PT_FreeText_PropertyType\">\r\n\t\t\t\t\t\t\t\t\t\t<gco:CharacterString>17/F, North Point Government Offices, 333 Java Road, North Point, Hong Kong</gco:CharacterString>\r\n\t\t\t\t\t\t\t\t\t<gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">17/F, North Point Government Offices, 333 Java Road, North Point, Hong Kong</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">香港北角渣華道333號北角政府合署17樓</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">香港北角渣华道333号北角政府合署17楼</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:deliveryPoint>\r\n\t\t\t\t\t\t\t\t\t<gmd:electronicMailAddress>\r\n\t\t\t\t\t\t\t\t\t\t<gco:CharacterString>enquire@pland.gov.hk</gco:CharacterString>\r\n\t\t\t\t\t\t\t\t\t</gmd:electronicMailAddress>\r\n\t\t\t\t\t\t\t\t</gmd:CI_Address>\r\n\t\t\t\t\t\t\t</gmd:address>\r\n\t\t\t\t\t\t</gmd:CI_Contact>\r\n\t\t\t\t\t</gmd:contactInfo>\r\n\t\t\t\t\t<gmd:role>\r\n\t\t\t\t\t\t<gmd:CI_RoleCode codeSpace=\"ISOTC211/19115\" codeList=\"http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode\" codeListValue=\"custodian\">custodian</gmd:CI_RoleCode>\r\n\t\t\t\t\t</gmd:role>\r\n\t\t\t\t</gmd:CI_ResponsibleParty>\r\n\t\t\t</gmd:pointOfContact>\r\n\t\t\t<gmd:resourceMaintenance>\r\n\t\t\t\t<gmd:MD_MaintenanceInformation>\r\n\t\t\t\t\t<gmd:maintenanceAndUpdateFrequency>\r\n\t\t\t\t\t\t<gmd:MD_MaintenanceFrequencyCode codeSpace=\"ISOTC211/19115\" codeList=\"http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode\" codeListValue=\"annually\">annually</gmd:MD_MaintenanceFrequencyCode>\r\n\t\t\t\t\t</gmd:maintenanceAndUpdateFrequency>\r\n\t\t\t\t<gmd:maintenanceNote xsi:type=\"gmd:PT_FreeText_PropertyType\"><gco:CharacterString>Yearly</gco:CharacterString><gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">Yearly</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">每年</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">每年</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:maintenanceNote></gmd:MD_MaintenanceInformation>\r\n\t\t\t</gmd:resourceMaintenance>\r\n\t\t\t<gmd:descriptiveKeywords><gmd:MD_Keywords><gmd:keyword><gco:CharacterString>Common Sharable Spatial Data (CSSD)</gco:CharacterString></gmd:keyword><gmd:thesaurusName><gmd:CI_Citation><gmd:title><gco:CharacterString>Class of spatial data in CSDI, version 1.0</gco:CharacterString></gmd:title><gmd:date><gmd:CI_Date><gmd:date><gco:Date>2021-07-22</gco:Date></gmd:date><gmd:dateType><gmd:CI_DateTypeCode codeListValue=\"publication\" codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode\"/></gmd:dateType></gmd:CI_Date></gmd:date></gmd:CI_Citation></gmd:thesaurusName></gmd:MD_Keywords></gmd:descriptiveKeywords><gmd:descriptiveKeywords><gmd:MD_Keywords><gmd:keyword><gco:CharacterString>Development</gco:CharacterString><gmd:PT_FreeText><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#EN\">Development</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#ZH\">發展</gmd:LocalisedCharacterString></gmd:textGroup><gmd:textGroup><gmd:LocalisedCharacterString locale=\"#CN\">发展</gmd:LocalisedCharacterString></gmd:textGroup></gmd:PT_FreeText></gmd:keyword><gmd:thesaurusName><gmd:CI_Citation><gmd:title><gco:CharacterString>CSDI data category, version 1.0</gco:CharacterString></gmd:title><gmd:date><gmd:CI_Date><gmd:date><gco:Date>2021-06-24</gco:Date></gmd:date><gmd:dateType><gmd:CI_DateTypeCode codeListValue=\"publication\" codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode\"/></gmd:dateType></gmd:CI_Date></gmd:date></gmd:CI_Citation></gmd:thesaurusName></gmd:MD_Keywords></gmd:descriptiveKeywords><gmd:descriptiveKeywords>\r\n\t\t\t\t<gmd:MD_Keywords>\r\n\t\t\t\t\t<gmd:keyword>\r\n\t\t\t\t\t\t<gco:CharacterString>Land Utilization in Hong Kong</gco:CharacterString>\r\n\t\t\t\t\t</gmd:keyword>\r\n\t\t\t\t\t<gmd:keyword>\r\n\t\t\t\t\t\t<gco:CharacterString>Land use</gco:CharacterString>\r\n\t\t\t\t\t</gmd:keyword>\r\n\t\t\t\t</gmd:MD_Keywords>\r\n\t\t\t</gmd:descriptiveKeywords>\r\n\t\t\t<gmd:language>\r\n\t\t\t\t\r\n\t\t\t<gmd:LanguageCode codeList=\"http://www.loc.gov/standards/iso639-2/\" codeListValue=\"eng\"/></gmd:language><gmd:topicCategory><gmd:MD_TopicCategoryCode>planningCadastre</gmd:MD_TopicCategoryCode></gmd:topicCategory>\r\n\t\t\t<gmd:extent>\r\n\t\t\t\t<gmd:EX_Extent>\r\n\t\t\t\t\t<gmd:geographicElement>\r\n\t\t\t\t\t\t<gmd:EX_GeographicBoundingBox>\r\n\t\t\t\t\t\t\t<gmd:westBoundLongitude>\r\n\t\t\t\t\t\t\t\t<gco:Decimal>113.815</gco:Decimal>\r\n\t\t\t\t\t\t\t</gmd:westBoundLongitude>\r\n\t\t\t\t\t\t\t<gmd:eastBoundLongitude>\r\n\t\t\t\t\t\t\t\t<gco:Decimal>114.5</gco:Decimal>\r\n\t\t\t\t\t\t\t</gmd:eastBoundLongitude>\r\n\t\t\t\t\t\t\t<gmd:southBoundLatitude>\r\n\t\t\t\t\t\t\t\t<gco:Decimal>22.135</gco:Decimal>\r\n\t\t\t\t\t\t\t</gmd:southBoundLatitude>\r\n\t\t\t\t\t\t\t<gmd:northBoundLatitude>\r\n\t\t\t\t\t\t\t\t<gco:Decimal>22.565</gco:Decimal>\r\n\t\t\t\t\t\t\t</gmd:northBoundLatitude>\r\n\t\t\t\t\t\t</gmd:EX_GeographicBoundingBox>\r\n\t\t\t\t\t</gmd:geographicElement>\r\n\t\t\t\t</gmd:EX_Extent>\r\n\t\t\t</gmd:extent>\r\n\t\t<gmd:graphicOverview><gmd:MD_BrowseGraphic><gmd:fileName><gco:CharacterString>https://portal.csdi.gov.hk/csdi-webpage/preview/pland_rcd_1754559265139_25057</gco:CharacterString></gmd:fileName><gmd:fileDescription><gco:CharacterString>Thumbnail Image</gco:CharacterString></gmd:fileDescription><gmd:fileType><gco:CharacterString>PNG</gco:CharacterString></gmd:fileType></gmd:MD_BrowseGraphic></gmd:graphicOverview></gmd:MD_DataIdentification>\r\n\t</gmd:identificationInfo>\r\n<gmd:distributionInfo><gmd:MD_Distribution><gmd:distributionFormat>\t\t\t<gmd:MD_Format>\t\t\t\t<gmd:name>\t\t\t\t\t<gco:CharacterString>GEOTIFF</gco:CharacterString>\t\t\t\t</gmd:name>\t\t\t\t<gmd:version>\t\t\t\t\t\t<gco:CharacterString>1.0</gco:CharacterString>\t\t\t\t</gmd:version>\t\t\t</gmd:MD_Format>\t</gmd:distributionFormat><gmd:transferOptions>\t\t\t<gmd:MD_DigitalTransferOptions>\t\t\t\t<gmd:onLine>\t\t\t\t\t<gmd:CI_OnlineResource>\t\t\t\t\t\t<gmd:linkage>\t\t\t\t\t\t\t<gmd:URL>https://portal.csdi.gov.hk/server/services/common/pland_rcd_1754559265139_25057/MapServer/WMSServer?service=wms&amp;request=GetCapabilities</gmd:URL>\t\t\t\t\t\t</gmd:linkage>\t\t\t\t\t\t<gmd:applicationProfile>\t\t\t\t\t\t\t<gco:CharacterString>WMS</gco:CharacterString>\t\t\t\t\t\t</gmd:applicationProfile>\t\t\t\t\t\t<gmd:name>\t\t\t\t\t\t\t<gco:CharacterString>WMS</gco:CharacterString>\t\t\t\t\t\t</gmd:name>\t\t\t\t\t\t<gmd:function>\t\t\t\t\t\t\t<gmd:CI_OnLineFunctionCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode\" codeListValue=\"information\">information</gmd:CI_OnLineFunctionCode>\t\t\t\t\t\t</gmd:function>\t\t\t\t\t</gmd:CI_OnlineResource>\t\t\t\t</gmd:onLine>\t\t\t</gmd:MD_DigitalTransferOptions>\t\t</gmd:transferOptions><gmd:transferOptions>\t\t\t<gmd:MD_DigitalTransferOptions>\t\t\t\t<gmd:onLine>\t\t\t\t\t<gmd:CI_OnlineResource>\t\t\t\t\t\t<gmd:linkage>\t\t\t\t\t\t\t<gmd:URL>https://portal.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda</gmd:URL>\t\t\t\t\t\t</gmd:linkage>\t\t\t\t\t\t<gmd:applicationProfile>\t\t\t\t\t\t\t<gco:CharacterString>GEOTIFF</gco:CharacterString>\t\t\t\t\t\t</gmd:applicationProfile>\t\t\t\t\t\t<gmd:name>\t\t\t\t\t\t\t<gco:CharacterString>GEOTIFF</gco:CharacterString>\t\t\t\t\t\t</gmd:name>\t\t\t\t\t\t<gmd:function>\t\t\t\t\t\t\t<gmd:CI_OnLineFunctionCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode\" codeListValue=\"download\">download</gmd:CI_OnLineFunctionCode>\t\t\t\t\t\t</gmd:function>\t\t\t\t\t</gmd:CI_OnlineResource>\t\t\t\t</gmd:onLine>\t\t\t</gmd:MD_DigitalTransferOptions>\t\t</gmd:transferOptions><gmd:transferOptions>\t\t\t<gmd:MD_DigitalTransferOptions>\t\t\t\t<gmd:onLine>\t\t\t\t\t<gmd:CI_OnlineResource>\t\t\t\t\t\t<gmd:linkage>\t\t\t\t\t\t\t<gmd:URL>https://portal.csdi.gov.hk/csdi-webpage/archivedDatasetFileListPage/pland_rcd_1754559265139_25057</gmd:URL>\t\t\t\t\t\t</gmd:linkage>\t\t\t\t\t\t<gmd:applicationProfile>\t\t\t\t\t\t\t<gco:CharacterString>ARCHIVE_DATASET</gco:CharacterString>\t\t\t\t\t\t</gmd:applicationProfile>\t\t\t\t\t\t<gmd:name>\t\t\t\t\t\t\t<gco:CharacterString>ARCHIVE_DATASET</gco:CharacterString>\t\t\t\t\t\t</gmd:name>\t\t\t\t\t\t<gmd:function>\t\t\t\t\t\t\t<gmd:CI_OnLineFunctionCode codeList=\"http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode\" codeListValue=\"download\">download</gmd:CI_OnLineFunctionCode>\t\t\t\t\t\t</gmd:function>\t\t\t\t\t</gmd:CI_OnlineResource>\t\t\t\t</gmd:onLine>\t\t\t</gmd:MD_DigitalTransferOptions>\t\t</gmd:transferOptions></gmd:MD_Distribution></gmd:distributionInfo></gmd:MD_Metadata>",
+      "sys_xmlmeta_obj": {
+        "mimetype": "application/xml",
+        "hash": "-7602168325785538395:4870072899898668469:18967",
+        "date": "2026-09-30T12:49:56.588Z",
+        "size": 18967
+      },
+      "sys_access_groups_s": [
+        "b51a53cb394244fc84bf041bd49df660",
+        "9c542d625a594bffbbb98f687e225806"
+      ]
+    }
+  }
+}

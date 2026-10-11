@@ -1,0 +1,62 @@
+{
+  "url": "https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122232.tif",
+  "driver": "GTiff",
+  "crs": "EPSG:3857",
+  "width": 65536,
+  "height": 65536,
+  "count": 1,
+  "dtype": "uint8",
+  "nodata": null,
+  "res": [
+    1.1943285669558463,
+    1.1943285669558819
+  ],
+  "bounds": [
+    12679985.748171318,
+    2504688.5428486555,
+    12758257.265135337,
+    2582960.059812676
+  ],
+  "transform": [
+    1.1943285669558463,
+    0.0,
+    12679985.748171318,
+    0.0,
+    -1.1943285669558819,
+    2582960.059812676
+  ],
+  "block_shapes": [
+    [
+      1,
+      65536
+    ]
+  ],
+  "overviews": [],
+  "tags": {
+    "UNITS": "METERS",
+    "AREA_OR_POINT": "Area"
+  },
+  "band_tags": {},
+  "compression": "Compression.deflate",
+  "interleaving": "Interleaving.band",
+  "samples": [
+    {
+      "lonlat": [
+        114.2232,
+        22.3406
+      ],
+      "value": [
+        0.0
+      ]
+    },
+    {
+      "lonlat": [
+        114.2524,
+        22.409
+      ],
+      "value": [
+        0.0
+      ]
+    }
+  ]
+}

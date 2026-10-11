@@ -1,0 +1,29 @@
+{
+  "error": "RasterioIOError: Read failed. See previous exception for details.",
+  "trace": "Traceback (most recent call last):\n  File \"rasterio/_io.pyx\", line 898, in rasterio._io.DatasetReaderBase._read\n  File \"rasterio/_io.pyx\", line 173, in rasterio._io.io_multi_band\n  File \"rasterio/_io.pyx\", line 179, in rasterio._io.io_multi_band\n  File \"rasterio/_err.pyx\", line 325, in rasterio._err.StackChecker.exc_wrap_int\nrasterio._err.CPLE_IllegalArgError: 132122223.tif: Access window out of range in RasterIO().  Requested (65536,16519) of size 1x8065 on raster of 65536x65536.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/runner/work/hk-topological-workspace/hk-topological-workspace/tools/probe_sources.py\", line 134, in main\n    rec, msg = KINDS[p[\"kind\"]](p)\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/hk-topological-workspace/hk-topological-workspace/tools/probe_sources.py\", line 117, in probe_gdal\n    arr = src.read(1, window=win, out_shape=(min(int(win.height), 400), min(int(win.width), 400)))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"rasterio/_io.pyx\", line 571, in rasterio._io.DatasetReaderBase.read\n  File \"rasterio/_io.pyx\", line 901, in rasterio._io.DatasetReaderBase._read\nrasterio.errors.RasterioIOError: Read failed. See previous exception for details.\n",
+  "probe": {
+    "name": "chm_tile_z9_a",
+    "kind": "gdal",
+    "url": "https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122223.tif",
+    "sample_lonlat": [
+      [
+        114.1606,
+        22.3869
+      ],
+      [
+        114.1659,
+        22.4116
+      ],
+      [
+        114.17,
+        22.32
+      ]
+    ],
+    "window_lonlat": [
+      114.1,
+      22.35,
+      114.22,
+      22.43
+    ]
+  }
+}

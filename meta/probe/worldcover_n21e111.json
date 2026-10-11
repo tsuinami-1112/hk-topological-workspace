@@ -1,0 +1,73 @@
+{
+  "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N21E111_Map.tif",
+  "driver": "GTiff",
+  "crs": "EPSG:4326",
+  "width": 36000,
+  "height": 36000,
+  "count": 1,
+  "dtype": "uint8",
+  "nodata": 0.0,
+  "res": [
+    8.333333333333333e-05,
+    8.333333333333333e-05
+  ],
+  "bounds": [
+    111.0,
+    21.0,
+    114.0,
+    24.0
+  ],
+  "transform": [
+    8.333333333333333e-05,
+    0.0,
+    111.0,
+    0.0,
+    -8.333333333333333e-05,
+    24.0
+  ],
+  "block_shapes": [
+    [
+      1024,
+      1024
+    ]
+  ],
+  "overviews": [
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "tags": {
+    "algorithm_version": "V2.0.0",
+    "copyright": "ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "creation_time": "2022-10-21 07:35:40.236136",
+    "legend": "10  Tree cover\n20  Shrubland\n30  Grassland\n40  Cropland\n50  Built-up\n60  Bare/sparse vegetation\n70  Snow and ice\n80  Permanent water bodies\n90  Herbaceous wetland\n95  Mangroves\n100 Moss and lichen\n",
+    "license": "CC-BY 4.0 - https://creativecommons.org/licenses/by/4.0/",
+    "product_crs": "EPSG:4326",
+    "product_grid": "3x3 degree tiling grid",
+    "product_tile": "N21E111",
+    "product_type": "LandCover Map",
+    "product_version": "V2.0.0",
+    "reference": "https://esa-worldcover.org",
+    "time_end": "2021-12-31T23:59:59Z",
+    "time_start": "2021-01-01T00:00:00Z",
+    "title": "ESA WorldCover product at 10m resolution for year 2021",
+    "AREA_OR_POINT": "Area"
+  },
+  "band_tags": {},
+  "compression": "Compression.deflate",
+  "interleaving": "Interleaving.band",
+  "samples": [
+    {
+      "lonlat": [
+        113.95,
+        22.25
+      ],
+      "value": [
+        10.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "bucket": "dataforgood-fb-data",
+  "prefix": "forests/v1/alsgedi_global_v6_float/",
+  "keys": [
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/",
+      "size": 0
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/CHM_acquisition_date.tif",
+      "size": 2014008198
+    },
+    {
+      "key": "forests/v1/alsgedi_global_v6_float/tiles.geojson",
+      "size": 15167629
+    }
+  ],
+  "n_keys": 3,
+  "common_prefixes": [
+    "forests/v1/alsgedi_global_v6_float/chm/",
+    "forests/v1/alsgedi_global_v6_float/metadata/",
+    "forests/v1/alsgedi_global_v6_float/msk/"
+  ]
+}

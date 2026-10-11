@@ -1,0 +1,159 @@
+{
+  "url": "https://portal.csdi.gov.hk/server/rest/services/common/pland_rcd_1754559265139_25057/MapServer?f=pjson",
+  "final_url": "https://portal.csdi.gov.hk/server/rest/services/common/pland_rcd_1754559265139_25057/MapServer?f=pjson",
+  "status": 200,
+  "content_type": "text/plain;charset=UTF-8",
+  "bytes": 2971,
+  "headers": {
+    "Date": "Sun, 11 Oct 2026 08:47:02 GMT",
+    "Content-Type": "text/plain;charset=UTF-8",
+    "Content-Length": "1046",
+    "Connection": "keep-alive",
+    "Cache-Control": "public, must-revalidate, max-age=0,no-cache",
+    "Content-Encoding": "gzip",
+    "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+    "ETag": "\"5a096fd7\"",
+    "Vary": "Origin",
+    "X-Content-Type-Options": "nosniff, nosniff",
+    "Set-Cookie": "AGS_ROLES=\"419jqfa+uOZgYod4xPOQ8Q==\"; Version=1; Max-Age=60; Expires=Sun, 11-Oct-2026 08:48:02 GMT; Path=/server/rest; Secure; HttpOnly",
+    "Content-Security-Policy": "frame-ancestors 'self' https://*.csdi.gov.hk; object-src 'none';",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "Host": "portal.csdi.gov.hk:443",
+    "x-azure-ref": "20261011T084701Z-1865b89bfffrzmlzhC1PHXx5pw0000000yag000000006nfz",
+    "X-Cache": "CONFIG_NOCACHE",
+    "Accept-Ranges": "bytes"
+  },
+  "json": {
+    "currentVersion": 10.91,
+    "cimVersion": "2.9.0",
+    "serviceDescription": "2025 Raster Grids on Land Utilization",
+    "mapName": "2025 Raster Grids on Land Utilization",
+    "description": "2025 Raster Grids on Land Utilization",
+    "copyrightText": " ",
+    "supportsDynamicLayers": true,
+    "layers": [
+      {
+        "id": 0,
+        "name": "BLU",
+        "parentLayerId": -1,
+        "defaultVisibility": true,
+        "subLayerIds": null,
+        "minScale": 0,
+        "maxScale": 0,
+        "type": "Raster Layer",
+        "supportsDynamicLegends": true
+      }
+    ],
+    "tables": [],
+    "spatialReference": {
+      "wkid": 102140,
+      "latestWkid": 2326,
+      "xyTolerance": 0.001,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -4786700,
+      "falseY": -11651800,
+      "xyUnits": 10000,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    },
+    "singleFusedMapCache": false,
+    "initialExtent": {
+      "xmin": 794851.3610952162,
+      "ymin": 796450.2267954533,
+      "xmax": 874189.4781047836,
+      "ymax": 851004.7734045465,
+      "spatialReference": {
+        "wkid": 102140,
+        "latestWkid": 2326,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -4786700,
+        "falseY": -11651800,
+        "xyUnits": 10000,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+      }
+    },
+    "fullExtent": {
+      "xmin": 800000,
+      "ymin": 800000,
+      "xmax": 863750,
+      "ymax": 848000,
+      "spatialReference": {
+        "wkid": 102140,
+        "latestWkid": 2326,
+        "xyTolerance": 0.001,
+        "zTolerance": 0.001,
+        "mTolerance": 0.001,
+        "falseX": -4786700,
+        "falseY": -11651800,
+        "xyUnits": 10000,
+        "falseZ": -100000,
+        "zUnits": 10000,
+        "falseM": -100000,
+        "mUnits": 10000
+      }
+    },
+    "datesInUnknownTimezone": false,
+    "minScale": 0,
+    "maxScale": 0,
+    "units": "esriMeters",
+    "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+    "documentInfo": {
+      "Title": "2025 Raster Grids on Land Utilization",
+      "Author": "",
+      "Comments": "",
+      "Subject": "",
+      "Category": "",
+      "AntialiasingMode": "None",
+      "TextAntialiasingMode": "Force",
+      "Version": "2.9.0",
+      "Keywords": ""
+    },
+    "capabilities": "Map,Query,Data",
+    "supportedQueryFormats": "JSON, geoJSON, PBF",
+    "exportTilesAllowed": false,
+    "referenceScale": 0.0,
+    "datumTransformations": [
+      {
+        "geoTransforms": [
+          {
+            "wkid": 1825,
+            "latestWkid": 1825,
+            "transformForward": false,
+            "name": "Hong_Kong_1980_To_WGS_1984_1"
+          }
+        ]
+      },
+      {
+        "geoTransforms": [
+          {
+            "wkid": 1825,
+            "latestWkid": 1825,
+            "transformForward": true,
+            "name": "Hong_Kong_1980_To_WGS_1984_1"
+          }
+        ]
+      }
+    ],
+    "supportsDatumTransformation": true,
+    "archivingInfo": {
+      "supportsHistoricMoment": false
+    },
+    "supportsClipping": true,
+    "supportsSpatialFilter": true,
+    "supportsTimeRelation": true,
+    "supportsQueryDataElements": true,
+    "maxRecordCount": 3000,
+    "maxImageHeight": 4096,
+    "maxImageWidth": 4096,
+    "supportedExtensions": "WMSServer",
+    "serviceItemId": "4527f36f3b0c490d81e7dbc046e5f980"
+  }
+}
