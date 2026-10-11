@@ -35,7 +35,15 @@ def note(msg, level="notice"):
 
 
 def probe_http(p):
-    r = requests.get(p["url"], headers=UA, timeout=(20, 120), allow_redirects=True)
+    hdrs = {**UA, **(p.get("headers") or {})}
+    if p.get("head_only"):
+        with requests.get(p["url"], headers=hdrs, timeout=(20, 120), allow_redirects=True, stream=True) as r:
+            first = next(r.iter_content(1024), b"")
+            rec = {"url": p["url"], "final_url": r.url, "status": r.status_code, "headers": dict(r.headers),
+                   "first_bytes_hex": first[:64].hex(), "first_bytes_text": first[:300].decode("latin-1"),
+                   "is_zip": first[:2] == b"PK", "history": [h.status_code for h in r.history]}
+        return rec, f"HTTP {r.status_code}, {r.headers.get('content-type')}, zip={rec['is_zip']}, len={r.headers.get('content-length')}"
+    r = requests.get(p["url"], headers=hdrs, timeout=(20, 120), allow_redirects=True)
     rec = {"url": p["url"], "final_url": r.url, "status": r.status_code,
            "content_type": r.headers.get("content-type"), "bytes": len(r.content),
            "headers": dict(r.headers)}
