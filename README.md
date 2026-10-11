@@ -24,6 +24,9 @@ data/                   fetched data, committed by the workflow; never edit by h
   dtm5m/                LandsD 5 m DTM, float32 GeoTIFF tiles + index.json
   buildings/            LandsD building footprints with heights, GeoPackage tiles + index.json
   osm/                  OSM roads/tracks/paths ("ways"), masts/towers ("masts"), named peaks ("peaks")
+  canopy/               Meta/WRI canopy height on the DTM's 5 m grid (band 1 max, band 2 mean, metres)
+  landuse/              PlanD land utilisation 2025, 10 m codes (names in config/landuse_classes.yml)
+products/               deliverables committed per run (e.g. products/spots/2026-10-11/*.kmz)
 out/                    analysis outputs (git-ignored, regenerated per session)
 ```
 
@@ -36,8 +39,9 @@ out/                    analysis outputs (git-ignored, regenerated per session)
   their representative point.
 - **Heights:** metres, assumed mPD (Hong Kong Principal Datum). The DTM's dataset page does
   not state its datum; check against a known benchmark before trusting sub-metre detail.
-- **DTM content:** bare terrain plus elevated roads, bridges and vegetation canopy (per
-  LandsD). Buildings are not in it; combine with `buildings/` for urban line of sight.
+- **DTM content:** LandsD says vegetated areas are at vegetation height, but checked against 1,752
+  surveyed peaks it behaves as bare ground (median +2 m under >10 m of canopy). Trees come from
+  `canopy/`, buildings from `buildings/`; `tools/dsm.py` combines them (`canopy=True`).
 
 ## Refreshing data
 
@@ -58,7 +62,9 @@ attach it to a release of this repo tagged `src`, and set the DTM url in
    `python analyses/home_relays.py --registry out/nodes.geojson` (terrain-only candidate search around home),
    `python analyses/relay_sets.py <site> <site> ...` (sites to carry forward; terrain-only union coverage),
    `python analyses/building_check.py --registry out/nodes.geojson` (building-aware links, real rooftop targets),
-   `python analyses/shortlist_links.py out/home_relays/candidates.geojson <site> ...` (quick pairwise terrain links).
+   `python analyses/shortlist_links.py out/home_relays/candidates.geojson <site> ...` (quick pairwise terrain links),
+   `python analyses/spots.py` then `python analyses/export_spots.py` (spots of interest -> KMZ / GeoJSON),
+   `python analyses/balcony_skyline.py` (predicted view from the balcony, for photo checks).
 3. Write decisions back to the registry in the Project.
 4. Rebuild the planning map (needs building_check output): `python analyses/render_map.py --registry out/nodes.geojson` then
    `python analyses/build_map_page.py`, and republish `out/map/` to the existing map artifact
@@ -71,4 +77,6 @@ attach it to a release of this repo tagged `src`, and set the DTM url in
 | Digital Terrain Model, 5 m grid | Lands Department, via DATA.GOV.HK | DATA.GOV.HK Terms and Conditions of Use (free re-use) |
 | Building (footprints, TopHeight/BaseHeight in mPD, storeys) | Lands Department, via CSDI ArcGIS REST | DATA.GOV.HK / CSDI terms |
 | Leaflet 1.9.4 stylesheet (analyses/vendor) | Volodymyr Agafonkin and contributors | BSD 2-Clause |
+| Canopy height (~1.2 m) | Meta and World Resources Institute, High Resolution Canopy Height Maps v1 | CC BY 4.0 |
+| Land utilisation 2025 (10 m) | Planning Department, via CSDI | DATA.GOV.HK / CSDI terms |
 | Roads, paths, masts, peaks | OpenStreetMap contributors, via Geofabrik's Hong Kong extract | ODbL 1.0, attribution required |

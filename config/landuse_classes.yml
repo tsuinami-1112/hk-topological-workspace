@@ -1,0 +1,43 @@
+# PlanD "Raster Grids on Land Utilization" (2025, 10 m): pixel codes -> classes.
+# The download carries no legend. Codes are 10 x group + subclass, in the order of PlanD's
+# published Land Utilization categories (lum_2023 legend: ... Agricultural Land, Fish Ponds / Gei
+# Wais, Woodland, Shrubland, Grassland, Mangrove and Swamp, Badland / Rocky Shore, Water Bodies).
+# Checked 2026-10-11 against Meta/WRI canopy height and the DTM:
+#   71 median canopy 6.8 m (64% over 5 m)  -> Woodland
+#   72 median canopy 3.0 m                 -> Shrubland
+#   73 median canopy 0.0 m                 -> Grassland
+#   74 median ground 1 mPD                 -> Mangrove and swamp
+#   81 bare, median ground 215 mPD         -> Badland
+#   91 ground 47 mPD, 92 ground 3 mPD      -> Reservoirs, streams and nullahs
+# Names for codes 1-62 follow the same category order and are inferred, not confirmed.
+classes:
+  -128: {name: No data, group: none}
+  0: {name: Sea, group: water}
+  1: {name: Private residential, group: built}
+  2: {name: Public residential, group: built}
+  3: {name: Rural settlement, group: built}
+  11: {name: Commercial / business and office, group: built}
+  21: {name: Industrial land, group: built}
+  22: {name: Industrial estates / science parks, group: built}
+  23: {name: Warehouse and open storage, group: built}
+  31: {name: Government, institutional and community, group: built}
+  32: {name: Open space and recreation, group: open_space}
+  41: {name: Roads and transport facilities, group: transport}
+  42: {name: Railways, group: transport}
+  43: {name: Airport, group: transport}
+  44: {name: Port facilities, group: transport}
+  51: {name: Cemeteries and funeral facilities, group: other_urban}
+  52: {name: Utilities, group: other_urban}
+  53: {name: Vacant land / construction in progress, group: other_urban}
+  54: {name: Other urban or built-up land, group: other_urban}
+  61: {name: Agricultural land, group: agriculture}
+  62: {name: Fish ponds / gei wais, group: water}
+  71: {name: Woodland, group: vegetation_tall}
+  72: {name: Shrubland, group: vegetation_low}
+  73: {name: Grassland, group: open}
+  74: {name: Mangrove and swamp, group: water}
+  81: {name: Badland, group: open}
+  82: {name: Barren rock, group: open}
+  83: {name: Rocky shore / other barren land, group: open}
+  91: {name: Reservoirs, group: water}
+  92: {name: Streams and nullahs, group: water}
