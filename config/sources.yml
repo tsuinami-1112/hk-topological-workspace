@@ -35,7 +35,8 @@ landuse:
   # PlanD "Raster Grids on Land Utilization", 10 m, HK1980 Grid. 2025 edition, CSDI dataset
   # pland_rcd_1754559265139_25057. Class names come from the map service's legend.
   year: 2025
-  url: https://portal.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda
+  # portal.csdi.gov.hk refuses scripted downloads (403); the static host serves the same file.
+  url: https://static.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda
   legend_url: https://portal.csdi.gov.hk/server/rest/services/common/pland_rcd_1754559265139_25057/MapServer/legend?f=pjson
 
 canopy:

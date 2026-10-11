@@ -1,11 +1,14 @@
-"""Surface model = LandsD 5 m DTM + LandsD building tops, for building-aware line of sight.
+"""Surface model = LandsD 5 m DTM + LandsD building tops (+ optionally canopy height), for line of sight.
 
     from tools.dsm import load_dsm
     dsm, transform, info = load_dsm(bounds)                  # all buildings
     dsm, transform, info = load_dsm(bounds, exclude=[poly])  # e.g. without the observer's own block
 
 Building heights: TopHeight (mPD) where LandsD gives one; that covers every Tower and Podium.
-Temporary and open-sided structures mostly lack it and get ground + GAP_HEIGHT_M. Where
+Temporary and open-sided structures mostly lack it and get ground + GAP_HEIGHT_M. With
+canopy=True the mean canopy height per 5 m cell (Meta/WRI) is added to the DTM first: the LandsD
+DTM behaves as bare ground (surveyed peaks under >10 m canopy read only ~2 m high), so trees are
+otherwise missing. Trees are treated as solid, which is conservative at 915 MHz. Where
 footprints overlap (a tower on its podium) the higher top wins. Cells keep the DTM wherever it
 is higher than a building top (hillside buildings), so the result is max(DTM, building top).
 """
@@ -34,11 +37,15 @@ def building_tops(bounds, pad: float = 0.0):
     return b
 
 
-def load_dsm(bounds, exclude=None, buildings=None):
+def load_dsm(bounds, exclude=None, buildings=None, canopy=False):
     """(surface array float32 with NaN for no data, affine transform, info dict) over bounds."""
     from rasterio.features import rasterize
 
     dtm, tr = hkgeo.load_dem(bounds)
+    if canopy:
+        _, cmean, ctr = hkgeo.load_canopy(bounds)
+        if cmean.shape == dtm.shape:
+            dtm = dtm + np.nan_to_num(cmean, nan=0.0)
     b = buildings if buildings is not None else building_tops(bounds)
     if exclude:
         from shapely.ops import unary_union
@@ -49,7 +56,7 @@ def load_dsm(bounds, exclude=None, buildings=None):
                      transform=tr, fill=np.nan, dtype="float32")
     dsm = np.fmax(dtm, tops).astype("float32")
     dsm[np.isnan(dtm)] = np.nan
-    info = {"buildings": int(len(b)), "measured": int((b["top_source"] == "TopHeight").sum()),
+    info = {"buildings": int(len(b)), "canopy": bool(canopy), "measured": int((b["top_source"] == "TopHeight").sum()),
             "gap_filled": int((b["top_source"] != "TopHeight").sum()),
             "cells_raised": int(np.sum(np.isfinite(tops) & (tops > dtm)))}
     return dsm, tr, info

@@ -120,3 +120,23 @@ def load_vector(dataset: str, bounds, layer: str | None = None, pad: float = 100
         return gpd.GeoDataFrame(geometry=[], crs=HK80)
     g = gpd.GeoDataFrame(pd.concat(parts, ignore_index=True), crs=HK80)
     return g[g.intersects(box(*bounds))].reset_index(drop=True)
+
+
+def load_canopy(bounds):
+    """Canopy height over bounds on the DTM's 5 m grid: (max, mean) float32 arrays with NaN for no data, transform."""
+    import rasterio
+    from rasterio.merge import merge
+
+    files = tiles("canopy", bounds)
+    if not files:
+        raise ValueError(f"no canopy tiles intersect {bounds}")
+    srcs = [rasterio.open(f) for f in files]
+    try:
+        arr, transform = merge(srcs, bounds=tuple(bounds), res=srcs[0].res, nodata=255, indexes=[1, 2])
+    finally:
+        for x in srcs:
+            x.close()
+    a = arr.astype("float32")
+    a[a == 255] = np.nan
+    return a[0], a[1], transform
+
