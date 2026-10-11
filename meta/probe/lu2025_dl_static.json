@@ -1,0 +1,22 @@
+{
+  "url": "https://static.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda",
+  "final_url": "https://static.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda",
+  "status": 200,
+  "headers": {
+    "Cache-Control": "no-cache",
+    "Keep-Alive": "timeout=60",
+    "Content-Length": "1974867",
+    "Content-Type": "application/x-zip-compressed;charset=UTF-8",
+    "Set-Cookie": "JSESSIONID=37681C302A822F5E76B58C73FDF0BB2B; Path=/csdi-webpage; Secure; HttpOnly; SameSite=Lax",
+    "Content-Disposition": "form-data; name=\"attachment\"; filename=\"2025_Raster_Grids_on_Land_Utilization_GEOTIFF.zip\"",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Security-Policy": "frame-ancestors 'self' https://*.csdi.gov.hk; object-src 'none';",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "Host": "static.csdi.gov.hk:443",
+    "Date": "Sun, 11 Oct 2026 08:56:19 GMT"
+  },
+  "first_bytes_hex": "504b030414000000000060863d5d000000000000000000000000160000004c554d484b5f526173746572477269645f323032352f504b03041400000008007258",
+  "first_bytes_text": "PK\u0003\u0004\u0014\u0000\u0000\u0000\u0000\u0000`=]\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0016\u0000\u0000\u0000LUMHK_RasterGrid_2025/PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000rX=]Ä`7Ç÷ \u001e\u0000{4%\u0000\u001d\u0000\u0000\u0000LUMHK_RasterGrid_2025/BLU.tifìÛkèKq\u001cÇñßþîwûí4wÍqÎÙÌf±¹Î6w3v0fcæ\u001a\u0011jk\t\u000fäöPrW\u001eP\n¥HHÊ¥\u0007<ðLù\u0019¹\u0016Ï4ïOý¾ç÷û³ßk;ûo­ÿ\"~âØ»\u001e¢µ\u0010¶:Â&xÝ^úf+!j*uC¹Õ©ÔõäVÿs]ÞÚ|Swþ¦Öm5âlcCðÓ?¢RoÛÈoê ­®È6\u0010âhW!Bú½ìWæÔÈ­ùæ¦¢l;úØ´¥",
+  "is_zip": true,
+  "history": []
+}

@@ -112,9 +112,9 @@
         "type": "esriSFS",
         "style": "esriSFSSolid",
         "color": [
-          199,
+          212,
+          245,
           252,
-          205,
           255
         ],
         "outline": {
@@ -401,5 +401,5 @@
   "tileMaxRecordCount": 4000,
   "standardMaxRecordCountNoGeometry": 32000,
   "maxRecordCountFactor": 1,
-  "serviceItemId": "28ce98b1b2164da592ae24a4278a7c66"
+  "serviceItemId": "f01b60cf9b0b49c2b40bfd763149374a"
 }

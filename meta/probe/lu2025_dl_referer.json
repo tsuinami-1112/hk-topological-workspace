@@ -1,0 +1,18 @@
+{
+  "url": "https://portal.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda",
+  "final_url": "https://portal.csdi.gov.hk/csdi-webpage/download/common/033207986b097394353ad44a143c54e064743338ec28f784748d77bbdb33afda",
+  "status": 403,
+  "headers": {
+    "Date": "Sun, 11 Oct 2026 08:56:19 GMT",
+    "Content-Type": "text/html",
+    "Content-Length": "1484",
+    "Connection": "close",
+    "Cache-Control": "no-store",
+    "x-azure-ref": "20261011T085619Z-17978c595dfqt6n6hC1DM1am1s0000001630000000009de2",
+    "X-Cache": "CONFIG_NOCACHE"
+  },
+  "first_bytes_hex": "3c21444f43545950452068746d6c205055424c494320272d2f2f5733432f2f445444205848544d4c20312e30205472616e736974696f6e616c2f2f454e272027",
+  "first_bytes_text": "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n<html xmlns='http://www.w3.org/1999/xhtml'>\n\n<head>\n    <meta content='text/html; charset=utf-8' http-equiv='content-type' />\n    <style type='text/css'>\n        body {\n         ",
+  "is_zip": false,
+  "history": []
+}
