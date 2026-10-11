@@ -9,7 +9,9 @@ on:
     branches: [main]
     paths:
       - config/inspect.yml
+      - config/probe.yml
       - tools/inspect_arcgis.py
+      - tools/probe_sources.py
       - .github/workflows/inspect-service.yml
 
 permissions:
@@ -38,7 +40,12 @@ jobs:
 
       - name: Inspect
         id: inspect
+        if: ${{ hashFiles('config/inspect.yml') != '' }}
         run: python tools/inspect_arcgis.py
+
+      - name: Probe sources
+        if: ${{ !cancelled() && hashFiles('config/probe.yml') != '' }}
+        run: python tools/probe_sources.py
 
       - name: Commit meta
         if: ${{ !cancelled() }}

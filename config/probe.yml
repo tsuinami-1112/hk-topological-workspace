@@ -1,0 +1,55 @@
+# Endpoints to probe with tools/probe_sources.py (inspect-service workflow). Results: meta/probe/.
+probes:
+  # PlanD Raster Grids on Land Utilization, 2025 edition (10 m), on CSDI
+  - name: lu2025_metadata
+    kind: http
+    url: https://portal.csdi.gov.hk/geoportal/rest/metadata/item/pland_rcd_1754559265139_25057
+  - name: lu2025_metadata_xml
+    kind: http
+    url: https://portal.csdi.gov.hk/geoportal/rest/metadata/item/pland_rcd_1754559265139_25057/xml
+  - name: lu2025_imageserver
+    kind: http
+    url: https://portal.csdi.gov.hk/server/rest/services/common/pland_rcd_1754559265139_25057/ImageServer?f=pjson
+  - name: lu2025_mapserver
+    kind: http
+    url: https://portal.csdi.gov.hk/server/rest/services/common/pland_rcd_1754559265139_25057/MapServer?f=pjson
+  - name: csdi_common_pland_services
+    kind: http
+    url: https://portal.csdi.gov.hk/server/rest/services/common?f=pjson
+    grep: pland_rcd_17
+  # Meta / WRI global canopy height (1 m class), public S3
+  - name: chm_root
+    kind: s3list
+    bucket: dataforgood-fb-data
+    prefix: forests/v1/alsgedi_global_v6_float/
+    delimiter: /
+  - name: chm_hk_keys
+    kind: s3list
+    bucket: dataforgood-fb-data
+    prefix: forests/v1/alsgedi_global_v6_float/chm/1321222
+    max_pages: 5
+  - name: chm_hk_keys_alt
+    kind: s3list
+    bucket: dataforgood-fb-data
+    prefix: forests/v1/alsgedi_global_v6_float/
+    max_pages: 40
+    match: ["132122223", "132122232", "tiles", ".geojson", ".json"]
+  - name: chm_tile_z9_a
+    kind: gdal
+    url: https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122223.tif
+    sample_lonlat: [[114.1606, 22.3869], [114.1659, 22.4116], [114.17, 22.32]]
+    window_lonlat: [114.10, 22.35, 114.22, 22.43]
+  - name: chm_tile_z9_b
+    kind: gdal
+    url: https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122232.tif
+    sample_lonlat: [[114.2232, 22.3406], [114.2524, 22.4090]]
+  # ESA WorldCover 2021 v200 (10 m), public S3: fallback landcover
+  - name: worldcover_n21e114
+    kind: gdal
+    url: https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N21E114_Map.tif
+    sample_lonlat: [[114.1606, 22.3869], [114.1659, 22.4116]]
+    window_lonlat: [114.10, 22.35, 114.22, 22.43]
+  - name: worldcover_n21e111
+    kind: gdal
+    url: https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N21E111_Map.tif
+    sample_lonlat: [[113.95, 22.25]]
