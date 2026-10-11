@@ -127,6 +127,185 @@
     "retrieved": "2026-10-09T15:02:33Z",
     "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer"
   },
+  "canopy": {
+    "files": {
+      "data/canopy/chm_E800N790.tif": {
+        "bytes": 38121,
+        "sha256": "48afb6ff97e7ea0a5ed2893db4f8e92eaf53f99626b8142c63106c9bd56f22c3"
+      },
+      "data/canopy/chm_E800N800.tif": {
+        "bytes": 380743,
+        "sha256": "e96d35afd0bd6955d23d4bc85942acd9361d1d34edcb3558365fc0d4b6276479"
+      },
+      "data/canopy/chm_E800N810.tif": {
+        "bytes": 888093,
+        "sha256": "609762098ffed665fb973e7e424abb243c22af51d418b7badb0538b1271f958e"
+      },
+      "data/canopy/chm_E800N820.tif": {
+        "bytes": 96581,
+        "sha256": "e0e51be27692a4e6ffb594c4219eaac1755bd66f3ad14a07a09437087d926e61"
+      },
+      "data/canopy/chm_E800N830.tif": {
+        "bytes": 382031,
+        "sha256": "6aac008b0e9d85ba0965e63355b67fa27a39586054f9765e6e4f2cf37da743de"
+      },
+      "data/canopy/chm_E800N840.tif": {
+        "bytes": 1121261,
+        "sha256": "a0b30904483db3e26eadf56aa95d2f9ada5d1d5533a2922b55be9bd007449d34"
+      },
+      "data/canopy/chm_E810N790.tif": {
+        "bytes": 55829,
+        "sha256": "76fd589c7e4443714226c5d6af8bffede4c87565023bfda07491c5d1dd72fdde"
+      },
+      "data/canopy/chm_E810N800.tif": {
+        "bytes": 183815,
+        "sha256": "dad432fc4b0f17b42eae963eee8dbe928901720d8bb61b419cc55da9e37f6978"
+      },
+      "data/canopy/chm_E810N810.tif": {
+        "bytes": 1717937,
+        "sha256": "1c7c049d880d7e039e50badd5005a94f9e906b327d4f95681d51730786d80bbd"
+      },
+      "data/canopy/chm_E810N820.tif": {
+        "bytes": 991601,
+        "sha256": "25db0b19b6315f46a999ef24ad96b7e99591f835b5f00853596cbd280d1a7de7"
+      },
+      "data/canopy/chm_E810N830.tif": {
+        "bytes": 1109427,
+        "sha256": "153f81429c5374ac4e2fdc4d187300320fb0f2b78d3a267bf21f75a3ad690fab"
+      },
+      "data/canopy/chm_E810N840.tif": {
+        "bytes": 1549243,
+        "sha256": "3c54309b6975eb6303a50d55d0d01f6e7f233b73c25d3fa3e836613fce34bded"
+      },
+      "data/canopy/chm_E820N790.tif": {
+        "bytes": 69371,
+        "sha256": "7f7ec0242787fb66415ac229c85efdc993774af2958ab6beb0dd29fa781eb2b6"
+      },
+      "data/canopy/chm_E820N800.tif": {
+        "bytes": 95321,
+        "sha256": "2c491b13a9462803ec66dc2060d821215715b992b0650d7bb967c739b35390c3"
+      },
+      "data/canopy/chm_E820N810.tif": {
+        "bytes": 268483,
+        "sha256": "e371525105b8b75d74e284b9797e6bd45fcde865622ec05094314f5c2fc0e638"
+      },
+      "data/canopy/chm_E820N820.tif": {
+        "bytes": 1709937,
+        "sha256": "a84a06ce4a3df13ccb3cbaa3ef366b2c1b99021ef933168f4cefda17be5b570f"
+      },
+      "data/canopy/chm_E820N830.tif": {
+        "bytes": 1936389,
+        "sha256": "6857a92393cbd18bfcbfce515a7dd525f8184da73120d5970fc27f21f16eef4d"
+      },
+      "data/canopy/chm_E820N840.tif": {
+        "bytes": 1825385,
+        "sha256": "c7062bafd50d16e7f922fa53b1e7f5932f70044efa797db17a9e8e3fe13d7d22"
+      },
+      "data/canopy/chm_E830N790.tif": {
+        "bytes": 14723,
+        "sha256": "6275d8d5cb0a5a3d75c8e23fe6ae6baa79db4dad8dc95662d3b8a16f41ca1007"
+      },
+      "data/canopy/chm_E830N800.tif": {
+        "bytes": 254733,
+        "sha256": "a0f5a553838e543284fac26bf6e47cce56530f8412e50889d1d8fbe019179cd3"
+      },
+      "data/canopy/chm_E830N810.tif": {
+        "bytes": 994031,
+        "sha256": "1c5ce8186129ecf32aa0393a6deaa7ef904a3d3ba8f5f82e4112324f0963ca08"
+      },
+      "data/canopy/chm_E830N820.tif": {
+        "bytes": 1850139,
+        "sha256": "506df8248c324f8d674a6f89172963e9896036445dcc77e525dae0ca660c9267"
+      },
+      "data/canopy/chm_E830N830.tif": {
+        "bytes": 2237643,
+        "sha256": "391280d210eaf13790f83abe5609d43b6bfa91d0a816b8b8412433f8ba26d383"
+      },
+      "data/canopy/chm_E830N840.tif": {
+        "bytes": 2064087,
+        "sha256": "7d269b6036ee896b89d925633ab2ee50146e2dccbe5e7a1fefc9a444155fe593"
+      },
+      "data/canopy/chm_E840N790.tif": {
+        "bytes": 32583,
+        "sha256": "cb1af400ca0a6ce2b5689cdeb8f32b88df4e3df418514a520ab911d14c2b6add"
+      },
+      "data/canopy/chm_E840N800.tif": {
+        "bytes": 208713,
+        "sha256": "71eef9b5775318aef11ed52715b2dd20c5923ed24cdf5b66281a3366eb2816b8"
+      },
+      "data/canopy/chm_E840N810.tif": {
+        "bytes": 964455,
+        "sha256": "002c85f91125b326340da1f29e356e3e0516cee8f595fd9d35410fb2ed8a4c08"
+      },
+      "data/canopy/chm_E840N820.tif": {
+        "bytes": 1670491,
+        "sha256": "59abab65a1f5b73a02d1c15f9012733ad6f1200056c2c728776e8cfe7044e143"
+      },
+      "data/canopy/chm_E840N830.tif": {
+        "bytes": 1299933,
+        "sha256": "a6a4c2d9b80b510d3cf690231a9e9e4de678d5c28208cb5ea676bc5b59129375"
+      },
+      "data/canopy/chm_E840N840.tif": {
+        "bytes": 1325129,
+        "sha256": "f2aeed7e4d4d3b8b21bd7930885686515d9996274485ebcc6b73fd35e2a908c4"
+      },
+      "data/canopy/chm_E850N790.tif": {
+        "bytes": 18189,
+        "sha256": "0cd48dd1f571997a049d3f6741f6652d6f5909710aefe678c4a7e8741f448834"
+      },
+      "data/canopy/chm_E850N800.tif": {
+        "bytes": 11851,
+        "sha256": "596ddd1ce15b5658eebb6fda8f5b21d27a91ce5e529d1ef38ccb4d78fe033b1e"
+      },
+      "data/canopy/chm_E850N810.tif": {
+        "bytes": 21631,
+        "sha256": "1a45945c4878c611aa9a1f6fb3665dc98bd08da7f0e8d9effad49a3f437a5687"
+      },
+      "data/canopy/chm_E850N820.tif": {
+        "bytes": 579923,
+        "sha256": "c04048c6eb18a3dc9c7cdca8c4fc9df4b7c5a8f2ec1e189085efadfbe1ca1055"
+      },
+      "data/canopy/chm_E850N830.tif": {
+        "bytes": 1076299,
+        "sha256": "a45fc6b15278cded1677d4868dc488aed17afe003c86ddbc9d75cad5cfb78680"
+      },
+      "data/canopy/chm_E850N840.tif": {
+        "bytes": 97289,
+        "sha256": "5005668b869003d72055a316d9f08ca3df1390ad71e649543f4eb95a539cdf1c"
+      },
+      "data/canopy/chm_E860N790.tif": {
+        "bytes": 14703,
+        "sha256": "42f99b33798dde4262ff2bb327dafc7d696a556bf873081675ca4d2a3125f38b"
+      },
+      "data/canopy/chm_E860N800.tif": {
+        "bytes": 11629,
+        "sha256": "450ee28e2979692a18fe5cbf5575cf3ebd2407a20d476d0310f80e77762fa970"
+      },
+      "data/canopy/chm_E860N810.tif": {
+        "bytes": 11629,
+        "sha256": "e2e3102c79e661e57249de054af735531d3968b7ceff0a6767b6520a2ef5025b"
+      },
+      "data/canopy/chm_E860N820.tif": {
+        "bytes": 14885,
+        "sha256": "2870a2f075ea44c3a28b06014f958efca294eecb16643fc2458b269b1b673b8c"
+      },
+      "data/canopy/chm_E860N830.tif": {
+        "bytes": 237003,
+        "sha256": "a5f92431db5e9849f1e806bb7526fd69cd16276bf1f0e9fa4c5c63975a663e26"
+      },
+      "data/canopy/chm_E860N840.tif": {
+        "bytes": 860527,
+        "sha256": "e7896b51816ee42741bf6e3bc80cba82c26536c0c35b169c1166126e98fca86f"
+      },
+      "data/canopy/index.json": {
+        "bytes": 10297,
+        "sha256": "b7bff499022004b92ef3ac277060ec43bf27e58d3ec6b906f1e4925713146716"
+      }
+    },
+    "retrieved": "2026-10-11T08:53:40Z",
+    "source": "https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122223.tif,https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122232.tif",
+    "tiles": 42
+  },
   "dtm5m": {
     "files": {
       "data/dtm5m/dtm5m_E800N790.tif": {

@@ -1,0 +1,527 @@
+{
+  "dataset": "canopy",
+  "crs": "EPSG:2326",
+  "res_m": [
+    5.0,
+    5.0
+  ],
+  "nodata": 255,
+  "units": "metres",
+  "bands": {
+    "1": "max canopy height in the 5 m cell",
+    "2": "mean canopy height in the 5 m cell"
+  },
+  "grid": "identical to data/dtm5m tiles",
+  "source": [
+    "https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122223.tif",
+    "https://dataforgood-fb-data.s3.amazonaws.com/forests/v1/alsgedi_global_v6_float/chm/132122232.tif"
+  ],
+  "provider": "Meta and World Resources Institute, High Resolution Canopy Height Maps v1 (alsgedi_global_v6_float), ~1.2 m",
+  "licence": "CC BY 4.0",
+  "tiles": [
+    {
+      "key": "E800N840",
+      "file": "chm_E800N840.tif",
+      "bounds": [
+        799997.5,
+        840002.5,
+        809997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9842,
+      "share_over_5m": 0.1177
+    },
+    {
+      "key": "E810N840",
+      "file": "chm_E810N840.tif",
+      "bounds": [
+        809997.5,
+        840002.5,
+        819997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9838,
+      "share_over_5m": 0.246
+    },
+    {
+      "key": "E820N840",
+      "file": "chm_E820N840.tif",
+      "bounds": [
+        819997.5,
+        840002.5,
+        829997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9835,
+      "share_over_5m": 0.271
+    },
+    {
+      "key": "E830N840",
+      "file": "chm_E830N840.tif",
+      "bounds": [
+        829997.5,
+        840002.5,
+        839997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9831,
+      "share_over_5m": 0.363
+    },
+    {
+      "key": "E840N840",
+      "file": "chm_E840N840.tif",
+      "bounds": [
+        839997.5,
+        840002.5,
+        849997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9834,
+      "share_over_5m": 0.2637
+    },
+    {
+      "key": "E850N840",
+      "file": "chm_E850N840.tif",
+      "bounds": [
+        849997.5,
+        840002.5,
+        859997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9837,
+      "share_over_5m": 0.0094
+    },
+    {
+      "key": "E860N840",
+      "file": "chm_E860N840.tif",
+      "bounds": [
+        859997.5,
+        840002.5,
+        869997.5,
+        850002.5
+      ],
+      "valid_fraction": 0.9841,
+      "share_over_5m": 0.1738
+    },
+    {
+      "key": "E800N830",
+      "file": "chm_E800N830.tif",
+      "bounds": [
+        799997.5,
+        830002.5,
+        809997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0581
+    },
+    {
+      "key": "E810N830",
+      "file": "chm_E810N830.tif",
+      "bounds": [
+        809997.5,
+        830002.5,
+        819997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.1332
+    },
+    {
+      "key": "E820N830",
+      "file": "chm_E820N830.tif",
+      "bounds": [
+        819997.5,
+        830002.5,
+        829997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.281
+    },
+    {
+      "key": "E830N830",
+      "file": "chm_E830N830.tif",
+      "bounds": [
+        829997.5,
+        830002.5,
+        839997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.4715
+    },
+    {
+      "key": "E840N830",
+      "file": "chm_E840N830.tif",
+      "bounds": [
+        839997.5,
+        830002.5,
+        849997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.27
+    },
+    {
+      "key": "E850N830",
+      "file": "chm_E850N830.tif",
+      "bounds": [
+        849997.5,
+        830002.5,
+        859997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.2124
+    },
+    {
+      "key": "E860N830",
+      "file": "chm_E860N830.tif",
+      "bounds": [
+        859997.5,
+        830002.5,
+        869997.5,
+        840002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0577
+    },
+    {
+      "key": "E800N820",
+      "file": "chm_E800N820.tif",
+      "bounds": [
+        799997.5,
+        820002.5,
+        809997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0129
+    },
+    {
+      "key": "E810N820",
+      "file": "chm_E810N820.tif",
+      "bounds": [
+        809997.5,
+        820002.5,
+        819997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.1358
+    },
+    {
+      "key": "E820N820",
+      "file": "chm_E820N820.tif",
+      "bounds": [
+        819997.5,
+        820002.5,
+        829997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.3422
+    },
+    {
+      "key": "E830N820",
+      "file": "chm_E830N820.tif",
+      "bounds": [
+        829997.5,
+        820002.5,
+        839997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.341
+    },
+    {
+      "key": "E840N820",
+      "file": "chm_E840N820.tif",
+      "bounds": [
+        839997.5,
+        820002.5,
+        849997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.3339
+    },
+    {
+      "key": "E850N820",
+      "file": "chm_E850N820.tif",
+      "bounds": [
+        849997.5,
+        820002.5,
+        859997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0615
+    },
+    {
+      "key": "E860N820",
+      "file": "chm_E860N820.tif",
+      "bounds": [
+        859997.5,
+        820002.5,
+        869997.5,
+        830002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0
+    },
+    {
+      "key": "E800N810",
+      "file": "chm_E800N810.tif",
+      "bounds": [
+        799997.5,
+        810002.5,
+        809997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.2198
+    },
+    {
+      "key": "E810N810",
+      "file": "chm_E810N810.tif",
+      "bounds": [
+        809997.5,
+        810002.5,
+        819997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.3859
+    },
+    {
+      "key": "E820N810",
+      "file": "chm_E820N810.tif",
+      "bounds": [
+        819997.5,
+        810002.5,
+        829997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0431
+    },
+    {
+      "key": "E830N810",
+      "file": "chm_E830N810.tif",
+      "bounds": [
+        829997.5,
+        810002.5,
+        839997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.1653
+    },
+    {
+      "key": "E840N810",
+      "file": "chm_E840N810.tif",
+      "bounds": [
+        839997.5,
+        810002.5,
+        849997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.1377
+    },
+    {
+      "key": "E850N810",
+      "file": "chm_E850N810.tif",
+      "bounds": [
+        849997.5,
+        810002.5,
+        859997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0005
+    },
+    {
+      "key": "E860N810",
+      "file": "chm_E860N810.tif",
+      "bounds": [
+        859997.5,
+        810002.5,
+        869997.5,
+        820002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0
+    },
+    {
+      "key": "E800N800",
+      "file": "chm_E800N800.tif",
+      "bounds": [
+        799997.5,
+        800002.5,
+        809997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0683
+    },
+    {
+      "key": "E810N800",
+      "file": "chm_E810N800.tif",
+      "bounds": [
+        809997.5,
+        800002.5,
+        819997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0359
+    },
+    {
+      "key": "E820N800",
+      "file": "chm_E820N800.tif",
+      "bounds": [
+        819997.5,
+        800002.5,
+        829997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0117
+    },
+    {
+      "key": "E830N800",
+      "file": "chm_E830N800.tif",
+      "bounds": [
+        829997.5,
+        800002.5,
+        839997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0293
+    },
+    {
+      "key": "E840N800",
+      "file": "chm_E840N800.tif",
+      "bounds": [
+        839997.5,
+        800002.5,
+        849997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0221
+    },
+    {
+      "key": "E850N800",
+      "file": "chm_E850N800.tif",
+      "bounds": [
+        849997.5,
+        800002.5,
+        859997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0
+    },
+    {
+      "key": "E860N800",
+      "file": "chm_E860N800.tif",
+      "bounds": [
+        859997.5,
+        800002.5,
+        869997.5,
+        810002.5
+      ],
+      "valid_fraction": 1.0,
+      "share_over_5m": 0.0
+    },
+    {
+      "key": "E800N790",
+      "file": "chm_E800N790.tif",
+      "bounds": [
+        799997.5,
+        790002.5,
+        809997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.981,
+      "share_over_5m": 0.0013
+    },
+    {
+      "key": "E810N790",
+      "file": "chm_E810N790.tif",
+      "bounds": [
+        809997.5,
+        790002.5,
+        819997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.9807,
+      "share_over_5m": 0.0016
+    },
+    {
+      "key": "E820N790",
+      "file": "chm_E820N790.tif",
+      "bounds": [
+        819997.5,
+        790002.5,
+        829997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.9803,
+      "share_over_5m": 0.0044
+    },
+    {
+      "key": "E830N790",
+      "file": "chm_E830N790.tif",
+      "bounds": [
+        829997.5,
+        790002.5,
+        839997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.98,
+      "share_over_5m": 0.0
+    },
+    {
+      "key": "E840N790",
+      "file": "chm_E840N790.tif",
+      "bounds": [
+        839997.5,
+        790002.5,
+        849997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.98,
+      "share_over_5m": 0.0007
+    },
+    {
+      "key": "E850N790",
+      "file": "chm_E850N790.tif",
+      "bounds": [
+        849997.5,
+        790002.5,
+        859997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.9801,
+      "share_over_5m": 0.0
+    },
+    {
+      "key": "E860N790",
+      "file": "chm_E860N790.tif",
+      "bounds": [
+        859997.5,
+        790002.5,
+        869997.5,
+        800002.5
+      ],
+      "valid_fraction": 0.9803,
+      "share_over_5m": 0.0
+    }
+  ]
+}
